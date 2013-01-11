@@ -15,14 +15,14 @@
 package dot
 
 import (
-	"sort"
 	"gographviz/ast"
+	"sort"
 )
 
 func sortedSubGraphs(keyvalue map[string]*SubGraph) []string {
 	keys := make([]string, 0)
 	for key, _ := range keyvalue {
-		keys = append(keys, key)	
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 	return keys
@@ -31,7 +31,7 @@ func sortedSubGraphs(keyvalue map[string]*SubGraph) []string {
 func sortedKeys3(keyvalue map[string]bool) []string {
 	keys := make([]string, 0)
 	for key, _ := range keyvalue {
-		keys = append(keys, key)	
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 	return keys
@@ -40,7 +40,7 @@ func sortedKeys3(keyvalue map[string]bool) []string {
 func sortedKeys(keyvalue map[string]string) []string {
 	keys := make([]string, 0)
 	for key, _ := range keyvalue {
-		keys = append(keys, key)	
+		keys = append(keys, key)
 	}
 	sort.Strings(keys)
 	return keys
@@ -60,8 +60,8 @@ func (g *Graph) Write() (*ast.Graph, error) {
 			stmt := &ast.NodeStmt{
 				ast.MakeNodeId(node.Name, ""),
 				ast.PutMap(node.Attrs),
-	  		}
-	  		addedNodes[child] = true
+			}
+			addedNodes[child] = true
 			nodes[parent] = append(nodes[parent], stmt)
 		}
 	}
@@ -88,7 +88,7 @@ func (g *Graph) Write() (*ast.Graph, error) {
 		stmt := &ast.NodeStmt{
 			ast.MakeNodeId(node.Name, ""),
 			ast.PutMap(node.Attrs),
-	  	}
+		}
 		t.StmtList = append(t.StmtList, stmt)
 	}
 	names := sortedSubGraphs(g.SubGraphs.SubGraphs)
@@ -106,12 +106,12 @@ func (g *Graph) Write() (*ast.Graph, error) {
 				Value: ast.Id(value),
 			}
 			subGraph.StmtList = append(subGraph.StmtList, stmt)
-		}	
+		}
 		ns, ok := nodes[name]
 		if !ok {
 			continue
 		}
-		for _, n := range ns {		
+		for _, n := range ns {
 			subGraph.StmtList = append(subGraph.StmtList, n)
 		}
 		t.StmtList = append(t.StmtList, subGraph)
@@ -129,5 +129,5 @@ func (g *Graph) Write() (*ast.Graph, error) {
 		}
 		t.StmtList = append(t.StmtList, stmt)
 	}
-  return t, nil
+	return t, nil
 }

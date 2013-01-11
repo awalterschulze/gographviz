@@ -45,6 +45,3 @@ func (this Attrs) Ammend(more Attrs) {
 		}
 	}
 }
-
-
-

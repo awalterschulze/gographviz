@@ -19,18 +19,18 @@ import (
 )
 
 type Edge struct {
-	Src string
+	Src     string
 	SrcPort string
-	Dst string
+	Dst     string
 	DstPort string
-	Dir bool
-	Attrs Attrs
+	Dir     bool
+	Attrs   Attrs
 }
 
 type Edges struct {
 	SrcToDsts map[string]map[string]*Edge
 	DstToSrcs map[string]map[string]*Edge
-	Edges []*Edge
+	Edges     []*Edge
 }
 
 func NewEdges() *Edges {

@@ -15,12 +15,12 @@
 package ast
 
 import (
-	"gographviz/token"
 	"errors"
 	"fmt"
+	"gographviz/token"
 	"math/rand"
-	"strings"
 	"sort"
+	"strings"
 )
 
 var (
@@ -66,7 +66,7 @@ func (this Bool) Walk(v Visitor) {
 type GraphType bool
 
 const (
-	GRAPH = GraphType(false)
+	GRAPH   = GraphType(false)
 	DIGRAPH = GraphType(true)
 )
 

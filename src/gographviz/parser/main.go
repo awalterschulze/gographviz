@@ -15,13 +15,13 @@
 package parser
 
 import (
+	"fmt"
+	"gographviz/ast"
 	"gographviz/scanner"
 	"gographviz/token"
-	"gographviz/ast"
 	"io"
 	"io/ioutil"
 	"os"
-	"fmt"
 )
 
 func ParseString(dotString string) (*ast.Graph, error) {

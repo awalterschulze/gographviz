@@ -16,7 +16,7 @@ package dot
 
 type Relations struct {
 	ParentToChildren map[string]map[string]bool
-	ChildToParents map[string]map[string]bool
+	ChildToParents   map[string]map[string]bool
 }
 
 func NewRelations() *Relations {

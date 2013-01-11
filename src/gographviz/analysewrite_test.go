@@ -15,11 +15,11 @@
 package dot
 
 import (
-	"testing"
-	"gographviz/parser"
-	"os"
-	"io/ioutil"
 	"fmt"
+	"gographviz/parser"
+	"io/ioutil"
+	"os"
+	"testing"
 )
 
 func (this *Nodes) String() string {
@@ -95,7 +95,7 @@ func analfile(t *testing.T, filename string) *Graph {
 }
 
 func analtest(t *testing.T, testname string) *Graph {
-	return analfile(t, "./testdata/" + testname)
+	return analfile(t, "./testdata/"+testname)
 }
 
 func TestHelloWorldString(t *testing.T) {

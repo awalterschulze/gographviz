@@ -19,13 +19,13 @@ import (
 )
 
 type Node struct {
-	Name string
+	Name  string
 	Attrs Attrs
 }
 
 type Nodes struct {
 	Lookup map[string]*Node
-	Nodes []*Node
+	Nodes  []*Node
 }
 
 func NewNodes() *Nodes {
@@ -43,7 +43,7 @@ func (this *Nodes) Add(node *Node) {
 }
 
 func (this Nodes) Sorted() []*Node {
-  keys := make([]string, 0, len(this.Lookup))
+	keys := make([]string, 0, len(this.Lookup))
 	for key := range this.Lookup {
 		keys = append(keys, key)
 	}

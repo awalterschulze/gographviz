@@ -16,13 +16,13 @@ package dot
 
 type SubGraph struct {
 	Attrs Attrs
-	Name string
+	Name  string
 }
 
 func NewSubGraph(name string) *SubGraph {
 	return &SubGraph{
 		Attrs: make(Attrs),
-		Name: name,
+		Name:  name,
 	}
 }
 

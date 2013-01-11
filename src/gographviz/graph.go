@@ -29,27 +29,27 @@ type Interface interface {
 }
 
 type Graph struct {
-	Attrs Attrs
-	Name string
-	Directed bool
-	Strict bool
-	Nodes *Nodes
-	Edges *Edges
+	Attrs     Attrs
+	Name      string
+	Directed  bool
+	Strict    bool
+	Nodes     *Nodes
+	Edges     *Edges
 	SubGraphs *SubGraphs
 	Relations *Relations
 }
 
 func NewGraph() *Graph {
-  return &Graph{
-		Attrs: make(Attrs),
-		Name: "",
-		Directed: false,
-		Strict: false,
-		Nodes: NewNodes(),
-		Edges: NewEdges(),
+	return &Graph{
+		Attrs:     make(Attrs),
+		Name:      "",
+		Directed:  false,
+		Strict:    false,
+		Nodes:     NewNodes(),
+		Edges:     NewEdges(),
 		SubGraphs: NewSubGraphs(),
 		Relations: NewRelations(),
-  }
+	}
 }
 
 func (this *Graph) SetStrict(strict bool) {
@@ -95,6 +95,3 @@ func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string
 		this.AddAttr(name, key, value)
 	}
 }
-
-
-

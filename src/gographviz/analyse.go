@@ -15,8 +15,8 @@
 package dot
 
 import (
-	"gographviz/ast"
 	"fmt"
+	"gographviz/ast"
 )
 
 func AnalyseGraph(graph *ast.Graph) *Graph {
@@ -57,10 +57,10 @@ func newStmtVisitor(g Interface, graphName string) *stmtVisitor {
 }
 
 type stmtVisitor struct {
-	g Interface
-	graphName string
-	currentNodeAttrs Attrs
-	currentEdgeAttrs Attrs
+	g                 Interface
+	graphName         string
+	currentNodeAttrs  Attrs
+	currentEdgeAttrs  Attrs
 	currentGraphAttrs Attrs
 }
 
@@ -81,7 +81,7 @@ func (this *stmtVisitor) Visit(v ast.Elem) ast.Visitor {
 		return this.subGraph(s)
 	case *ast.Attr:
 		return this.attr(s)
-  	case ast.AttrList:
+	case ast.AttrList:
 		return &nilVisitor{}
 	default:
 		//fmt.Printf("unknown stmt %T\n", v)
@@ -143,7 +143,7 @@ func (this *stmtVisitor) edgeAttrs(stmt ast.EdgeAttrs) ast.Visitor {
 func (this *stmtVisitor) graphAttrs(stmt ast.GraphAttrs) ast.Visitor {
 	attrs := ast.AttrList(stmt).GetMap()
 	for key, value := range attrs {
-		this.g.AddAttr(this.graphName, key, value)	
+		this.g.AddAttr(this.graphName, key, value)
 	}
 	this.currentGraphAttrs = overwrite(this.currentGraphAttrs, attrs)
 	return &nilVisitor{}
@@ -160,4 +160,3 @@ func (this *stmtVisitor) attr(stmt *ast.Attr) ast.Visitor {
 	this.g.AddAttr(this.graphName, stmt.Field.String(), stmt.Value.String())
 	return this
 }
-
