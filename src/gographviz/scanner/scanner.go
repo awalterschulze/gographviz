@@ -6,6 +6,9 @@
 // then be tokenized through repeated calls to the Scan function.
 // For a sample use of a scanner, see the implementation of Tokenize.
 //
+
+//A scanner for the DOT grammar that has been derived from the standard
+//golang scanner with extra added literals.
 package scanner
 
 import (

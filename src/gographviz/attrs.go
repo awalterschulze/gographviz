@@ -12,18 +12,21 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"fmt"
 )
 
+//Represents attributes for an Edge, Node or Graph.
 type Attrs map[string]string
 
+//Creates an empty Attributes type.
 func NewAttrs() Attrs {
 	return make(Attrs)
 }
 
+//Adds an attribute name and value.
 func (this Attrs) Add(field string, value string) {
 	prev, ok := this[field]
 	if ok {
@@ -32,12 +35,14 @@ func (this Attrs) Add(field string, value string) {
 	this[field] = value
 }
 
+//Adds the attributes into this Attrs type overwriting duplicates.
 func (this Attrs) Extend(more Attrs) {
 	for key, value := range more {
 		this.Add(key, value)
 	}
 }
 
+//Only adds the missing attributes to this Attrs type.
 func (this Attrs) Ammend(more Attrs) {
 	for key, value := range more {
 		if _, ok := this[key]; !ok {

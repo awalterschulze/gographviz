@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+//A parser for the DOT grammar.
 package parser
 
 import (
@@ -24,10 +25,14 @@ import (
 	"os"
 )
 
+//Parses a DOT string and outputs the
+//abstract syntax tree representing the graph.
 func ParseString(dotString string) (*ast.Graph, error) {
 	return ParseBytes([]byte(dotString))
 }
 
+//Parses the bytes representing a DOT string
+//and outputs the abstract syntax tree representing the graph.
 func ParseBytes(dotBytes []byte) (*ast.Graph, error) {
 	lex := &scanner.Scanner{}
 	lex.Init(dotBytes, token.DOTTokens)
@@ -43,6 +48,8 @@ func ParseBytes(dotBytes []byte) (*ast.Graph, error) {
 	return g, err
 }
 
+//Parses a reader which contains a DOT string
+//and outputs the abstract syntax tree representing the graph.
 func Parse(r io.Reader) (*ast.Graph, error) {
 	bytes, err := ioutil.ReadAll(r)
 	if err != nil {
@@ -51,6 +58,8 @@ func Parse(r io.Reader) (*ast.Graph, error) {
 	return ParseBytes(bytes)
 }
 
+//Parses a file which contains a DOT string
+//and outputs the abstract syntax tree representing the graph.
 func ParseFile(filename string) (*ast.Graph, error) {
 	f, err := os.Open(filename)
 	if err != nil {

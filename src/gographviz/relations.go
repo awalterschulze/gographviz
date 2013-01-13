@@ -12,17 +12,21 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
+//Represents the relations between graphs and nodes.
+//Each node belongs the main graph or a subgraph.
 type Relations struct {
 	ParentToChildren map[string]map[string]bool
 	ChildToParents   map[string]map[string]bool
 }
 
+//Creates an empty set of relations.
 func NewRelations() *Relations {
 	return &Relations{make(map[string]map[string]bool), make(map[string]map[string]bool)}
 }
 
+//Adds a node to a parent graph.
 func (this *Relations) Add(parent string, child string) {
 	if _, ok := this.ParentToChildren[parent]; !ok {
 		this.ParentToChildren[parent] = make(map[string]bool)

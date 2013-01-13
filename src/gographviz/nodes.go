@@ -12,26 +12,30 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"sort"
 )
 
+//Represents a Node.
 type Node struct {
 	Name  string
 	Attrs Attrs
 }
 
+//Represents a set of Nodes.
 type Nodes struct {
 	Lookup map[string]*Node
 	Nodes  []*Node
 }
 
+//Creates a new set of Nodes.
 func NewNodes() *Nodes {
 	return &Nodes{make(map[string]*Node), make([]*Node, 0)}
 }
 
+//Adds a Node to the set of Nodes, ammending the attributes of an already existing node.
 func (this *Nodes) Add(node *Node) {
 	n, ok := this.Lookup[node.Name]
 	if ok {
@@ -42,6 +46,7 @@ func (this *Nodes) Add(node *Node) {
 	this.Nodes = append(this.Nodes, node)
 }
 
+//Returns a sorted list of nodes.
 func (this Nodes) Sorted() []*Node {
 	keys := make([]string, 0, len(this.Lookup))
 	for key := range this.Lookup {

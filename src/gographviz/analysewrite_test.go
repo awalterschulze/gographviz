@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"fmt"
@@ -38,18 +38,6 @@ func (this *Edges) String() string {
 	return s + "\n"
 }
 
-func (this *Graph) String() string {
-	s := "Graph {\n"
-	s += fmt.Sprintf("Name: %v\n", this.Name)
-	s += fmt.Sprintf("Strict: %v\n", this.Strict)
-	s += fmt.Sprintf("Directed: %v\n", this.Directed)
-	s += fmt.Sprintf("Attrs: %v\n", this.Attrs)
-	s += this.Nodes.String()
-	s += this.Edges.String()
-	s += "}\n"
-	return s
-}
-
 func check(t *testing.T, err error) {
 	if err != nil {
 		t.Fatalf("%v", err)
@@ -67,20 +55,16 @@ func anal(t *testing.T, input string) *Graph {
 	g, err := parser.ParseString(input)
 	check(t, err)
 	fmt.Printf("Parsed: %v\n", g)
-	ag := AnalyseGraph(g)
+	ag := NewAnalysedGraph(g)
 	fmt.Printf("Analysed: %v\n", ag)
-	agast, err := ag.Write()
-	check(t, err)
-	agstr := agast.String()
+	agstr := ag.String()
 	fmt.Printf("Written: %v\n", agstr)
 	g2, err := parser.ParseString(agstr)
 	check(t, err)
 	fmt.Printf("Parsed %v\n", g2)
-	ag2 := AnalyseGraph(g2)
+	ag2 := NewAnalysedGraph(g2)
 	fmt.Printf("Analysed %v\n", ag2)
-	ag2ast, err := ag2.Write()
-	check(t, err)
-	ag2str := ag2ast.String()
+	ag2str := ag2.String()
 	fmt.Printf("Written: %v\n", ag2str)
 	assert(t, "analysed", agstr, ag2str)
 	return ag2

@@ -12,12 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"sort"
 )
 
+//Represents an Edge.
 type Edge struct {
 	Src     string
 	SrcPort string
@@ -27,16 +28,19 @@ type Edge struct {
 	Attrs   Attrs
 }
 
+//Represents a set of Edges.
 type Edges struct {
 	SrcToDsts map[string]map[string]*Edge
 	DstToSrcs map[string]map[string]*Edge
 	Edges     []*Edge
 }
 
+//Creates a blank set of Edges.
 func NewEdges() *Edges {
 	return &Edges{make(map[string]map[string]*Edge), make(map[string]map[string]*Edge), make([]*Edge, 0)}
 }
 
+//Adds an Edge to the set of Edges.
 func (this *Edges) Add(edge *Edge) {
 	if _, ok := this.SrcToDsts[edge.Src]; !ok {
 		this.SrcToDsts[edge.Src] = make(map[string]*Edge)
@@ -55,6 +59,7 @@ func (this *Edges) Add(edge *Edge) {
 	this.Edges = append(this.Edges, edge)
 }
 
+//Retrusn a sorted list of Edges.
 func (this Edges) Sorted() []*Edge {
 	srcs := make([]string, 0, len(this.SrcToDsts))
 	for src, _ := range this.SrcToDsts {

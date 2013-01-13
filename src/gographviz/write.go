@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"gographviz/ast"
@@ -46,7 +46,8 @@ func sortedKeys(keyvalue map[string]string) []string {
 	return keys
 }
 
-func (g *Graph) Write() (*ast.Graph, error) {
+//Creates an Abstract Syntrax Tree from the Graph.
+func (g *Graph) Write() *ast.Graph {
 	nodes := make(map[string][]*ast.NodeStmt)
 	addedNodes := make(map[string]bool)
 	for parent, children := range g.Relations.ParentToChildren {
@@ -129,5 +130,10 @@ func (g *Graph) Write() (*ast.Graph, error) {
 		}
 		t.StmtList = append(t.StmtList, stmt)
 	}
-	return t, nil
+	return t
+}
+
+//Returns a DOT string representing the Graph.
+func (g *Graph) String() string {
+	return g.Write().String()
 }

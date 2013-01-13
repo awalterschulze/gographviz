@@ -12,20 +12,22 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"fmt"
 	"gographviz/ast"
 )
 
-func AnalyseGraph(graph *ast.Graph) *Graph {
+//Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
+func NewAnalysedGraph(graph *ast.Graph) *Graph {
 	g := NewGraph()
-	Read(graph, g)
+	Analyse(graph, g)
 	return g
 }
 
-func Read(graph *ast.Graph, g Interface) {
+//Analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface.
+func Analyse(graph *ast.Graph, g Interface) {
 	graph.Walk(&graphVisitor{g})
 }
 

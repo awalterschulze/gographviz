@@ -12,22 +12,13 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-package dot
+package gographviz
 
 import (
 	"fmt"
 )
 
-type Interface interface {
-	SetStrict(strict bool)
-	SetDir(directed bool)
-	SetName(name string)
-	AddEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
-	AddNode(parentGraph string, name string, attrs map[string]string)
-	AddAttr(parentGraph string, field, value string)
-	AddSubGraph(parentGraph string, name string, attrs map[string]string)
-}
-
+//The analysed representation of the Graph parsed from the DOT format.
 type Graph struct {
 	Attrs     Attrs
 	Name      string
@@ -39,6 +30,7 @@ type Graph struct {
 	Relations *Relations
 }
 
+//Creates a new empty graph, ready to be populated.
 func NewGraph() *Graph {
 	return &Graph{
 		Attrs:     make(Attrs),

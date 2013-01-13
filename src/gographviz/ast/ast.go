@@ -12,6 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
+//Abstract Syntax Tree representing the DOT grammar
 package ast
 
 import (

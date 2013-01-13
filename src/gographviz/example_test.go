@@ -14,33 +14,38 @@
 
 package gographviz
 
-//Represents a Subgraph.
-type SubGraph struct {
-	Attrs Attrs
-	Name  string
-}
+import (
+	"fmt"
+)
 
-//Creates a new Subgraph.
-func NewSubGraph(name string) *SubGraph {
-	return &SubGraph{
-		Attrs: make(Attrs),
-		Name:  name,
+func ExampleRead() {
+	g, err := Read([]byte(`digraph G {Hello->World}`))
+	if err != nil {
+		panic(err)
 	}
+	s := g.String()
+	fmt.Println(s)
+	// Output: digraph G {
+	//	Hello;
+	//	World;
+	//	Hello->World;
+	//
+	//}
 }
 
-//Represents a set of SubGraphs.
-type SubGraphs struct {
-	SubGraphs map[string]*SubGraph
-}
-
-//Creates a new blank set of SubGraphs.
-func NewSubGraphs() *SubGraphs {
-	return &SubGraphs{make(map[string]*SubGraph)}
-}
-
-//Adds and creates a new Subgraph to the set of SubGraphs.
-func (this *SubGraphs) Add(name string) {
-	if _, ok := this.SubGraphs[name]; !ok {
-		this.SubGraphs[name] = NewSubGraph(name)
-	}
+func ExampleNewGraph() {
+	g := NewGraph()
+	g.SetName("G")
+	g.SetDir(true)
+	g.AddNode("G", "Hello", nil)
+	g.AddNode("G", "World", nil)
+	g.AddEdge("Hello", "", "World", "", true, nil)
+	s := g.String()
+	fmt.Println(s)
+	// Output: digraph G {
+	//	Hello;
+	//	World;
+	//	Hello->World;
+	//
+	//}
 }
