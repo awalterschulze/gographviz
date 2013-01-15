@@ -44,22 +44,32 @@ func NewGraph() *Graph {
 	}
 }
 
+//If the graph is strict then multiple edges are not allowed between the same pairs of nodes, 
+//see dot man page.
 func (this *Graph) SetStrict(strict bool) {
 	this.Strict = strict
 }
 
+//Sets whether the graph is directed (true) or undirected (false).
 func (this *Graph) SetDir(dir bool) {
 	this.Directed = dir
 }
 
+//Sets the graph name.
 func (this *Graph) SetName(name string) {
 	this.Name = name
 }
 
+//Adds an edge to the graph from node src to node dst.
+//srcPort and dstPort are the port the node ports, leave as empty strings if it is not required.
+//This does not imply the adding of missing nodes.
 func (this *Graph) AddEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
 	this.Edges.Add(&Edge{src, srcPort, dst, dstPort, directed, attrs})
 }
 
+//Adds a node to a graph/subgraph.
+//If not subgraph exists use the name of the main graph.
+//This does not imply the adding of a missing subgraph.
 func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]string) {
 	this.Nodes.Add(&Node{name, attrs})
 	this.Relations.Add(parentGraph, name)
@@ -76,10 +86,12 @@ func (this *Graph) getAttrs(graphName string) Attrs {
 	return g.Attrs
 }
 
+//Adds an attribute to a graph/subgraph.
 func (this *Graph) AddAttr(parentGraph string, field string, value string) {
 	this.getAttrs(parentGraph).Add(field, value)
 }
 
+//Adds a subgraph to a graph/subgraph.
 func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
 	fmt.Printf("AddSubGraph %#v\n", name)
 	this.SubGraphs.Add(name)

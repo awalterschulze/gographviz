@@ -19,32 +19,20 @@
 package gographviz
 
 import (
-	"gographviz/parser"
 	"gographviz/ast"
+	"gographviz/parser"
 )
 
 var _ Interface = NewGraph()
 
 //Implementing this interface allows you to parse the graph into your own structure.
 type Interface interface {
-	//If the graph is strict then multiple edges are not allowed between the same pairs of nodes, 
-	//see dot man page.
 	SetStrict(strict bool)
-	//Sets whether the graph is directed (true) or undirected (false).
 	SetDir(directed bool)
-	//Sets the graph name.
 	SetName(name string)
-	//Adds an edge to the graph from node src to node dst.
-	//srcPort and dstPort are the port the node ports, leave as empty strings if it is not required.
-	//This does not imply the adding of missing nodes.
 	AddEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
-	//Adds a node to a graph/subgraph.
-	//If not subgraph exists use the name of the main graph.
-	//This does not imply the adding of a missing subgraph.
 	AddNode(parentGraph string, name string, attrs map[string]string)
-	//Adds an attribute to a graph/subgraph.
 	AddAttr(parentGraph string, field, value string)
-	//Adds a subgraph to a graph/subgraph.
 	AddSubGraph(parentGraph string, name string, attrs map[string]string)
 }
 
