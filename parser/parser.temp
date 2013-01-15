@@ -19,7 +19,7 @@ import (
 	"strconv"
 )
 
-import "gographviz/token"
+import "code.google.com/p/gographviz/token"
 
 type (
 	ActionTab []ActionRow

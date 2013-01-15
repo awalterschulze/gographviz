@@ -14,7 +14,7 @@
 
 package parser
 
-import "gographviz/ast"
+import "code.google.com/p/gographviz/ast"
 
 var ProductionsTable = ProdTab{
 	/* [0]  */

@@ -16,10 +16,10 @@
 package parser
 
 import (
+	"code.google.com/p/gographviz/ast"
+	"code.google.com/p/gographviz/scanner"
+	"code.google.com/p/gographviz/token"
 	"fmt"
-	"gographviz/ast"
-	"gographviz/scanner"
-	"gographviz/token"
 	"io"
 	"io/ioutil"
 	"os"

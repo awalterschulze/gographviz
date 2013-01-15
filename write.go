@@ -15,7 +15,7 @@
 package gographviz
 
 import (
-	"gographviz/ast"
+	"code.google.com/p/gographviz/ast"
 	"sort"
 )
 
