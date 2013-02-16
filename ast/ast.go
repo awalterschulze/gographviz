@@ -439,10 +439,13 @@ type Location interface {
 	isLocation()
 	GetId() Id
 	GetPort() Port
+	IsNode() bool
 }
 
-func (this *NodeId) isLocation()   {}
-func (this *SubGraph) isLocation() {}
+func (this *NodeId) isLocation()    {}
+func (this *NodeId) IsNode() bool   { return true }
+func (this *SubGraph) isLocation()  {}
+func (this *SubGraph) IsNode() bool { return false }
 
 type EdgeStmt struct {
 	Source  Location

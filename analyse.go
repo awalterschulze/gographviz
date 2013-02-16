@@ -116,16 +116,23 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	attrs := stmt.Attrs.GetMap()
 	attrs = ammend(attrs, this.currentEdgeAttrs)
 	src := stmt.Source.GetId()
-	this.g.AddNode(this.graphName, src.String(), this.currentNodeAttrs)
+	srcName := src.String()
+	if stmt.Source.IsNode() {
+		this.g.AddNode(this.graphName, srcName, this.currentNodeAttrs.Copy())
+	}
 	srcPort := stmt.Source.GetPort()
 	for i := range stmt.EdgeRHS {
 		directed := bool(stmt.EdgeRHS[i].Op)
 		dst := stmt.EdgeRHS[i].Destination.GetId()
-		this.g.AddNode(this.graphName, dst.String(), this.currentNodeAttrs)
+		dstName := dst.String()
+		if stmt.EdgeRHS[i].Destination.IsNode() {
+			this.g.AddNode(this.graphName, dstName, this.currentNodeAttrs.Copy())
+		}
 		dstPort := stmt.EdgeRHS[i].Destination.GetPort()
-		this.g.AddEdge(src.String(), srcPort.String(), dst.String(), dstPort.String(), directed, attrs)
+		this.g.AddEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
 		src = dst
 		srcPort = dstPort
+		srcName = dstName
 	}
 	return this
 }

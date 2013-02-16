@@ -14,6 +14,10 @@
 
 package gographviz
 
+import (
+	"sort"
+)
+
 //Represents the relations between graphs and nodes.
 //Each node belongs the main graph or a subgraph.
 type Relations struct {
@@ -36,4 +40,13 @@ func (this *Relations) Add(parent string, child string) {
 		this.ChildToParents[child] = make(map[string]bool)
 	}
 	this.ChildToParents[child][parent] = true
+}
+
+func (this *Relations) SortedChildren(parent string) []string {
+	keys := make([]string, 0)
+	for key := range this.ParentToChildren[parent] {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
 }

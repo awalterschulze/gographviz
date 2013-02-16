@@ -94,3 +94,13 @@ func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string
 		this.AddAttr(name, key, value)
 	}
 }
+
+func (this *Graph) IsNode(name string) bool {
+	_, ok := this.Nodes.Lookup[name]
+	return ok
+}
+
+func (this *Graph) IsSubGraph(name string) bool {
+	_, ok := this.SubGraphs.SubGraphs[name]
+	return ok
+}

@@ -17,6 +17,7 @@ package gographviz
 import (
 	"fmt"
 	"os"
+	"sort"
 )
 
 //Represents attributes for an Edge, Node or Graph.
@@ -50,4 +51,21 @@ func (this Attrs) Ammend(more Attrs) {
 			this.Add(key, value)
 		}
 	}
+}
+
+func (this Attrs) SortedNames() []string {
+	keys := make([]string, 0)
+	for key := range this {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func (this Attrs) Copy() Attrs {
+	attrs := make(Attrs)
+	for k, v := range this {
+		attrs[k] = v
+	}
+	return attrs
 }

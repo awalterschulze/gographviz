@@ -26,9 +26,9 @@ func ExampleRead() {
 	s := g.String()
 	fmt.Println(s)
 	// Output: digraph G {
+	//	Hello->World;
 	//	Hello;
 	//	World;
-	//	Hello->World;
 	//
 	//}
 }
@@ -43,9 +43,9 @@ func ExampleNewGraph() {
 	s := g.String()
 	fmt.Println(s)
 	// Output: digraph G {
+	//	Hello->World;
 	//	Hello;
 	//	World;
-	//	Hello->World;
 	//
 	//}
 }

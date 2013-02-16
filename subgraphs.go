@@ -14,6 +14,10 @@
 
 package gographviz
 
+import (
+	"sort"
+)
+
 //Represents a Subgraph.
 type SubGraph struct {
 	Attrs Attrs
@@ -43,4 +47,17 @@ func (this *SubGraphs) Add(name string) {
 	if _, ok := this.SubGraphs[name]; !ok {
 		this.SubGraphs[name] = NewSubGraph(name)
 	}
+}
+
+func (this *SubGraphs) Sorted() []*SubGraph {
+	keys := make([]string, 0)
+	for key := range this.SubGraphs {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	s := make([]*SubGraph, len(keys))
+	for i, key := range keys {
+		s[i] = this.SubGraphs[key]
+	}
+	return s
 }

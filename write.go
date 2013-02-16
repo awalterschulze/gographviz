@@ -16,124 +16,121 @@ package gographviz
 
 import (
 	"code.google.com/p/gographviz/ast"
-	"sort"
+	"fmt"
 )
 
-func sortedSubGraphs(keyvalue map[string]*SubGraph) []string {
-	keys := make([]string, 0)
-	for key := range keyvalue {
-		keys = append(keys, key)
-	}
-	sort.Strings(keys)
-	return keys
+type writer struct {
+	*Graph
+	writtenLocations map[string]bool
 }
 
-func sortedKeys3(keyvalue map[string]bool) []string {
-	keys := make([]string, 0)
-	for key := range keyvalue {
-		keys = append(keys, key)
-	}
-	sort.Strings(keys)
-	return keys
+func newWriter(g *Graph) *writer {
+	return &writer{g, make(map[string]bool)}
 }
 
-func sortedKeys(keyvalue map[string]string) []string {
-	keys := make([]string, 0)
-	for key := range keyvalue {
-		keys = append(keys, key)
+func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
+	for _, name := range attrs.SortedNames() {
+		stmt := &ast.Attr{
+			Field: ast.Id(name),
+			Value: ast.Id(attrs[name]),
+		}
+		list = append(list, stmt)
 	}
-	sort.Strings(keys)
-	return keys
+	return list
+}
+
+func (this *writer) newSubGraph(name string) *ast.SubGraph {
+	sub := this.SubGraphs.SubGraphs[name]
+	this.writtenLocations[sub.Name] = true
+	s := &ast.SubGraph{}
+	s.Id = ast.Id(sub.Name)
+	s.StmtList = appendAttrs(s.StmtList, sub.Attrs)
+	children := this.Relations.SortedChildren(name)
+	for _, child := range children {
+		s.StmtList = append(s.StmtList, this.newNodeStmt(child))
+	}
+	return s
+}
+
+func (this *writer) newNodeId(name string, port string) *ast.NodeId {
+	node := this.Nodes.Lookup[name]
+	return ast.MakeNodeId(node.Name, port)
+}
+
+func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
+	node := this.Nodes.Lookup[name]
+	id := ast.MakeNodeId(node.Name, "")
+	this.writtenLocations[node.Name] = true
+	return &ast.NodeStmt{
+		id,
+		ast.PutMap(node.Attrs),
+	}
+}
+
+func (this *writer) newLocation(name string, port string) ast.Location {
+	if this.IsNode(name) {
+		return this.newNodeId(name, port)
+	} else if this.IsSubGraph(name) {
+		if len(port) != 0 {
+			panic(fmt.Sprintf("subgraph cannot have a port: %v", port))
+		}
+		return this.newSubGraph(name)
+	}
+	panic(fmt.Sprintf("%v is not a node or a subgraph", name))
+}
+
+func (this *writer) newEdgeStmt(edge *Edge) *ast.EdgeStmt {
+	src := this.newLocation(edge.Src, edge.SrcPort)
+	dst := this.newLocation(edge.Dst, edge.DstPort)
+	stmt := &ast.EdgeStmt{
+		Source: src,
+		EdgeRHS: ast.EdgeRHS{
+			&ast.EdgeRH{
+				ast.EdgeOp(edge.Dir),
+				dst,
+			},
+		},
+		Attrs: ast.PutMap(edge.Attrs),
+	}
+	return stmt
+}
+
+func (this *writer) Write() *ast.Graph {
+	t := &ast.Graph{}
+	t.Strict = this.Strict
+	t.Type = ast.GraphType(this.Directed)
+	t.Id = ast.Id(this.Name)
+
+	t.StmtList = appendAttrs(t.StmtList, this.Attrs)
+
+	for _, edge := range this.Edges.Edges {
+		t.StmtList = append(t.StmtList, this.newEdgeStmt(edge))
+	}
+
+	subGraphs := this.SubGraphs.Sorted()
+	for _, s := range subGraphs {
+		if _, ok := this.writtenLocations[s.Name]; !ok {
+			t.StmtList = append(t.StmtList, this.newSubGraph(s.Name))
+		}
+	}
+
+	nodes := this.Nodes.Sorted()
+	for _, n := range nodes {
+		if _, ok := this.writtenLocations[n.Name]; !ok {
+			t.StmtList = append(t.StmtList, this.newNodeStmt(n.Name))
+		}
+	}
+
+	return t
 }
 
 //Creates an Abstract Syntrax Tree from the Graph.
-func (g *Graph) Write() *ast.Graph {
-	nodes := make(map[string][]*ast.NodeStmt)
-	addedNodes := make(map[string]bool)
-	for parent, children := range g.Relations.ParentToChildren {
-		if parent == g.Name {
-			continue
-		}
-		nodes[parent] = make([]*ast.NodeStmt, 0)
-		sortedChildren := sortedKeys3(children)
-		for _, child := range sortedChildren {
-			node := g.Nodes.Lookup[child]
-			stmt := &ast.NodeStmt{
-				ast.MakeNodeId(node.Name, ""),
-				ast.PutMap(node.Attrs),
-			}
-			addedNodes[child] = true
-			nodes[parent] = append(nodes[parent], stmt)
-		}
-	}
-	t := &ast.Graph{}
-	t.Strict = g.Strict
-	t.Type = ast.GraphType(g.Directed)
-	t.Id = ast.Id(g.Name)
-	attrs := g.Attrs
-	keys := sortedKeys(attrs)
-	for _, key := range keys {
-		value := attrs[key]
-		stmt := &ast.Attr{
-			Field: ast.Id(key),
-			Value: ast.Id(value),
-		}
-		t.StmtList = append(t.StmtList, stmt)
-	}
-	sortedChildren := sortedKeys3(g.Relations.ParentToChildren[g.Name])
-	for _, child := range sortedChildren {
-		if _, ok := addedNodes[child]; ok {
-			continue
-		}
-		node := g.Nodes.Lookup[child]
-		stmt := &ast.NodeStmt{
-			ast.MakeNodeId(node.Name, ""),
-			ast.PutMap(node.Attrs),
-		}
-		t.StmtList = append(t.StmtList, stmt)
-	}
-	names := sortedSubGraphs(g.SubGraphs.SubGraphs)
-	for _, name := range names {
-		sub := g.SubGraphs.SubGraphs[name]
-		subGraph := &ast.SubGraph{
-			Id: ast.Id(name),
-		}
-		attrs := sub.Attrs
-		keys := sortedKeys(attrs)
-		for _, key := range keys {
-			value := attrs[key]
-			stmt := &ast.Attr{
-				Field: ast.Id(key),
-				Value: ast.Id(value),
-			}
-			subGraph.StmtList = append(subGraph.StmtList, stmt)
-		}
-		ns, ok := nodes[name]
-		if !ok {
-			continue
-		}
-		for _, n := range ns {
-			subGraph.StmtList = append(subGraph.StmtList, n)
-		}
-		t.StmtList = append(t.StmtList, subGraph)
-	}
-	for _, edge := range g.Edges.Edges {
-		stmt := &ast.EdgeStmt{
-			Source: ast.MakeNodeId(edge.Src, edge.SrcPort),
-			EdgeRHS: ast.EdgeRHS{
-				&ast.EdgeRH{
-					ast.EdgeOp(edge.Dir),
-					ast.MakeNodeId(edge.Dst, edge.DstPort),
-				},
-			},
-			Attrs: ast.PutMap(edge.Attrs),
-		}
-		t.StmtList = append(t.StmtList, stmt)
-	}
-	return t
+func (g *Graph) WriteAst() *ast.Graph {
+	w := newWriter(g)
+	return w.Write()
 }
 
 //Returns a DOT string representing the Graph.
 func (g *Graph) String() string {
-	return g.Write().String()
+	return g.WriteAst().String()
 }
