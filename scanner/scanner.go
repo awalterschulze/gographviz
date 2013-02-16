@@ -538,7 +538,7 @@ scanAgain:
 			S.error(pos, "illegal character "+charString(ch))
 		}
 	}
-	//fmt.Printf("return tok %v, %v\n", token.NewToken(tok, S.src[pos.Offset:S.pos.Offset]), pos)
+	//fmt.Fprintf(os.Stderr, "return tok %v, %v\n", token.NewToken(tok, S.src[pos.Offset:S.pos.Offset]), pos)
 	return token.NewToken(tok, S.src[pos.Offset:S.pos.Offset]), pos
 }
 

@@ -16,6 +16,7 @@ package gographviz
 
 import (
 	"fmt"
+	"os"
 )
 
 //Represents attributes for an Edge, Node or Graph.
@@ -30,7 +31,7 @@ func NewAttrs() Attrs {
 func (this Attrs) Add(field string, value string) {
 	prev, ok := this[field]
 	if ok {
-		fmt.Printf("WARNING: overwriting field %v value %v, with value %v\n", field, prev, value)
+		fmt.Fprintf(os.Stderr, "WARNING: overwriting field %v value %v, with value %v\n", field, prev, value)
 	}
 	this[field] = value
 }

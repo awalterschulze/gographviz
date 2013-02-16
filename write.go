@@ -21,7 +21,7 @@ import (
 
 func sortedSubGraphs(keyvalue map[string]*SubGraph) []string {
 	keys := make([]string, 0)
-	for key, _ := range keyvalue {
+	for key := range keyvalue {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
@@ -30,7 +30,7 @@ func sortedSubGraphs(keyvalue map[string]*SubGraph) []string {
 
 func sortedKeys3(keyvalue map[string]bool) []string {
 	keys := make([]string, 0)
-	for key, _ := range keyvalue {
+	for key := range keyvalue {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)
@@ -39,7 +39,7 @@ func sortedKeys3(keyvalue map[string]bool) []string {
 
 func sortedKeys(keyvalue map[string]string) []string {
 	keys := make([]string, 0)
-	for key, _ := range keyvalue {
+	for key := range keyvalue {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)

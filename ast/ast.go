@@ -192,7 +192,6 @@ func NewSubGraph(id, l Elem) (*SubGraph, error) {
 	if l != nil {
 		g.StmtList = l.(StmtList)
 	}
-	fmt.Printf("%#v\n", g)
 	return g, nil
 }
 
@@ -349,7 +348,7 @@ func PutMap(attrmap map[string]string) AttrList {
 	attrlist := make(AttrList, 1)
 	attrlist[0] = make(AList, 0)
 	keys := make([]string, 0, len(attrmap))
-	for key, _ := range attrmap {
+	for key := range attrmap {
 		keys = append(keys, key)
 	}
 	sort.Strings(keys)

@@ -14,10 +14,6 @@
 
 package gographviz
 
-import (
-	"fmt"
-)
-
 //The analysed representation of the Graph parsed from the DOT format.
 type Graph struct {
 	Attrs     Attrs
@@ -93,7 +89,6 @@ func (this *Graph) AddAttr(parentGraph string, field string, value string) {
 
 //Adds a subgraph to a graph/subgraph.
 func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
-	fmt.Printf("AddSubGraph %#v\n", name)
 	this.SubGraphs.Add(name)
 	for key, value := range attrs {
 		this.AddAttr(name, key, value)
