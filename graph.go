@@ -40,7 +40,7 @@ func NewGraph() *Graph {
 	}
 }
 
-//If the graph is strict then multiple edges are not allowed between the same pairs of nodes, 
+//If the graph is strict then multiple edges are not allowed between the same pairs of nodes,
 //see dot man page.
 func (this *Graph) SetStrict(strict bool) {
 	this.Strict = strict

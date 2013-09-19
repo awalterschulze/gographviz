@@ -14,7 +14,7 @@
 
 //Package gographviz provides parsing for the DOT grammar into
 //an abstract syntax tree representing a graph,
-//analysis of the abstract syntax tree into a more usable structure, 
+//analysis of the abstract syntax tree into a more usable structure,
 //and writing back of this structure into the DOT format.
 package gographviz
 
