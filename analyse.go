@@ -19,7 +19,7 @@ import (
 )
 
 //Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
-func NewAnalysedGraph(graph *ast.Graph) *Graph {
+func NewAnalysedGraph(graph *ast.Graph) Interface {
 	g := NewGraph()
 	Analyse(graph, g)
 	return g
@@ -129,7 +129,7 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 			this.g.AddNode(this.graphName, dstName, this.currentNodeAttrs.Copy())
 		}
 		dstPort := stmt.EdgeRHS[i].Destination.GetPort()
-		this.g.AddEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
+		this.g.AddPortEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
 		src = dst
 		srcPort = dstPort
 		srcName = dstName

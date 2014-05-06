@@ -30,10 +30,12 @@ type Interface interface {
 	SetStrict(strict bool)
 	SetDir(directed bool)
 	SetName(name string)
-	AddEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
+	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
+	AddEdge(src, dst string, directed bool, attrs map[string]string)
 	AddNode(parentGraph string, name string, attrs map[string]string)
 	AddAttr(parentGraph string, field, value string)
 	AddSubGraph(parentGraph string, name string, attrs map[string]string)
+	String() string
 }
 
 //Parses the buffer into a abstract syntax tree representing the graph.
@@ -42,7 +44,7 @@ func Parse(buf []byte) (*ast.Graph, error) {
 }
 
 //Parses and creates a new Graph from the data.
-func Read(buf []byte) (*Graph, error) {
+func Read(buf []byte) (Interface, error) {
 	st, err := Parse(buf)
 	if err != nil {
 		return nil, err

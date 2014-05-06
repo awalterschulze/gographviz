@@ -59,8 +59,14 @@ func (this *Graph) SetName(name string) {
 //Adds an edge to the graph from node src to node dst.
 //srcPort and dstPort are the port the node ports, leave as empty strings if it is not required.
 //This does not imply the adding of missing nodes.
-func (this *Graph) AddEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
 	this.Edges.Add(&Edge{src, srcPort, dst, dstPort, directed, attrs})
+}
+
+//Adds an edge to the graph from node src to node dst.
+//This does not imply the adding of missing nodes.
+func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]string) {
+	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 
 //Adds a node to a graph/subgraph.

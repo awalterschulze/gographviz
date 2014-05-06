@@ -50,19 +50,21 @@ func assert(t *testing.T, msg string, v1 interface{}, v2 interface{}) {
 	}
 }
 
-func anal(t *testing.T, input string) *Graph {
+func anal(t *testing.T, input string) Interface {
 	fmt.Printf("Input: %v\n", input)
 	g, err := parser.ParseString(input)
 	check(t, err)
 	fmt.Printf("Parsed: %v\n", g)
-	ag := NewAnalysedGraph(g)
+	ag := NewGraph()
+	Analyse(g, ag)
 	fmt.Printf("Analysed: %v\n", ag)
 	agstr := ag.String()
 	fmt.Printf("Written: %v\n", agstr)
 	g2, err := parser.ParseString(agstr)
 	check(t, err)
 	fmt.Printf("Parsed %v\n", g2)
-	ag2 := NewAnalysedGraph(g2)
+	ag2 := NewEscape()
+	Analyse(g2, ag2)
 	fmt.Printf("Analysed %v\n", ag2)
 	ag2str := ag2.String()
 	fmt.Printf("Written: %v\n", ag2str)
@@ -70,7 +72,7 @@ func anal(t *testing.T, input string) *Graph {
 	return ag2
 }
 
-func analfile(t *testing.T, filename string) *Graph {
+func analfile(t *testing.T, filename string) Interface {
 	f, err := os.Open(filename)
 	check(t, err)
 	all, err := ioutil.ReadAll(f)
@@ -78,7 +80,7 @@ func analfile(t *testing.T, filename string) *Graph {
 	return anal(t, string(all))
 }
 
-func analtest(t *testing.T, testname string) *Graph {
+func analtest(t *testing.T, testname string) Interface {
 	return analfile(t, "./testdata/"+testname)
 }
 
