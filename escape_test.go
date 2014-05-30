@@ -29,10 +29,12 @@ func TestEscape(t *testing.T) {
 	g.AddNode("asdf asdf", "7", map[string]string{
 		"<asfd": "1",
 	})
+	g.AddNode("asdf asdf", "a << b", nil)
 	g.AddEdge("kasdf99 99", "7", true, nil)
 	s := g.String()
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
+	"a &lt;&lt; b";
 	"kasdf99 99" [ "<asfd"=1 ];
 	7 [ "<asfd"=1 ];
 

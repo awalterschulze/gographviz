@@ -19,6 +19,7 @@ import (
 	"code.google.com/p/gographviz/token"
 	"fmt"
 	"strings"
+	"text/template"
 	"unicode"
 )
 
@@ -140,7 +141,7 @@ func esc(s string) string {
 	if isStringLit(s) {
 		return s
 	}
-	return fmt.Sprintf("\"%s\"", strings.Replace(s, "\"", "\\\"", -1))
+	return fmt.Sprintf("\"%s\"", template.HTMLEscapeString(s))
 }
 
 func escAttrs(attrs map[string]string) map[string]string {
