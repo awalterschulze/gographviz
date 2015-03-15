@@ -15,8 +15,8 @@
 package parser
 
 import (
-	"code.google.com/p/gographviz/ast"
 	"fmt"
+	"github.com/awalterschulze/gographviz/ast"
 	"io/ioutil"
 	"testing"
 )

@@ -3,7 +3,7 @@ Parses the Graphviz DOT language and creates an interface, in golang, with which
 This parser has been created using [gocc](http://code.google.com/p/gocc).
 
 ### Installation ###
-go get code.google.com/p/gographviz
+go get github.com/awalterschulze/gographviz
 
 ### Tests ###
 

@@ -17,7 +17,7 @@ import (
 	"unicode"
 	"unicode/utf8"
 )
-import "code.google.com/p/gographviz/token"
+import "github.com/awalterschulze/gographviz/token"
 
 // A Scanner holds the scanner's internal state while processing
 // a given text.  It can be allocated as part of another data

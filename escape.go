@@ -15,9 +15,9 @@
 package gographviz
 
 import (
-	"code.google.com/p/gographviz/scanner"
-	"code.google.com/p/gographviz/token"
 	"fmt"
+	"github.com/awalterschulze/gographviz/scanner"
+	"github.com/awalterschulze/gographviz/token"
 	"strings"
 	"text/template"
 	"unicode"

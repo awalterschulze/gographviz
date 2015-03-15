@@ -19,8 +19,8 @@
 package gographviz
 
 import (
-	"code.google.com/p/gographviz/ast"
-	"code.google.com/p/gographviz/parser"
+	"github.com/awalterschulze/gographviz/ast"
+	"github.com/awalterschulze/gographviz/parser"
 )
 
 var _ Interface = NewGraph()

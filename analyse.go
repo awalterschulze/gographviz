@@ -15,7 +15,7 @@
 package gographviz
 
 import (
-	"code.google.com/p/gographviz/ast"
+	"github.com/awalterschulze/gographviz/ast"
 )
 
 //Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
