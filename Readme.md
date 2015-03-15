@@ -7,7 +7,7 @@ go get github.com/awalterschulze/gographviz
 
 ### Tests ###
 
-[![](https://drone.io/awalterschulze/gographviz/status.png)](https://drone.io/awalterschulze/gographviz/latest)
+[![Build Status](https://drone.io/github.com/awalterschulze/gographviz/status.png)](https://drone.io/github.com/awalterschulze/gographviz/latest)
 
 ### Users ###
 
