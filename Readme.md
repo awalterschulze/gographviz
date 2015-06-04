@@ -2,6 +2,22 @@ Parses the Graphviz DOT language and creates an interface, in golang, with which
 
 This parser has been created using [gocc](http://code.google.com/p/gocc).
 
+### Example (Parse and Edit) ###
+
+```
+graphAst, _ := parser.ParseString(`digraph G {}`)
+graph := NewGraph()
+Analyse(graphAst, graph)
+graph.AddNode("G", "a", nil)
+graph.AddNode("G", "b", nil)
+graph.AddEdge("a", "b", true, nil)
+output := graph.String()
+```
+
+### Documentation ###
+
+The [godoc](https://godoc.org/github.com/awalterschulze/gographviz) includes some more examples.
+
 ### Installation ###
 go get github.com/awalterschulze/gographviz
 
