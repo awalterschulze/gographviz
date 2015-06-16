@@ -24,11 +24,11 @@ import (
 )
 
 type Escape struct {
-	Interface
+	*Graph
 }
 
 //Returns a graph which will try to escape some strings when required
-func NewEscape() Interface {
+func NewEscape() *Escape {
 	return &Escape{NewGraph()}
 }
 
@@ -153,11 +153,11 @@ func escAttrs(attrs map[string]string) map[string]string {
 }
 
 func (this *Escape) SetName(name string) {
-	this.Interface.SetName(esc(name))
+	this.Graph.SetName(esc(name))
 }
 
 func (this *Escape) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
-	this.Interface.AddPortEdge(esc(src), srcPort, esc(dst), dstPort, directed, escAttrs(attrs))
+	this.Graph.AddPortEdge(esc(src), srcPort, esc(dst), dstPort, directed, escAttrs(attrs))
 }
 
 func (this *Escape) AddEdge(src, dst string, directed bool, attrs map[string]string) {
@@ -165,13 +165,23 @@ func (this *Escape) AddEdge(src, dst string, directed bool, attrs map[string]str
 }
 
 func (this *Escape) AddNode(parentGraph string, name string, attrs map[string]string) {
-	this.Interface.AddNode(esc(parentGraph), esc(name), escAttrs(attrs))
+	this.Graph.AddNode(esc(parentGraph), esc(name), escAttrs(attrs))
 }
 
 func (this *Escape) AddAttr(parentGraph string, field, value string) {
-	this.Interface.AddAttr(esc(parentGraph), esc(field), esc(value))
+	this.Graph.AddAttr(esc(parentGraph), esc(field), esc(value))
 }
 
 func (this *Escape) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
-	this.Interface.AddSubGraph(esc(parentGraph), esc(name), escAttrs(attrs))
+	this.Graph.AddSubGraph(esc(parentGraph), esc(name), escAttrs(attrs))
+}
+
+func (this *Escape) IsNode(name string) bool {
+	_, ok := this.Nodes.Lookup[esc(name)]
+	return ok
+}
+
+func (this *Escape) IsSubGraph(name string) bool {
+	_, ok := this.SubGraphs.SubGraphs[esc(name)]
+	return ok
 }

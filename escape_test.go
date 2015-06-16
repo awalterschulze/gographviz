@@ -41,4 +41,7 @@ func TestEscape(t *testing.T) {
 }`) {
 		t.Fatalf("%s", s)
 	}
+	if !g.IsNode("asdf asdf") {
+		t.Fatalf("should be a node")
+	}
 }
