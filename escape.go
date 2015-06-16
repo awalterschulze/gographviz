@@ -177,11 +177,9 @@ func (this *Escape) AddSubGraph(parentGraph string, name string, attrs map[strin
 }
 
 func (this *Escape) IsNode(name string) bool {
-	_, ok := this.Nodes.Lookup[esc(name)]
-	return ok
+	return this.Graph.IsNode(esc(name))
 }
 
 func (this *Escape) IsSubGraph(name string) bool {
-	_, ok := this.SubGraphs.SubGraphs[esc(name)]
-	return ok
+	return this.Graph.IsSubGraph(esc(name))
 }
