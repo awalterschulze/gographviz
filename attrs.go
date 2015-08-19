@@ -36,7 +36,7 @@ func (this Attrs) Add(field Attribute, value string) {
 	this.add(converted, value)
 }
 
-func (this Attrs) add(field common.Attribute, value string){
+func (this Attrs) add(field common.Attribute, value string) {
 	prev, ok := this[field]
 	if ok {
 		fmt.Fprintf(os.Stderr, "WARNING: overwriting field %v value %v, with value %v\n", field, prev, value)

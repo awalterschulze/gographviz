@@ -14,11 +14,7 @@
 
 package gographviz
 
-import (
-	"fmt"
-
-	"github.com/awalterschulze/gographviz/common"
-)
+import "github.com/awalterschulze/gographviz/common"
 
 type Attribute common.Attribute
 
@@ -110,7 +106,7 @@ const (
 	LP
 	LTAIL
 	LWIDTH
-	MARGIN 
+	MARGIN
 	MAXITER
 	MCLIMIT
 	MINDIST
@@ -173,7 +169,7 @@ const (
 	STYLE
 	STYLESHEET
 	TAILURL
-	TAIL_LP 
+	TAIL_LP
 	TAILCLIP
 	TAILHREF
 	TAILLABEL
@@ -201,14 +197,9 @@ func fromStringMap(input map[string]string) (Attrs, bool) {
 	for k, v := range input {
 		attr, ok := common.StringToAttribute(k)
 		if !ok {
-			return attrs, ok 
+			return attrs, ok
 		}
-
-		if attr.TakesString() && attr != common.ORIENTATION {
-			attrs[attr] = fmt.Sprintf("%q", v)
-		} else {
-			attrs[attr] = v
-		}
+		attrs[attr] = v
 	}
 	return attrs, true
 }

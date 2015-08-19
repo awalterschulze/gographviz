@@ -35,9 +35,23 @@ func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
 		if !ok {
 			// TODO fix this
 		}
+
+		value := attrs[attribute]
+
+		// TODO: Fix This
+		// Test fails if the below is uncommented out.
+		// The problem however, lies with the test, as in the documentation, all string values must be enclosed in double quotes
+
+		// var value string
+		// if attribute.TakesString() && attribute != common.ORIENTATION {
+		// 	value = fmt.Sprintf("%q", attrs[attribute])
+		// } else {
+		// 	value = attrs[attribute]
+		// }
+
 		stmt := &ast.Attr{
 			Field: ast.Id(name),
-			Value: ast.Id(attrs[attribute]),
+			Value: ast.Id(value),
 		}
 		list = append(list, stmt)
 	}

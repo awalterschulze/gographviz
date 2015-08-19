@@ -107,7 +107,7 @@ func overwrite(attrs Attrs, overwrite Attrs) Attrs {
 }
 
 func (this *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
-	attrs, ok  := fromStringMap(stmt.Attrs.GetMap())
+	attrs, ok := fromStringMap(stmt.Attrs.GetMap())
 	if !ok {
 		// TODO: Fix this
 	}

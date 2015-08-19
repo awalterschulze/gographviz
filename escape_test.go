@@ -24,7 +24,6 @@ func TestEscape(t *testing.T) {
 	g.SetName("asdf adsf")
 	g.SetDir(true)
 
-
 	attrs := NewAttrs()
 	attrs.Add(URL, "<asfd") // note not actually a URL
 	g.AddNode("asdf asdf", "kasdf99 99", attrs)
