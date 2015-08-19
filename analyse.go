@@ -16,6 +16,7 @@ package gographviz
 
 import (
 	"github.com/awalterschulze/gographviz/ast"
+	"github.com/awalterschulze/gographviz/common"
 )
 
 //Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
@@ -106,14 +107,20 @@ func overwrite(attrs Attrs, overwrite Attrs) Attrs {
 }
 
 func (this *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
-	attrs := Attrs(stmt.Attrs.GetMap())
+	attrs, ok := fromStringMap(stmt.Attrs.GetMap())
+	if !ok {
+		// TODO: Fix this
+	}
 	attrs = ammend(attrs, this.currentNodeAttrs)
 	this.g.AddNode(this.graphName, stmt.NodeId.String(), attrs)
 	return &nilVisitor{}
 }
 
 func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
-	attrs := stmt.Attrs.GetMap()
+	attrs, ok := fromStringMap(stmt.Attrs.GetMap())
+	if !ok {
+		// TODO: Fix this
+	}
 	attrs = ammend(attrs, this.currentEdgeAttrs)
 	src := stmt.Source.GetId()
 	srcName := src.String()
@@ -138,19 +145,30 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 }
 
 func (this *stmtVisitor) nodeAttrs(stmt ast.NodeAttrs) ast.Visitor {
-	this.currentNodeAttrs = overwrite(this.currentNodeAttrs, ast.AttrList(stmt).GetMap())
+	attrs, ok := fromStringMap(ast.AttrList(stmt).GetMap())
+	if !ok {
+		// TODO: Fix this
+	}
+	this.currentNodeAttrs = overwrite(this.currentNodeAttrs, attrs)
 	return &nilVisitor{}
 }
 
 func (this *stmtVisitor) edgeAttrs(stmt ast.EdgeAttrs) ast.Visitor {
-	this.currentEdgeAttrs = overwrite(this.currentEdgeAttrs, ast.AttrList(stmt).GetMap())
+	attrs, ok := fromStringMap(ast.AttrList(stmt).GetMap())
+	if !ok {
+		// TODO: Fix this
+	}
+	this.currentEdgeAttrs = overwrite(this.currentEdgeAttrs, attrs)
 	return &nilVisitor{}
 }
 
 func (this *stmtVisitor) graphAttrs(stmt ast.GraphAttrs) ast.Visitor {
-	attrs := ast.AttrList(stmt).GetMap()
+	attrs, ok := fromStringMap(ast.AttrList(stmt).GetMap())
+	if !ok {
+		// TODO: Fix This
+	}
 	for key, value := range attrs {
-		this.g.AddAttr(this.graphName, key, value)
+		this.g.AddAttr(this.graphName, Attribute(key), value)
 	}
 	this.currentGraphAttrs = overwrite(this.currentGraphAttrs, attrs)
 	return &nilVisitor{}
@@ -163,6 +181,10 @@ func (this *stmtVisitor) subGraph(stmt *ast.SubGraph) ast.Visitor {
 }
 
 func (this *stmtVisitor) attr(stmt *ast.Attr) ast.Visitor {
-	this.g.AddAttr(this.graphName, stmt.Field.String(), stmt.Value.String())
+	attribute, ok := common.StringToAttribute(stmt.Field.String())
+	if !ok {
+		// TODO: fix this
+	}
+	this.g.AddAttr(this.graphName, Attribute(attribute), stmt.Value.String())
 	return this
 }
