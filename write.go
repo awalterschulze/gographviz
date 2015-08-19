@@ -17,6 +17,7 @@ package gographviz
 import (
 	"fmt"
 	"github.com/awalterschulze/gographviz/ast"
+	"github.com/awalterschulze/gographviz/common"
 )
 
 type writer struct {
@@ -30,9 +31,13 @@ func newWriter(g *Graph) *writer {
 
 func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
 	for _, name := range attrs.SortedNames() {
+		attribute, ok := common.StringToAttribute(name)
+		if !ok {
+			// TODO fix this
+		}
 		stmt := &ast.Attr{
 			Field: ast.Id(name),
-			Value: ast.Id(attrs[name]),
+			Value: ast.Id(attrs[attribute]),
 		}
 		list = append(list, stmt)
 	}
@@ -63,7 +68,7 @@ func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 	this.writtenLocations[node.Name] = true
 	return &ast.NodeStmt{
 		id,
-		ast.PutMap(node.Attrs),
+		ast.PutMap(node.Attrs.toStringMap()),
 	}
 }
 
@@ -90,7 +95,7 @@ func (this *writer) newEdgeStmt(edge *Edge) *ast.EdgeStmt {
 				dst,
 			},
 		},
-		Attrs: ast.PutMap(edge.Attrs),
+		Attrs: ast.PutMap(edge.Attrs.toStringMap()),
 	}
 	return stmt
 }

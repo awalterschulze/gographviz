@@ -144,10 +144,10 @@ func esc(s string) string {
 	return fmt.Sprintf("\"%s\"", template.HTMLEscapeString(s))
 }
 
-func escAttrs(attrs map[string]string) map[string]string {
-	newAttrs := make(map[string]string)
+func escAttrs(attrs Attrs) Attrs {
+	newAttrs := NewAttrs()
 	for k, v := range attrs {
-		newAttrs[esc(k)] = esc(v)
+		newAttrs[k] = esc(v)
 	}
 	return newAttrs
 }
@@ -156,24 +156,24 @@ func (this *Escape) SetName(name string) {
 	this.Graph.SetName(esc(name))
 }
 
-func (this *Escape) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+func (this *Escape) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs Attrs) {
 	this.Graph.AddPortEdge(esc(src), srcPort, esc(dst), dstPort, directed, escAttrs(attrs))
 }
 
-func (this *Escape) AddEdge(src, dst string, directed bool, attrs map[string]string) {
+func (this *Escape) AddEdge(src, dst string, directed bool, attrs Attrs) {
 	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 
-func (this *Escape) AddNode(parentGraph string, name string, attrs map[string]string) {
+func (this *Escape) AddNode(parentGraph string, name string, attrs Attrs) {
 	this.Graph.AddNode(esc(parentGraph), esc(name), escAttrs(attrs))
 }
 
-func (this *Escape) AddAttr(parentGraph string, field, value string) {
-	this.Graph.AddAttr(esc(parentGraph), esc(field), esc(value))
+func (this *Escape) AddAttr(parentGraph string, field Attribute, value string) {
+	this.Graph.AddAttr(esc(parentGraph), field, esc(value))
 }
 
-func (this *Escape) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
-	this.Graph.AddSubGraph(esc(parentGraph), esc(name), escAttrs(attrs))
+func (this *Escape) AddSubGraph(parentGraph string, name string, attrs Attrs) {
+	this.Graph.AddSubGraph(esc(parentGraph), name, escAttrs(attrs))
 }
 
 func (this *Escape) IsNode(name string) bool {
