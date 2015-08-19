@@ -37,15 +37,14 @@ func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
 		}
 
 		value := attrs[attribute]
-
 		// TODO: Fix This
 		// Test fails if the below is uncommented out.
 		// The problem however, lies with the test, as in the documentation, all string values must be enclosed in double quotes
 
 		// var value string
-		// if attribute.TakesString() && attribute != common.ORIENTATION {
+		// if attribute.TakesColor() || attribute.TakesString() {
 		// 	value = fmt.Sprintf("%q", attrs[attribute])
-		// } else {
+		// } else  {
 		// 	value = attrs[attribute]
 		// }
 

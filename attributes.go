@@ -16,6 +16,9 @@ package gographviz
 
 import "github.com/awalterschulze/gographviz/common"
 
+// This exposes the common.Attribute attributes. So instead of having to import github.com/awalterschulze/gographviz/ and
+// github.com/awalterschulze/gographviz/common, you can just import github.com/awalterschulze/gographviz/, and pass in these as
+// the attributes
 type Attribute common.Attribute
 
 const (

@@ -40,14 +40,20 @@ func ExampleNewGraph() {
 	g := NewGraph()
 	g.SetName("G")
 	g.SetDir(true)
-	g.AddNode("G", "Hello", nil)
+	attrs := NewAttrs()
+	attrs.Add(COLOR, "red")
+	g.AddNode("G", "Hello", attrs)
+	attrs2 := NewAttrs()
+	attrs2.Add(COLOR, "\"#ff0000\"") // note: for now it's the library user's responsibility to escape values in doublequotes
+	g.AddNode("G", "There", attrs2)
 	g.AddNode("G", "World", nil)
 	g.AddEdge("Hello", "World", true, nil)
 	s := g.String()
 	fmt.Println(s)
 	// Output: digraph G {
 	//	Hello->World;
-	//	Hello;
+	//	Hello [ color=red ];
+	//	There [ color="#ff0000" ];
 	//	World;
 	//
 	//}
