@@ -14,6 +14,10 @@
 
 package gographviz
 
+import (
+	"github.com/awalterschulze/gographviz/common"
+)
+
 //The analysed representation of the Graph parsed from the DOT format.
 type Graph struct {
 	Attrs     Attrs
@@ -59,20 +63,40 @@ func (this *Graph) SetName(name string) {
 //Adds an edge to the graph from node src to node dst.
 //srcPort and dstPort are the port the node ports, leave as empty strings if it is not required.
 //This does not imply the adding of missing nodes.
-func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, inputAttrs map[string]string) {
+	attrs, err := fromStringMap(inputAttrs)
+	if err != nil {
+		panic(err) // TODO : proper handling?
+	}
+	this.addPortEdge(src, srcPort, dst, dstPort, directed, attrs)
+}
+
+func (this *Graph) addPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs Attrs) {
 	this.Edges.Add(&Edge{src, srcPort, dst, dstPort, directed, attrs})
 }
 
 //Adds an edge to the graph from node src to node dst.
 //This does not imply the adding of missing nodes.
-func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]string) {
-	this.AddPortEdge(src, "", dst, "", directed, attrs)
+func (this *Graph) AddEdge(src, dst string, directed bool, inputAttrs map[string]string) {
+	attrs, err := fromStringMap(inputAttrs)
+	if err != nil {
+		panic(err) // TODO : proper handling?
+	}
+	this.addPortEdge(src, "", dst, "", directed, attrs)
 }
 
 //Adds a node to a graph/subgraph.
 //If not subgraph exists use the name of the main graph.
 //This does not imply the adding of a missing subgraph.
-func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]string) {
+func (this *Graph) AddNode(parentGraph, name string, inputAttrs map[string]string) {
+	attrs, err := fromStringMap(inputAttrs)
+	if err != nil {
+		panic(err) // TODO : proper handling?
+	}
+	this.addNode(parentGraph, name, attrs)
+}
+
+func (this *Graph) addNode(parentGraph, name string, attrs Attrs) {
 	this.Nodes.Add(&Node{name, attrs})
 	this.Relations.Add(parentGraph, name)
 }
@@ -89,15 +113,27 @@ func (this *Graph) getAttrs(graphName string) Attrs {
 }
 
 //Adds an attribute to a graph/subgraph.
-func (this *Graph) AddAttr(parentGraph string, field string, value string) {
+func (this *Graph) AddAttr(parentGraph string, field, value string) {
 	this.getAttrs(parentGraph).Add(field, value)
 }
 
+func (this *Graph) addAttr(parentGraph string, field common.Attribute, value string) {
+	this.getAttrs(parentGraph).add(field, value)
+}
+
 //Adds a subgraph to a graph/subgraph.
-func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
+func (this *Graph) AddSubGraph(parentGraph, name string, inputAttrs map[string]string) {
+	attrs, err := fromStringMap(inputAttrs)
+	if err != nil {
+		panic(err) // TODO : proper handling?
+	}
+	this.addSubGraph(parentGraph, name, attrs)
+}
+
+func (this *Graph) addSubGraph(parentGraph, name string, attrs Attrs) {
 	this.SubGraphs.Add(name)
 	for key, value := range attrs {
-		this.AddAttr(name, key, value)
+		this.addAttr(name, key, value)
 	}
 }
 

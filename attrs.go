@@ -18,10 +18,12 @@ import (
 	"fmt"
 	"os"
 	"sort"
+
+	"github.com/awalterschulze/gographviz/common"
 )
 
 //Represents attributes for an Edge, Node or Graph.
-type Attrs map[string]string
+type Attrs map[common.Attribute]string
 
 //Creates an empty Attributes type.
 func NewAttrs() Attrs {
@@ -30,6 +32,14 @@ func NewAttrs() Attrs {
 
 //Adds an attribute name and value.
 func (this Attrs) Add(field string, value string) {
+	converted, ok := common.StringToAttribute(field)
+	if !ok {
+		panic("Field " + field + "is not a valid attribute") // TODO: fix this with proper error handling?
+	}
+	this.add(converted, value)
+}
+
+func (this Attrs) add(field common.Attribute, value string) {
 	prev, ok := this[field]
 	if ok {
 		fmt.Fprintf(os.Stderr, "WARNING: overwriting field %v value %v, with value %v\n", field, prev, value)
@@ -40,7 +50,7 @@ func (this Attrs) Add(field string, value string) {
 //Adds the attributes into this Attrs type overwriting duplicates.
 func (this Attrs) Extend(more Attrs) {
 	for key, value := range more {
-		this.Add(key, value)
+		this.add(key, value)
 	}
 }
 
@@ -48,7 +58,7 @@ func (this Attrs) Extend(more Attrs) {
 func (this Attrs) Ammend(more Attrs) {
 	for key, value := range more {
 		if _, ok := this[key]; !ok {
-			this.Add(key, value)
+			this.add(key, value)
 		}
 	}
 }
@@ -56,7 +66,7 @@ func (this Attrs) Ammend(more Attrs) {
 func (this Attrs) SortedNames() []string {
 	keys := make([]string, 0)
 	for key := range this {
-		keys = append(keys, key)
+		keys = append(keys, key.String())
 	}
 	sort.Strings(keys)
 	return keys
@@ -68,4 +78,12 @@ func (this Attrs) Copy() Attrs {
 		attrs[k] = v
 	}
 	return attrs
+}
+
+func (this Attrs) toStringMap() map[string]string {
+	retVal := make(map[string]string)
+	for k, v := range this {
+		retVal[k.String()] = v
+	}
+	return retVal
 }
