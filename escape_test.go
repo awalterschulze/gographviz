@@ -24,19 +24,23 @@ func TestEscape(t *testing.T) {
 	g.SetName("asdf adsf")
 	g.SetDir(true)
 	g.AddNode("asdf asdf", "kasdf99 99", map[string]string{
-		"color": "green",
+		"label": "a << b",
 	})
 	g.AddNode("asdf asdf", "7", map[string]string{
-		"color": "red",
+		"label": "&red",
 	})
 	g.AddNode("asdf asdf", "a << b", nil)
 	g.AddEdge("kasdf99 99", "7", true, nil)
+	g.AddNode("asdf asdf", "Weird Test Case", map[string]string{
+		"label": "< starts with < symbol. This should be fixed in the future",
+	})
 	s := g.String()
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
+	"Weird Test Case" [ label="< starts with < symbol. This should be fixed in the future" ];
 	"a &lt;&lt; b";
-	"kasdf99 99" [ color=green ];
-	7 [ color=red ];
+	"kasdf99 99" [ label="a &lt;&lt; b" ];
+	7 [ label="&amp;red" ];
 
 }`) {
 		t.Fatalf("%s", s)
