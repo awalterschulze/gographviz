@@ -15,8 +15,8 @@
 package gographviz
 
 import (
-	"github.com/awalterschulze/gographviz/common"
 	"errors"
+	"github.com/awalterschulze/gographviz/common"
 )
 
 func fromStringMap(input map[string]string) (Attrs, error) {

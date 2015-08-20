@@ -35,8 +35,8 @@ func TestEscape(t *testing.T) {
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
 	"a &lt;&lt; b";
-	"kasdf99 99" [ "<asfd"=1 ];
-	7 [ "<asfd"=1 ];
+	"kasdf99 99" [ color=green ];
+	7 [ color=red ];
 
 }`) {
 		t.Fatalf("%s", s)

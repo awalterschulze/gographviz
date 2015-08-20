@@ -98,9 +98,8 @@ func (this *Graph) AddNode(parentGraph, name string, inputAttrs map[string]strin
 
 func (this *Graph) addNode(parentGraph, name string, attrs Attrs) {
 	this.Nodes.Add(&Node{name, attrs})
-	this.Relations.Add(parentGraph, name)	
+	this.Relations.Add(parentGraph, name)
 }
-
 
 func (this *Graph) getAttrs(graphName string) Attrs {
 	if this.Name == graphName {

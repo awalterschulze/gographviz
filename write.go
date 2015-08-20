@@ -94,7 +94,7 @@ func (this *writer) newLocation(name string, port string) ast.Location {
 		}
 		return this.newSubGraph(name)
 	}
-	panic(fmt.Sprintf("%v is not a node or a subgraph", name))
+	panic(fmt.Sprintf("%q is not a node or a subgraph", name))
 }
 
 func (this *writer) newEdgeStmt(edge *Edge) *ast.EdgeStmt {
