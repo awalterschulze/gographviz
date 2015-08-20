@@ -17,8 +17,6 @@ package gographviz
 import (
 	"fmt"
 	"strconv"
-
-	"github.com/awalterschulze/gographviz/common"
 )
 
 func ExampleRead() {
@@ -40,20 +38,14 @@ func ExampleNewGraph() {
 	g := NewGraph()
 	g.SetName("G")
 	g.SetDir(true)
-	attrs := NewAttrs()
-	attrs.Add(COLOR, "red")
-	g.AddNode("G", "Hello", attrs)
-	attrs2 := NewAttrs()
-	attrs2.Add(COLOR, "\"#ff0000\"") // note: for now it's the library user's responsibility to escape values in doublequotes
-	g.AddNode("G", "There", attrs2)
+	g.AddNode("G", "Hello", nil)
 	g.AddNode("G", "World", nil)
 	g.AddEdge("Hello", "World", true, nil)
 	s := g.String()
 	fmt.Println(s)
 	// Output: digraph G {
 	//	Hello->World;
-	//	Hello [ color=red ];
-	//	There [ color="#ff0000" ];
+	//	Hello;
 	//	World;
 	//
 	//}
@@ -74,7 +66,7 @@ func NewMyOwnGraphStructure() *MyOwnGraphStructure {
 func (this *MyOwnGraphStructure) SetStrict(strict bool) {}
 func (this *MyOwnGraphStructure) SetDir(directed bool)  {}
 func (this *MyOwnGraphStructure) SetName(name string)   {}
-func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs Attrs) {
+func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
 	srci, err := strconv.Atoi(src)
 	if err != nil {
 		return
@@ -83,7 +75,7 @@ func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, 
 	if err != nil {
 		return
 	}
-	ai, err := strconv.Atoi(attrs[common.LABEL])
+	ai, err := strconv.Atoi(attrs["label"])
 	if err != nil {
 		return
 	}
@@ -99,12 +91,12 @@ func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, 
 	}
 
 }
-func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs Attrs) {
+func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) {
 	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
-func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs Attrs)      {}
-func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field Attribute, value string) {}
-func (this *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs Attrs) {
+func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) {}
+func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string)                  {}
+func (this *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
 }
 func (this *MyOwnGraphStructure) String() string { return "" }
 
@@ -137,9 +129,7 @@ func ExampleMyOwnGraphStructure() {
 	}
 	for i := 1; i <= mine.max; i++ {
 		for j := 1; j <= mine.max; j++ {
-			attrs := NewAttrs()
-			attrs.Add(LABEL, fmt.Sprintf("%v", mine.weights[i][j]))
-			output.AddEdge(fmt.Sprintf("%v", i), fmt.Sprintf("%v", j), true, attrs)
+			output.AddEdge(fmt.Sprintf("%v", i), fmt.Sprintf("%v", j), true, map[string]string{"label": fmt.Sprintf("%v", mine.weights[i][j])})
 		}
 	}
 	s := output.String()

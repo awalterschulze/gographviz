@@ -31,8 +31,11 @@ func NewAttrs() Attrs {
 }
 
 //Adds an attribute name and value.
-func (this Attrs) Add(field Attribute, value string) {
-	converted := common.Attribute(field)
+func (this Attrs) Add(field string, value string) {
+	converted, ok := common.StringToAttribute(field)
+	if !ok {
+		panic("Field " + field + "is not a valid attribute") // TODO: fix this with proper error handling?
+	}
 	this.add(converted, value)
 }
 

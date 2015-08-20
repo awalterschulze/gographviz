@@ -30,11 +30,11 @@ type Interface interface {
 	SetStrict(strict bool)
 	SetDir(directed bool)
 	SetName(name string)
-	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs Attrs)
-	AddEdge(src, dst string, directed bool, attrs Attrs)
-	AddNode(parentGraph string, name string, attrs Attrs)
-	AddAttr(parentGraph string, field Attribute, value string)
-	AddSubGraph(parentGraph string, name string, attrs Attrs)
+	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
+	AddEdge(src, dst string, directed bool, attrs map[string]string)
+	AddNode(parentGraph string, name string, attrs map[string]string)
+	AddAttr(parentGraph string, field, value string)
+	AddSubGraph(parentGraph string, name string, attrs map[string]string)
 	String() string
 }
 

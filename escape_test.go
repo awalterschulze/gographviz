@@ -23,19 +23,20 @@ func TestEscape(t *testing.T) {
 	g := NewEscape()
 	g.SetName("asdf adsf")
 	g.SetDir(true)
-
-	attrs := NewAttrs()
-	attrs.Add(URL, "<asfd") // note not actually a URL
-	g.AddNode("asdf asdf", "kasdf99 99", attrs)
-	g.AddNode("asdf asdf", "7", attrs)
+	g.AddNode("asdf asdf", "kasdf99 99", map[string]string{
+		"color": "green",
+	})
+	g.AddNode("asdf asdf", "7", map[string]string{
+		"color": "red",
+	})
 	g.AddNode("asdf asdf", "a << b", nil)
 	g.AddEdge("kasdf99 99", "7", true, nil)
 	s := g.String()
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
 	"a &lt;&lt; b";
-	"kasdf99 99" [ URL="<asfd" ];
-	7 [ URL="<asfd" ];
+	"kasdf99 99" [ "<asfd"=1 ];
+	7 [ "<asfd"=1 ];
 
 }`) {
 		t.Fatalf("%s", s)
