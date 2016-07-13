@@ -18,6 +18,7 @@ import (
 	"fmt"
 	"github.com/awalterschulze/gographviz/scanner"
 	"github.com/awalterschulze/gographviz/token"
+	"regexp"
 	"strings"
 	"text/template"
 	"unicode"
@@ -85,26 +86,10 @@ func isDigit(ch rune) bool {
 	return '0' <= ch && ch <= '9' || ch >= 0x80 && unicode.IsDigit(ch)
 }
 
+var numeral = regexp.MustCompile("^-?((.[0-9]+)|([0-9]+(.[0-9]*)?))$")
+
 func isNumber(s string) bool {
-	state := 0
-	for _, c := range s {
-		if state == 0 {
-			if isDigit(c) || c == '.' {
-				state = 2
-			} else if c == '-' {
-				state = 1
-			} else {
-				return false
-			}
-		} else if state == 1 {
-			if isDigit(c) || c == '.' {
-				state = 2
-			}
-		} else if c != '.' && !isDigit(c) {
-			return false
-		}
-	}
-	return (state == 2)
+	return numeral.MatchString(s)
 }
 
 func isStringLit(s string) bool {
