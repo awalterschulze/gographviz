@@ -65,6 +65,7 @@ func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool,
 
 //Adds an edge to the graph from node src to node dst.
 //This does not imply the adding of missing nodes.
+//If directed is set to true then SetDir(true) must also be called or there will be a syntax error in the output.
 func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]string) {
 	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
