@@ -16,11 +16,12 @@ package gographviz
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/scanner"
-	"github.com/awalterschulze/gographviz/token"
 	"strings"
 	"text/template"
 	"unicode"
+
+	"github.com/awalterschulze/gographviz/scanner"
+	"github.com/awalterschulze/gographviz/token"
 )
 
 type Escape struct {

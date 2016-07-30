@@ -16,10 +16,11 @@ package gographviz
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/parser"
 	"io/ioutil"
 	"os"
 	"testing"
+
+	"github.com/awalterschulze/gographviz/parser"
 )
 
 func (this *Nodes) String() string {

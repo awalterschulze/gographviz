@@ -17,12 +17,13 @@ package parser
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/ast"
-	"github.com/awalterschulze/gographviz/scanner"
-	"github.com/awalterschulze/gographviz/token"
 	"io"
 	"io/ioutil"
 	"os"
+
+	"github.com/awalterschulze/gographviz/ast"
+	"github.com/awalterschulze/gographviz/scanner"
+	"github.com/awalterschulze/gographviz/token"
 )
 
 //Parses a DOT string and outputs the

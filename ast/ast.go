@@ -18,10 +18,11 @@ package ast
 import (
 	"errors"
 	"fmt"
-	"github.com/awalterschulze/gographviz/token"
 	"math/rand"
 	"sort"
 	"strings"
+
+	"github.com/awalterschulze/gographviz/token"
 )
 
 var (

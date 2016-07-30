@@ -1,9 +1,10 @@
 package gographviz
 
 import (
+	"testing"
+
 	"github.com/awalterschulze/gographviz/ast"
 	"github.com/awalterschulze/gographviz/parser"
-	"testing"
 )
 
 type bugSubGraphWorldVisitor struct {

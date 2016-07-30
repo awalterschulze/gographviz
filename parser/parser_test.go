@@ -16,9 +16,10 @@ package parser
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/ast"
 	"io/ioutil"
 	"testing"
+
+	"github.com/awalterschulze/gographviz/ast"
 )
 
 func check(t *testing.T, err error) {
