@@ -15,24 +15,177 @@
 //This bnf has been derived from http://www.graphviz.org/content/dot-language
 //The rules have been copied and are shown in the comments, with their derived bnf rules below.
 
+// ### [ Tokens ] ##############################################################
+
+// The keywords node, edge, graph, digraph, subgraph, and strict are case-
+// independent.
+
+node
+	: 'n' 'o' 'd' 'e'
+	| 'N' 'o' 'd' 'e'
+	| 'N' 'O' 'D' 'E'
+;
+
+edge
+	: 'e' 'd' 'g' 'e'
+	| 'E' 'd' 'g' 'e'
+	| 'E' 'D' 'G' 'E'
+;
+
+// TODO: Rename graphx to graph once gocc#20 is fixed [1].
+//
+// [1]: https://github.com/goccmack/gocc/issues/20
+
+graphx
+	: 'g' 'r' 'a' 'p' 'h'
+	| 'G' 'r' 'a' 'p' 'h'
+	| 'G' 'R' 'A' 'P' 'H'
+;
+
+digraph
+	: 'd' 'i' 'g' 'r' 'a' 'p' 'h'
+	| 'D' 'i' 'g' 'r' 'a' 'p' 'h'
+	| 'd' 'i' 'G' 'r' 'a' 'p' 'h'
+	| 'D' 'i' 'G' 'r' 'a' 'p' 'h'
+	| 'D' 'I' 'G' 'R' 'A' 'P' 'H'
+;
+
+subgraph
+	: 's' 'u' 'b' 'g' 'r' 'a' 'p' 'h'
+	| 'S' 'u' 'b' 'g' 'r' 'a' 'p' 'h'
+	| 's' 'u' 'b' 'G' 'r' 'a' 'p' 'h'
+	| 'S' 'u' 'b' 'G' 'r' 'a' 'p' 'h'
+	| 'S' 'U' 'B' 'G' 'R' 'A' 'P' 'H'
+;
+
+strict
+	: 's' 't' 'r' 'i' 'c' 't'
+	| 'S' 't' 'r' 'i' 'c' 't'
+	| 'S' 'T' 'R' 'I' 'C' 'T'
+;
+
+// An arbitrary ASCII character except null (0x00), double quote (0x22) and
+// backslash (0x5C).
+_ascii_char
+	// skip null (0x00)
+	: '\x01' - '\x21'
+	// skip double quote (0x22)
+	| '\x23' - '\x5B'
+	// skip backslash (0x5C)
+	| '\x5D' - '\x7F'
+;
+
+_ascii_letter
+	: 'a' - 'z'
+	| 'A' - 'Z'
+;
+
+_ascii_digit : '0' - '9' ;
+
+_unicode_char
+	: _ascii_char
+	| _unicode_byte
+;
+
+_unicode_byte
+	: '\u0080' - '\uFFFC'
+	// skip invalid code point (\uFFFD)
+	| '\uFFFE' - '\U0010FFFF'
+;
+
+_letter        : _ascii_letter | _unicode_byte | '_' ;
+_decimal_digit : _ascii_digit ;
+_decimals      : _decimal_digit { _decimal_digit } ;
+
+// An ID is one of the following:
+//
+//    1) Any string of alphabetic ([a-zA-Z\200-\377]) characters, underscores
+//       ('_') or digits ([0-9]), not beginning with a digit;
+//
+//    2) a numeral [-]?(.[0-9]+ | [0-9]+(.[0-9]*)? );
+//
+//    3) any double-quoted string ("...") possibly containing escaped quotes
+//       (\");
+//
+//    4) an HTML string (<...>).
+
+id
+	: _letter { _letter | _decimal_digit }
+	| _int_lit
+	| _string_lit
+	| _html_lit
+;
+
+_int_lit
+	: [ '-' ] '.' _decimals
+	| [ '-' ] _decimals [ '.' { _decimal_digit } ]
+;
+
+// In quoted strings in DOT, the only escaped character is double-quote (").
+// That is, in quoted strings, the dyad \" is converted to "; all other
+// characters are left unchanged. In particular, \\ remains \\.
+
+// As another aid for readability, dot allows double-quoted strings to span
+// multiple physical lines using the standard C convention of a backslash
+// immediately preceding a newline character.
+
+// In addition, double-quoted strings can be concatenated using a '+' operator.
+
+_escaped_char : '\\' ( _unicode_char | '"' | '\\' ) ;
+_char         : _unicode_char | _escaped_char ;
+_string_lit   : '"' { _char } '"' ;
+
+// An arbitrary HTML character except null (0x00), left angle bracket (0x3C) and
+// right angle bracket (0x3E).
+_html_char
+	// skip null (0x00)
+	: '\x01' - '\x3B'
+	// skip left angle bracket (0x3C)
+	| '\x3D'
+	// skip right angle bracket (0x3E)
+	| '\x3F' - '\xFF'
+;
+
+_html_chars : { _html_char } ;
+_html_tag   : '<' _html_chars '>' ;
+_html_lit   : '<' { _html_chars | _html_tag } '>' ;
+
+// The language supports C++-style comments: /* */ and //. In addition, a line
+// beginning with a '#' character is considered a line output from a C
+// preprocessor (e.g., # 34 to indicate line 34 ) and discarded.
+
+_line_comment
+	: '/' '/' { . } '\n'
+	| '#' { . } '\n'
+;
+
+_block_comment : '/' '*' { . | '*' } '*' '/' ;
+!comment       : _line_comment | _block_comment ;
+
+!whitespace : ' ' | '\t' | '\r' | '\n' ;
+
+// ### [ Syntax ] ##############################################################
+
+<< import "github.com/awalterschulze/gographviz/ast" >>
+
 //graph	:	[ strict ] (graph | digraph) [ ID ] '{' stmt_list '}'
 DotGraph
-	: Graph "{" "}"                               << ast.NewGraph(ast.GRAPH, ast.FALSE, nil, nil) >>
-	| Strict Graph "{" "}"                        << ast.NewGraph(ast.GRAPH, ast.TRUE, nil, nil) >>
-	| Graph Id "{" "}"                            << ast.NewGraph(ast.GRAPH, ast.FALSE, $1, nil) >>
-	| Strict Graph Id "{" "}"                     << ast.NewGraph(ast.GRAPH, ast.TRUE, $2, nil) >>
-	| Graph "{" StmtList "}"                      << ast.NewGraph(ast.GRAPH, ast.FALSE, nil, $2) >>
-	| Graph Id "{" StmtList "}"                   << ast.NewGraph(ast.GRAPH, ast.FALSE, $1, $3) >>
-	| Strict Graph "{" StmtList "}"               << ast.NewGraph(ast.GRAPH, ast.TRUE, nil, $3) >>
-	| Strict Graph Id "{" StmtList "}"            << ast.NewGraph(ast.GRAPH, ast.TRUE, $2, $4) >>
-	| Digraph "{" "}"                             << ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, nil) >>
-	| Strict Digraph "{" "}"                      << ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, nil) >>
-	| Digraph Id "{" "}"                          << ast.NewGraph(ast.DIGRAPH, ast.FALSE, $1, nil) >>
-	| Strict Digraph Id "{" "}"                   << ast.NewGraph(ast.DIGRAPH, ast.TRUE, $2, nil) >>
-	| Digraph "{" StmtList "}"                    << ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, $2) >>
-	| Digraph Id "{" StmtList "}"                 << ast.NewGraph(ast.DIGRAPH, ast.FALSE, $1, $3) >>
-	| Strict Digraph "{" StmtList "}"             << ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, $3) >>
-	| Strict Digraph Id "{" StmtList "}"          << ast.NewGraph(ast.DIGRAPH, ast.TRUE, $2, $4) >>
+	: graphx "{" "}"                              << ast.NewGraph(ast.GRAPH, ast.FALSE, nil, nil) >>
+	| strict graphx "{" "}"                       << ast.NewGraph(ast.GRAPH, ast.TRUE, nil, nil) >>
+	| graphx Id "{" "}"                           << ast.NewGraph(ast.GRAPH, ast.FALSE, $1, nil) >>
+	| strict graphx Id "{" "}"                    << ast.NewGraph(ast.GRAPH, ast.TRUE, $2, nil) >>
+	| graphx "{" StmtList "}"                     << ast.NewGraph(ast.GRAPH, ast.FALSE, nil, $2) >>
+	| graphx Id "{" StmtList "}"                  << ast.NewGraph(ast.GRAPH, ast.FALSE, $1, $3) >>
+	| strict graphx "{" StmtList "}"              << ast.NewGraph(ast.GRAPH, ast.TRUE, nil, $3) >>
+	| strict graphx Id "{" StmtList "}"           << ast.NewGraph(ast.GRAPH, ast.TRUE, $2, $4) >>
+	| digraph "{" "}"                             << ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, nil) >>
+	| strict digraph "{" "}"                      << ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, nil) >>
+	| digraph Id "{" "}"                          << ast.NewGraph(ast.DIGRAPH, ast.FALSE, $1, nil) >>
+	| strict digraph Id "{" "}"                   << ast.NewGraph(ast.DIGRAPH, ast.TRUE, $2, nil) >>
+	| digraph "{" StmtList "}"                    << ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, $2) >>
+	| digraph Id "{" StmtList "}"                 << ast.NewGraph(ast.DIGRAPH, ast.FALSE, $1, $3) >>
+	| strict digraph "{" StmtList "}"             << ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, $3) >>
+	| strict digraph Id "{" StmtList "}"          << ast.NewGraph(ast.DIGRAPH, ast.TRUE, $2, $4) >>
 	;
 
 //stmt_list	:	[ stmt [ ';' ] [ stmt_list ] ]
@@ -57,9 +210,9 @@ Stmt
 
 //attr_stmt	:	(graph | node | edge) attr_list
 AttrStmt
-	: Graph AttrList                              << ast.NewGraphAttrs($1) >>
-	| Node AttrList                               << ast.NewNodeAttrs($1) >>
-	| Edge AttrList                               << ast.NewEdgeAttrs($1) >>
+	: graphx AttrList                             << ast.NewGraphAttrs($1) >>
+	| node AttrList                               << ast.NewNodeAttrs($1) >>
+	| edge AttrList                               << ast.NewEdgeAttrs($1) >>
 	;
 
 //attr_list	:	'[' [ a_list ] ']' [ attr_list ]
@@ -125,53 +278,14 @@ Port
 //subgraph	:	[ subgraph [ ID ] ] '{' stmt_list '}'
 SubGraphStmt
 	: "{" StmtList "}"                            << ast.NewSubGraph(nil, $1) >>
-	| Subgraph "{" StmtList "}"                   << ast.NewSubGraph(nil, $2) >>
-	| Subgraph Id "{" StmtList "}"                << ast.NewSubGraph($1, $3) >>
+	| subgraph "{" StmtList "}"                   << ast.NewSubGraph(nil, $2) >>
+	| subgraph Id "{" StmtList "}"                << ast.NewSubGraph($1, $3) >>
 	;
 
 //An edgeop is -> in directed graphs and -- in undirected graphs.
 EdgeOp
 	: "->"                                        << ast.DIRECTED, nil >>
 	| "--"                                        << ast.UNDIRECTED, nil >>
-	;
-
-//The keywords node, edge, graph, digraph, subgraph, and strict are case-independent.
-Graph
-	: "graph"                                     << $0, nil >>
-	| "Graph"                                     << $0, nil >>
-	| "GRAPH"                                     << $0, nil >>
-	;
-
-Strict
-	: "strict"                                    << $0, nil >>
-	| "Strict"                                    << $0, nil >>
-	| "STRICT"                                    << $0, nil >>
-	;
-
-Digraph
-	: "digraph"                                   << $0, nil >>
-	| "Digraph"                                   << $0, nil >>
-	| "DiGraph"                                   << $0, nil >>
-	| "DIGRAPH"                                   << $0, nil >>
-	;
-
-Node
-	: "node"                                      << $0, nil >>
-	| "Node"                                      << $0, nil >>
-	| "NODE"                                      << $0, nil >>
-	;
-
-Edge
-	: "edge"                                      << $0, nil >>
-	| "Edge"                                      << $0, nil >>
-	| "EDGE"                                      << $0, nil >>
-	;
-
-Subgraph
-	: "subgraph"                                  << $0, nil >>
-	| "Subgraph"                                  << $0, nil >>
-	| "SubGraph"                                  << $0, nil >>
-	| "SUBGRAPH"                                  << $0, nil >>
 	;
 
 //		An ID is one of the following:
@@ -186,10 +300,6 @@ Subgraph
 //		Both quoted strings and HTML strings are scanned as a unit, so any embedded comments will be treated as part of the strings.
 Id
 	: id                                          << ast.NewId($0) >>
-	| string_lit                                  << ast.NewId($0) >>
-	| int_lit                                     << ast.NewId($0) >>
-	| float_lit                                   << ast.NewId($0) >>
-	| html_lit                                    << ast.NewId($0) >>
 	;
 
 //The language supports C++-style comments: /* */ and //.
