@@ -20,7 +20,7 @@ import (
 	"text/template"
 	"unicode"
 
-	"github.com/awalterschulze/gographviz/scanner"
+	"github.com/awalterschulze/gographviz/lexer"
 	"github.com/awalterschulze/gographviz/token"
 )
 
@@ -109,13 +109,12 @@ func isNumber(s string) bool {
 }
 
 func isStringLit(s string) bool {
-	lex := &scanner.Scanner{}
-	lex.Init([]byte(s), token.DOTTokens)
-	tok, _ := lex.Scan()
-	if tok.Type != token.DOTTokens.Type("string_lit") {
+	lex := lexer.NewLexer([]byte(s))
+	tok := lex.Scan()
+	if tok.Type != token.TokMap.Type("string_lit") {
 		return false
 	}
-	tok, _ = lex.Scan()
+	tok = lex.Scan()
 	if tok.Type != token.EOF {
 		return false
 	}
