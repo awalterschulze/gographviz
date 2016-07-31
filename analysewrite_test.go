@@ -141,7 +141,7 @@ func TestUnderscore(t *testing.T) {
 }
 
 func TestNonAscii(t *testing.T) {
-	anal(t, `digraph {	label=T�th }`)
+	anal(t, `digraph {	label=Tóth }`)
 }
 
 func TestPorts(t *testing.T) {
