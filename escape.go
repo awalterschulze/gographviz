@@ -19,9 +19,6 @@ import (
 	"strings"
 	"text/template"
 	"unicode"
-
-	"github.com/awalterschulze/gographviz/lexer"
-	"github.com/awalterschulze/gographviz/token"
 )
 
 type Escape struct {
@@ -109,14 +106,15 @@ func isNumber(s string) bool {
 }
 
 func isStringLit(s string) bool {
-	lex := lexer.NewLexer([]byte(s))
-	tok := lex.Scan()
-	if tok.Type != token.TokMap.Type("string_lit") {
+	if !strings.HasPrefix(s, `"`) || !strings.HasSuffix(s, `"`) {
 		return false
 	}
-	tok = lex.Scan()
-	if tok.Type != token.EOF {
-		return false
+	var prev rune
+	for _, r := range s[1 : len(s)-1] {
+		if r == '"' && prev != '\\' {
+			return false
+		}
+		prev = r
 	}
 	return true
 }
