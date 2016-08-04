@@ -30,32 +30,34 @@ type Edge struct {
 
 //Represents a set of Edges.
 type Edges struct {
-	SrcToDsts map[string]map[string]*Edge
-	DstToSrcs map[string]map[string]*Edge
+	SrcToDsts map[string]map[string][]*Edge
+	DstToSrcs map[string]map[string][]*Edge
 	Edges     []*Edge
 }
 
 //Creates a blank set of Edges.
 func NewEdges() *Edges {
-	return &Edges{make(map[string]map[string]*Edge), make(map[string]map[string]*Edge), make([]*Edge, 0)}
+	return &Edges{make(map[string]map[string][]*Edge), make(map[string]map[string][]*Edge), make([]*Edge, 0)}
 }
 
 //Adds an Edge to the set of Edges.
 func (this *Edges) Add(edge *Edge) {
 	if _, ok := this.SrcToDsts[edge.Src]; !ok {
-		this.SrcToDsts[edge.Src] = make(map[string]*Edge)
+		this.SrcToDsts[edge.Src] = make(map[string][]*Edge)
 	}
 	if _, ok := this.SrcToDsts[edge.Src][edge.Dst]; !ok {
-		this.SrcToDsts[edge.Src][edge.Dst] = edge
-	} else {
-		this.SrcToDsts[edge.Src][edge.Dst].Attrs.Extend(edge.Attrs)
+		this.SrcToDsts[edge.Src][edge.Dst] = make([]*Edge, 0)
 	}
+	this.SrcToDsts[edge.Src][edge.Dst] = append(this.SrcToDsts[edge.Src][edge.Dst], edge)
+
 	if _, ok := this.DstToSrcs[edge.Dst]; !ok {
-		this.DstToSrcs[edge.Dst] = make(map[string]*Edge)
+		this.DstToSrcs[edge.Dst] = make(map[string][]*Edge)
 	}
 	if _, ok := this.DstToSrcs[edge.Dst][edge.Src]; !ok {
-		this.DstToSrcs[edge.Dst][edge.Src] = edge
+		this.DstToSrcs[edge.Dst][edge.Src] = make([]*Edge, 0)
 	}
+	this.DstToSrcs[edge.Dst][edge.Src] = append(this.DstToSrcs[edge.Dst][edge.Src], edge)
+
 	this.Edges = append(this.Edges, edge)
 }
 
@@ -74,7 +76,7 @@ func (this Edges) Sorted() []*Edge {
 		}
 		sort.Strings(dsts)
 		for _, dst := range dsts {
-			edges = append(edges, this.SrcToDsts[src][dst])
+			edges = append(edges, this.SrcToDsts[src][dst]...)
 		}
 	}
 	return edges
