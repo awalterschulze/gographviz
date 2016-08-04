@@ -61,7 +61,7 @@ func (this *Edges) Add(edge *Edge) {
 	this.Edges = append(this.Edges, edge)
 }
 
-//Retrusn a sorted list of Edges.
+//Returns a sorted list of Edges.
 func (this Edges) Sorted() []*Edge {
 	srcs := make([]string, 0, len(this.SrcToDsts))
 	for src := range this.SrcToDsts {
