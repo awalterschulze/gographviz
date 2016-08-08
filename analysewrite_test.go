@@ -51,23 +51,23 @@ func assert(t *testing.T, msg string, v1 interface{}, v2 interface{}) {
 }
 
 func anal(t *testing.T, input string) Interface {
-	fmt.Printf("Input: %v\n", input)
+	t.Logf("Input: %v\n", input)
 	g, err := parser.ParseString(input)
 	check(t, err)
-	fmt.Printf("Parsed: %v\n", g)
+	t.Logf("Parsed: %v\n", g)
 	ag := NewGraph()
 	Analyse(g, ag)
-	fmt.Printf("Analysed: %v\n", ag)
+	t.Logf("Analysed: %v\n", ag)
 	agstr := ag.String()
-	fmt.Printf("Written: %v\n", agstr)
+	t.Logf("Written: %v\n", agstr)
 	g2, err := parser.ParseString(agstr)
 	check(t, err)
-	fmt.Printf("Parsed %v\n", g2)
+	t.Logf("Parsed %v\n", g2)
 	ag2 := NewEscape()
 	Analyse(g2, ag2)
-	fmt.Printf("Analysed %v\n", ag2)
+	t.Logf("Analysed %v\n", ag2)
 	ag2str := ag2.String()
-	fmt.Printf("Written: %v\n", ag2str)
+	t.Logf("Written: %v\n", ag2str)
 	assert(t, "analysed", agstr, ag2str)
 	return ag2
 }
