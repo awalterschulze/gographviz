@@ -87,11 +87,5 @@ func (es edgeSorter) Less(i, j int) bool {
 		return false
 	}
 
-	iLabel := es[i].Attrs["label"]
-	jLabel := es[j].Attrs["label"]
-	if iLabel < jLabel {
-		return true
-	}
-
-	return false
+	return es[i].Attrs["label"] < es[j].Attrs["label"]
 }
