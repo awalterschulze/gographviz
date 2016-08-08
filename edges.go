@@ -63,21 +63,35 @@ func (this *Edges) Add(edge *Edge) {
 
 //Returns a sorted list of Edges.
 func (this Edges) Sorted() []*Edge {
-	srcs := make([]string, 0, len(this.SrcToDsts))
-	for src := range this.SrcToDsts {
-		srcs = append(srcs, src)
+	es := make(edgeSorter, len(this.Edges))
+	copy(es, this.Edges)
+	sort.Sort(es)
+	return es
+}
+
+// edgeSorter is an internal struct used for sorting edges
+type edgeSorter []*Edge
+
+func (es edgeSorter) Len() int      { return len(es) }
+func (es edgeSorter) Swap(i, j int) { es[i], es[j] = es[j], es[i] }
+func (es edgeSorter) Less(i, j int) bool {
+	if es[i].Src < es[j].Src {
+		return true
+	} else if es[i].Src > es[j].Src {
+		return false
 	}
-	sort.Strings(srcs)
-	edges := make([]*Edge, 0, len(srcs))
-	for _, src := range srcs {
-		dsts := make([]string, 0, len(this.SrcToDsts[src]))
-		for dst := range this.SrcToDsts[src] {
-			dsts = append(dsts, dst)
-		}
-		sort.Strings(dsts)
-		for _, dst := range dsts {
-			edges = append(edges, this.SrcToDsts[src][dst]...)
-		}
+
+	if es[i].Dst < es[j].Dst {
+		return true
+	} else if es[i].Dst > es[j].Dst {
+		return false
 	}
-	return edges
+
+	iLabel := es[i].Attrs["label"]
+	jLabel := es[j].Attrs["label"]
+	if iLabel < jLabel {
+		return true
+	}
+
+	return false
 }
