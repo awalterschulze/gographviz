@@ -69,7 +69,6 @@ func (this Edges) Sorted() []*Edge {
 	return es
 }
 
-// edgeSorter is an internal struct used for sorting edges
 type edgeSorter []*Edge
 
 func (es edgeSorter) Len() int      { return len(es) }
