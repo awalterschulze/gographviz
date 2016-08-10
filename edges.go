@@ -30,52 +30,90 @@ type Edge struct {
 
 //Represents a set of Edges.
 type Edges struct {
-	SrcToDsts map[string]map[string]*Edge
-	DstToSrcs map[string]map[string]*Edge
+	SrcToDsts map[string]map[string][]*Edge
+	DstToSrcs map[string]map[string][]*Edge
 	Edges     []*Edge
 }
 
 //Creates a blank set of Edges.
 func NewEdges() *Edges {
-	return &Edges{make(map[string]map[string]*Edge), make(map[string]map[string]*Edge), make([]*Edge, 0)}
+	return &Edges{make(map[string]map[string][]*Edge), make(map[string]map[string][]*Edge), make([]*Edge, 0)}
 }
 
 //Adds an Edge to the set of Edges.
 func (this *Edges) Add(edge *Edge) {
 	if _, ok := this.SrcToDsts[edge.Src]; !ok {
-		this.SrcToDsts[edge.Src] = make(map[string]*Edge)
+		this.SrcToDsts[edge.Src] = make(map[string][]*Edge)
 	}
 	if _, ok := this.SrcToDsts[edge.Src][edge.Dst]; !ok {
-		this.SrcToDsts[edge.Src][edge.Dst] = edge
-	} else {
-		this.SrcToDsts[edge.Src][edge.Dst].Attrs.Extend(edge.Attrs)
+		this.SrcToDsts[edge.Src][edge.Dst] = make([]*Edge, 0)
 	}
+	this.SrcToDsts[edge.Src][edge.Dst] = append(this.SrcToDsts[edge.Src][edge.Dst], edge)
+
 	if _, ok := this.DstToSrcs[edge.Dst]; !ok {
-		this.DstToSrcs[edge.Dst] = make(map[string]*Edge)
+		this.DstToSrcs[edge.Dst] = make(map[string][]*Edge)
 	}
 	if _, ok := this.DstToSrcs[edge.Dst][edge.Src]; !ok {
-		this.DstToSrcs[edge.Dst][edge.Src] = edge
+		this.DstToSrcs[edge.Dst][edge.Src] = make([]*Edge, 0)
 	}
+	this.DstToSrcs[edge.Dst][edge.Src] = append(this.DstToSrcs[edge.Dst][edge.Src], edge)
+
 	this.Edges = append(this.Edges, edge)
 }
 
-//Retrusn a sorted list of Edges.
+//Returns a sorted list of Edges.
 func (this Edges) Sorted() []*Edge {
-	srcs := make([]string, 0, len(this.SrcToDsts))
-	for src := range this.SrcToDsts {
-		srcs = append(srcs, src)
+	es := make(edgeSorter, len(this.Edges))
+	copy(es, this.Edges)
+	sort.Sort(es)
+	return es
+}
+
+type edgeSorter []*Edge
+
+func (es edgeSorter) Len() int      { return len(es) }
+func (es edgeSorter) Swap(i, j int) { es[i], es[j] = es[j], es[i] }
+func (es edgeSorter) Less(i, j int) bool {
+	if es[i].Src < es[j].Src {
+		return true
+	} else if es[i].Src > es[j].Src {
+		return false
 	}
-	sort.Strings(srcs)
-	edges := make([]*Edge, 0, len(srcs))
-	for _, src := range srcs {
-		dsts := make([]string, 0, len(this.SrcToDsts[src]))
-		for dst := range this.SrcToDsts[src] {
-			dsts = append(dsts, dst)
-		}
-		sort.Strings(dsts)
-		for _, dst := range dsts {
-			edges = append(edges, this.SrcToDsts[src][dst])
+
+	if es[i].Dst < es[j].Dst {
+		return true
+	} else if es[i].Dst > es[j].Dst {
+		return false
+	}
+
+	if es[i].SrcPort < es[j].SrcPort {
+		return true
+	} else if es[i].SrcPort > es[j].SrcPort {
+		return false
+	}
+
+	if es[i].DstPort < es[j].DstPort {
+		return true
+	} else if es[i].DstPort > es[j].DstPort {
+		return false
+	}
+
+	if es[i].Dir != es[j].Dir {
+		return es[i].Dir
+	}
+
+	attrs := es[i].Attrs.Copy()
+	for k, v := range es[j].Attrs {
+		attrs[k] = v
+	}
+
+	for _, k := range attrs.SortedNames() {
+		if es[i].Attrs[k] < es[j].Attrs[k] {
+			return true
+		} else if es[i].Attrs[k] > es[j].Attrs[k] {
+			return false
 		}
 	}
-	return edges
+
+	return false
 }
