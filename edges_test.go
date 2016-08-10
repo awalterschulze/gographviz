@@ -98,6 +98,68 @@ func TestEdges_Sorted(t *testing.T) {
 				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"label": "world"}},
 			},
 		},
+		"edges with ports": {
+			edges: []*Edge{
+				&Edge{Src: "0", Dst: "1", SrcPort: "a", DstPort: "b"},
+				&Edge{Src: "0", Dst: "1", SrcPort: "a", DstPort: "a"},
+				&Edge{Src: "0", Dst: "1", SrcPort: "b", DstPort: "a"},
+			},
+			expected: []*Edge{
+				&Edge{Src: "0", Dst: "1", SrcPort: "a", DstPort: "a"},
+				&Edge{Src: "0", Dst: "1", SrcPort: "a", DstPort: "b"},
+				&Edge{Src: "0", Dst: "1", SrcPort: "b", DstPort: "a"},
+			},
+		},
+		"directed edges before non directed edges": {
+			edges: []*Edge{
+				&Edge{Src: "0", Dst: "1", Dir: false},
+				&Edge{Src: "0", Dst: "1", Dir: true},
+			},
+			expected: []*Edge{
+				&Edge{Src: "0", Dst: "1", Dir: true},
+				&Edge{Src: "0", Dst: "1", Dir: false},
+			},
+		},
+		"the theory of everything": {
+			edges: []*Edge{
+				&Edge{Src: "0", Dst: "1", Attrs: map[string]string{"label": "cba"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Dir: false, Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "0", Dst: "1", Attrs: map[string]string{"label": "abc"}},
+				&Edge{Src: "0", Dst: "2", Attrs: map[string]string{"label": "hello"}},
+				&Edge{Src: "1", Dst: "0", Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "0", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "b", Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"comment": "test", "label": "world"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "a", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "b", Dir: false, Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"label": "world"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Dir: true, Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"comment": "test", "label": "hello"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Dir: true, Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Dir: true, Attrs: map[string]string{"label": "graphviz"}},
+			},
+			expected: []*Edge{
+				&Edge{Src: "0", Dst: "1", Attrs: map[string]string{"label": "abc"}},
+				&Edge{Src: "0", Dst: "1", Attrs: map[string]string{"label": "cba"}},
+				&Edge{Src: "0", Dst: "2", Attrs: map[string]string{"label": "hello"}},
+				&Edge{Src: "1", Dst: "0", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Dir: true, Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", Dir: false, Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "a", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Dir: true, Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Dir: true, Attrs: map[string]string{"label": "graphviz"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "a", DstPort: "b", Attrs: map[string]string{"label": "golang"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "b", Dir: false, Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "0", SrcPort: "b", Attrs: map[string]string{"label": "gopher"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"label": "world"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"comment": "test", "label": "hello"}},
+				&Edge{Src: "1", Dst: "1", Attrs: map[string]string{"comment": "test", "label": "world"}},
+			},
+		},
 	}
 
 	for name, tt := range tts {

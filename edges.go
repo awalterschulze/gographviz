@@ -86,5 +86,34 @@ func (es edgeSorter) Less(i, j int) bool {
 		return false
 	}
 
-	return es[i].Attrs["label"] < es[j].Attrs["label"]
+	if es[i].SrcPort < es[j].SrcPort {
+		return true
+	} else if es[i].SrcPort > es[j].SrcPort {
+		return false
+	}
+
+	if es[i].DstPort < es[j].DstPort {
+		return true
+	} else if es[i].DstPort > es[j].DstPort {
+		return false
+	}
+
+	if es[i].Dir != es[j].Dir {
+		return es[i].Dir
+	}
+
+	attrs := es[i].Attrs.Copy()
+	for k, v := range es[j].Attrs {
+		attrs[k] = v
+	}
+
+	for _, k := range attrs.SortedNames() {
+		if es[i].Attrs[k] < es[j].Attrs[k] {
+			return true
+		} else if es[i].Attrs[k] > es[j].Attrs[k] {
+			return false
+		}
+	}
+
+	return false
 }
