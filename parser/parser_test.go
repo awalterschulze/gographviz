@@ -16,9 +16,10 @@ package parser
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/ast"
 	"io/ioutil"
 	"testing"
+
+	"github.com/awalterschulze/gographviz/ast"
 )
 
 func check(t *testing.T, err error) {
@@ -122,7 +123,7 @@ func TestUnderscore(t *testing.T) {
 }
 
 func TestNonAscii(t *testing.T) {
-	parseStringTest(t, `digraph {	label=T�th }`)
+	parseStringTest(t, `digraph {	label=Tóth }`)
 }
 
 func TestPorts(t *testing.T) {

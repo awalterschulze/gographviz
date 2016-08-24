@@ -17,12 +17,12 @@ package parser
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/ast"
-	"github.com/awalterschulze/gographviz/scanner"
-	"github.com/awalterschulze/gographviz/token"
 	"io"
 	"io/ioutil"
 	"os"
+
+	"github.com/awalterschulze/gographviz/ast"
+	"github.com/awalterschulze/gographviz/lexer"
 )
 
 //Parses a DOT string and outputs the
@@ -34,9 +34,8 @@ func ParseString(dotString string) (*ast.Graph, error) {
 //Parses the bytes representing a DOT string
 //and outputs the abstract syntax tree representing the graph.
 func ParseBytes(dotBytes []byte) (*ast.Graph, error) {
-	lex := &scanner.Scanner{}
-	lex.Init(dotBytes, token.DOTTokens)
-	parser := NewParser(ActionTable, GotoTable, ProductionsTable, token.DOTTokens)
+	lex := lexer.NewLexer(dotBytes)
+	parser := NewParser()
 	st, err := parser.Parse(lex)
 	if err != nil {
 		return nil, err
@@ -45,7 +44,7 @@ func ParseBytes(dotBytes []byte) (*ast.Graph, error) {
 	if !ok {
 		panic(fmt.Sprintf("Parser did not return an *ast.Graph, but rather a %T", st))
 	}
-	return g, err
+	return g, nil
 }
 
 //Parses a reader which contains a DOT string
@@ -65,5 +64,6 @@ func ParseFile(filename string) (*ast.Graph, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer f.Close()
 	return Parse(f)
 }

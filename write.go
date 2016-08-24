@@ -16,6 +16,7 @@ package gographviz
 
 import (
 	"fmt"
+
 	"github.com/awalterschulze/gographviz/ast"
 )
 

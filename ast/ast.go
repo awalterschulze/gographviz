@@ -18,10 +18,11 @@ package ast
 import (
 	"errors"
 	"fmt"
-	"github.com/awalterschulze/gographviz/token"
 	"math/rand"
 	"sort"
 	"strings"
+
+	"github.com/awalterschulze/gographviz/token"
 )
 
 var (
@@ -39,6 +40,8 @@ type Elem interface {
 type Walkable interface {
 	Walk(v Visitor)
 }
+
+type Attrib interface{}
 
 type Bool bool
 
@@ -95,7 +98,7 @@ type Graph struct {
 	StmtList StmtList
 }
 
-func NewGraph(t, strict, id, l Elem) (*Graph, error) {
+func NewGraph(t, strict, id, l Attrib) (*Graph, error) {
 	g := &Graph{Type: t.(GraphType), Strict: bool(strict.(Bool)), Id: Id("")}
 	if id != nil {
 		g.Id = id.(Id)
@@ -127,13 +130,13 @@ func (this *Graph) Walk(v Visitor) {
 
 type StmtList []Stmt
 
-func NewStmtList(s Elem) (StmtList, error) {
+func NewStmtList(s Attrib) (StmtList, error) {
 	ss := make(StmtList, 1)
 	ss[0] = s.(Stmt)
 	return ss, nil
 }
 
-func AppendStmtList(ss, s Elem) (StmtList, error) {
+func AppendStmtList(ss, s Attrib) (StmtList, error) {
 	this := ss.(StmtList)
 	this = append(this, s.(Stmt))
 	return this, nil
@@ -182,7 +185,7 @@ type SubGraph struct {
 	StmtList StmtList
 }
 
-func NewSubGraph(id, l Elem) (*SubGraph, error) {
+func NewSubGraph(id, l Attrib) (*SubGraph, error) {
 	g := &SubGraph{Id: Id(fmt.Sprintf("anon%d", r.Int63()))}
 	if id != nil {
 		if len(id.(Id)) > 0 {
@@ -231,7 +234,7 @@ func (this *SubGraph) Walk(v Visitor) {
 
 type EdgeAttrs AttrList
 
-func NewEdgeAttrs(a Elem) (EdgeAttrs, error) {
+func NewEdgeAttrs(a Attrib) (EdgeAttrs, error) {
 	return EdgeAttrs(a.(AttrList)), nil
 }
 
@@ -255,7 +258,7 @@ func (this EdgeAttrs) Walk(v Visitor) {
 
 type NodeAttrs AttrList
 
-func NewNodeAttrs(a Elem) (NodeAttrs, error) {
+func NewNodeAttrs(a Attrib) (NodeAttrs, error) {
 	return NodeAttrs(a.(AttrList)), nil
 }
 
@@ -279,7 +282,7 @@ func (this NodeAttrs) Walk(v Visitor) {
 
 type GraphAttrs AttrList
 
-func NewGraphAttrs(a Elem) (GraphAttrs, error) {
+func NewGraphAttrs(a Attrib) (GraphAttrs, error) {
 	return GraphAttrs(a.(AttrList)), nil
 }
 
@@ -303,7 +306,7 @@ func (this GraphAttrs) Walk(v Visitor) {
 
 type AttrList []AList
 
-func NewAttrList(a Elem) (AttrList, error) {
+func NewAttrList(a Attrib) (AttrList, error) {
 	as := make(AttrList, 0)
 	if a != nil {
 		as = append(as, a.(AList))
@@ -311,7 +314,7 @@ func NewAttrList(a Elem) (AttrList, error) {
 	return as, nil
 }
 
-func AppendAttrList(as, a Elem) (AttrList, error) {
+func AppendAttrList(as, a Attrib) (AttrList, error) {
 	this := as.(AttrList)
 	if a == nil {
 		return this, nil
@@ -371,13 +374,13 @@ func (this AttrList) GetMap() map[string]string {
 
 type AList []*Attr
 
-func NewAList(a Elem) (AList, error) {
+func NewAList(a Attrib) (AList, error) {
 	as := make(AList, 1)
 	as[0] = a.(*Attr)
 	return as, nil
 }
 
-func AppendAList(as, a Elem) (AList, error) {
+func AppendAList(as, a Attrib) (AList, error) {
 	this := as.(AList)
 	attr := a.(*Attr)
 	this = append(this, attr)
@@ -407,7 +410,7 @@ type Attr struct {
 	Value Id
 }
 
-func NewAttr(f, v Elem) (*Attr, error) {
+func NewAttr(f, v Attrib) (*Attr, error) {
 	a := &Attr{Field: f.(Id)}
 	a.Value = Id("true")
 	if v != nil {
@@ -453,7 +456,7 @@ type EdgeStmt struct {
 	Attrs   AttrList
 }
 
-func NewEdgeStmt(id, e, attrs Elem) (*EdgeStmt, error) {
+func NewEdgeStmt(id, e, attrs Attrib) (*EdgeStmt, error) {
 	var a AttrList = nil
 	var err error = nil
 	if attrs == nil {
@@ -483,11 +486,11 @@ func (this EdgeStmt) Walk(v Visitor) {
 
 type EdgeRHS []*EdgeRH
 
-func NewEdgeRHS(op, id Elem) (EdgeRHS, error) {
+func NewEdgeRHS(op, id Attrib) (EdgeRHS, error) {
 	return EdgeRHS{&EdgeRH{op.(EdgeOp), id.(Location)}}, nil
 }
 
-func AppendEdgeRHS(e, op, id Elem) (EdgeRHS, error) {
+func AppendEdgeRHS(e, op, id Attrib) (EdgeRHS, error) {
 	erhs := e.(EdgeRHS)
 	erhs = append(erhs, &EdgeRH{op.(EdgeOp), id.(Location)})
 	return erhs, nil
@@ -534,7 +537,7 @@ type NodeStmt struct {
 	Attrs  AttrList
 }
 
-func NewNodeStmt(id, attrs Elem) (*NodeStmt, error) {
+func NewNodeStmt(id, attrs Attrib) (*NodeStmt, error) {
 	nid := id.(*NodeId)
 	var a AttrList = nil
 	var err error = nil
@@ -591,7 +594,7 @@ type NodeId struct {
 	Port Port
 }
 
-func NewNodeId(id Elem, port Elem) (*NodeId, error) {
+func NewNodeId(id, port Attrib) (*NodeId, error) {
 	if port == nil {
 		return &NodeId{id.(Id), Port{"", ""}}, nil
 	}
@@ -637,7 +640,7 @@ type Port struct {
 	Id2 Id
 }
 
-func NewPort(id1, id2 Elem) (Port, error) {
+func NewPort(id1, id2 Attrib) (Port, error) {
 	port := Port{Id(""), Id("")}
 	if id1 != nil {
 		port.Id1 = id1.(Id)
@@ -670,7 +673,7 @@ func (this Port) Walk(v Visitor) {
 
 type Id string
 
-func NewId(id Elem) (Id, error) {
+func NewId(id Attrib) (Id, error) {
 	if id == nil {
 		return Id(""), nil
 	}

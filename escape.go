@@ -16,8 +16,6 @@ package gographviz
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/scanner"
-	"github.com/awalterschulze/gographviz/token"
 	"strings"
 	"text/template"
 	"unicode"
@@ -108,15 +106,15 @@ func isNumber(s string) bool {
 }
 
 func isStringLit(s string) bool {
-	lex := &scanner.Scanner{}
-	lex.Init([]byte(s), token.DOTTokens)
-	tok, _ := lex.Scan()
-	if tok.Type != token.DOTTokens.Type("string_lit") {
+	if !strings.HasPrefix(s, `"`) || !strings.HasSuffix(s, `"`) {
 		return false
 	}
-	tok, _ = lex.Scan()
-	if tok.Type != token.EOF {
-		return false
+	var prev rune
+	for _, r := range s[1 : len(s)-1] {
+		if r == '"' && prev != '\\' {
+			return false
+		}
+		prev = r
 	}
 	return true
 }
