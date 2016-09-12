@@ -23,7 +23,7 @@ go get github.com/awalterschulze/gographviz
 
 ### Tests ###
 
-[![Build Status](https://drone.io/github.com/awalterschulze/gographviz/status.png)](https://drone.io/github.com/awalterschulze/gographviz/latest)
+[![Build Status](https://travis-ci.org/awalterschulze/gographviz.svg?branch=master)](https://travis-ci.org/awalterschulze/gographviz)
 
 ### Users ###
 
