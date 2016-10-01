@@ -16,10 +16,11 @@ package gographviz
 
 import (
 	"fmt"
-	"github.com/awalterschulze/gographviz/parser"
 	"io/ioutil"
 	"os"
 	"testing"
+
+	"github.com/awalterschulze/gographviz/parser"
 )
 
 func (this *Nodes) String() string {
@@ -140,7 +141,7 @@ func TestUnderscore(t *testing.T) {
 }
 
 func TestNonAscii(t *testing.T) {
-	anal(t, `digraph {	label=T�th }`)
+	anal(t, `digraph {	label=Tóth }`)
 }
 
 func TestPorts(t *testing.T) {
