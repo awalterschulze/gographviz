@@ -1,8 +1,8 @@
+before_install:
+  - ./install-godeps.sh
+
 script:
-  - go build ./...
-  - go test ./...
-  - gofmt -l -s -w .
-  - git diff --exit-code
+  - make travis
 
 language: go
 
