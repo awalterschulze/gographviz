@@ -3,13 +3,11 @@
 package lexer
 
 import (
-
 	// "fmt"
-	// "github.com/awalterschulze/gographviz/util"
-
 	"io/ioutil"
 	"unicode/utf8"
 
+	// "github.com/awalterschulze/gographviz/util"
 	"github.com/awalterschulze/gographviz/token"
 )
 
