@@ -19,7 +19,7 @@ import (
 )
 
 //Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
-func NewAnalysedGraph(graph *ast.Graph) Interface {
+func NewAnalysedGraph(graph *ast.Graph) *Graph {
 	g := NewGraph()
 	Analyse(graph, g)
 	return g
