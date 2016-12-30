@@ -44,7 +44,7 @@ func Parse(buf []byte) (*ast.Graph, error) {
 }
 
 //Parses and creates a new Graph from the data.
-func Read(buf []byte) (Interface, error) {
+func Read(buf []byte) (*Graph, error) {
 	st, err := Parse(buf)
 	if err != nil {
 		return nil, err
