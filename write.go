@@ -104,7 +104,7 @@ func (this *writer) Write() *ast.Graph {
 
 	t.StmtList = appendAttrs(t.StmtList, this.Attrs)
 
-	for _, edge := range this.Edges.Edges {
+	for _, edge := range this.Edges.Edges.Sorted() {
 		t.StmtList = append(t.StmtList, this.newEdgeStmt(edge))
 	}
 
