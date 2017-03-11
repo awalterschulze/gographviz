@@ -1073,7 +1073,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S53
 		-1, // S'
 		-1, // DotGraph
-		85, // StmtList
+		86, // StmtList
 		17, // Stmt1
 		18, // Stmt
 		21, // AttrStmt
@@ -1193,7 +1193,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S59
 		-1, // S'
 		-1, // DotGraph
-		90, // StmtList
+		91, // StmtList
 		17, // Stmt1
 		18, // Stmt
 		21, // AttrStmt
@@ -1253,7 +1253,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S62
 		-1, // S'
 		-1, // DotGraph
-		93, // StmtList
+		94, // StmtList
 		17, // Stmt1
 		18, // Stmt
 		21, // AttrStmt
@@ -1338,7 +1338,7 @@ var gotoTab = gotoTable{
 		-1, // Stmt
 		-1, // AttrStmt
 		-1, // AttrList
-		96, // AList
+		97, // AList
 		70, // Attr
 		-1, // EdgeStmt
 		-1, // EdgeRHS
@@ -1391,23 +1391,23 @@ var gotoTab = gotoTable{
 
 	},
 	gotoRow{ // S69
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
-		-1, // Stmt1
-		-1, // Stmt
-		-1, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		99, // Attr
-		-1, // EdgeStmt
-		-1, // EdgeRHS
-		-1, // NodeStmt
-		-1, // NodeId
-		-1, // Port
-		-1, // SubGraphStmt
-		-1, // EdgeOp
-		67, // Id
+		-1,  // S'
+		-1,  // DotGraph
+		-1,  // StmtList
+		-1,  // Stmt1
+		-1,  // Stmt
+		-1,  // AttrStmt
+		-1,  // AttrList
+		-1,  // AList
+		100, // Attr
+		-1,  // EdgeStmt
+		-1,  // EdgeRHS
+		-1,  // NodeStmt
+		-1,  // NodeId
+		-1,  // Port
+		-1,  // SubGraphStmt
+		-1,  // EdgeOp
+		67,  // Id
 
 	},
 	gotoRow{ // S70
@@ -1583,9 +1583,9 @@ var gotoTab = gotoTable{
 		-1,  // EdgeStmt
 		-1,  // EdgeRHS
 		-1,  // NodeStmt
-		103, // NodeId
+		104, // NodeId
 		-1,  // Port
-		102, // SubGraphStmt
+		103, // SubGraphStmt
 		-1,  // EdgeOp
 		80,  // Id
 
@@ -1593,7 +1593,7 @@ var gotoTab = gotoTable{
 	gotoRow{ // S79
 		-1,  // S'
 		-1,  // DotGraph
-		104, // StmtList
+		105, // StmtList
 		17,  // Stmt1
 		18,  // Stmt
 		21,  // AttrStmt
@@ -1687,7 +1687,7 @@ var gotoTab = gotoTable{
 		-1,  // Port
 		-1,  // SubGraphStmt
 		-1,  // EdgeOp
-		106, // Id
+		107, // Id
 
 	},
 	gotoRow{ // S84
@@ -1714,6 +1714,26 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		-1, // EdgeStmt
+		-1, // EdgeRHS
+		-1, // NodeStmt
+		-1, // NodeId
+		-1, // Port
+		-1, // SubGraphStmt
+		-1, // EdgeOp
+		-1, // Id
+
+	},
+	gotoRow{ // S86
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
 		43, // Stmt1
 		18, // Stmt
 		21, // AttrStmt
@@ -1730,10 +1750,10 @@ var gotoTab = gotoTable{
 		15, // Id
 
 	},
-	gotoRow{ // S86
+	gotoRow{ // S87
 		-1,  // S'
 		-1,  // DotGraph
-		108, // StmtList
+		110, // StmtList
 		17,  // Stmt1
 		18,  // Stmt
 		21,  // AttrStmt
@@ -1748,26 +1768,6 @@ var gotoTab = gotoTable{
 		22,  // SubGraphStmt
 		-1,  // EdgeOp
 		15,  // Id
-
-	},
-	gotoRow{ // S87
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
-		-1, // Stmt1
-		-1, // Stmt
-		-1, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		-1, // Attr
-		-1, // EdgeStmt
-		-1, // EdgeRHS
-		-1, // NodeStmt
-		-1, // NodeId
-		-1, // Port
-		-1, // SubGraphStmt
-		-1, // EdgeOp
-		-1, // Id
 
 	},
 	gotoRow{ // S88
@@ -1814,26 +1814,6 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
-		43, // Stmt1
-		18, // Stmt
-		21, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		-1, // Attr
-		20, // EdgeStmt
-		-1, // EdgeRHS
-		19, // NodeStmt
-		25, // NodeId
-		-1, // Port
-		22, // SubGraphStmt
-		-1, // EdgeOp
-		15, // Id
-
-	},
-	gotoRow{ // S91
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
 		-1, // Stmt1
 		-1, // Stmt
 		-1, // AttrStmt
@@ -1848,6 +1828,26 @@ var gotoTab = gotoTable{
 		-1, // SubGraphStmt
 		-1, // EdgeOp
 		-1, // Id
+
+	},
+	gotoRow{ // S91
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
+		43, // Stmt1
+		18, // Stmt
+		21, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		20, // EdgeStmt
+		-1, // EdgeRHS
+		19, // NodeStmt
+		25, // NodeId
+		-1, // Port
+		22, // SubGraphStmt
+		-1, // EdgeOp
+		15, // Id
 
 	},
 	gotoRow{ // S92
@@ -1874,26 +1874,6 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
-		43, // Stmt1
-		18, // Stmt
-		21, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		-1, // Attr
-		20, // EdgeStmt
-		-1, // EdgeRHS
-		19, // NodeStmt
-		25, // NodeId
-		-1, // Port
-		22, // SubGraphStmt
-		-1, // EdgeOp
-		15, // Id
-
-	},
-	gotoRow{ // S94
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
 		-1, // Stmt1
 		-1, // Stmt
 		-1, // AttrStmt
@@ -1908,6 +1888,26 @@ var gotoTab = gotoTable{
 		-1, // SubGraphStmt
 		-1, // EdgeOp
 		-1, // Id
+
+	},
+	gotoRow{ // S94
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
+		43, // Stmt1
+		18, // Stmt
+		21, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		20, // EdgeStmt
+		-1, // EdgeRHS
+		19, // NodeStmt
+		25, // NodeId
+		-1, // Port
+		22, // SubGraphStmt
+		-1, // EdgeOp
+		15, // Id
 
 	},
 	gotoRow{ // S95
@@ -1939,7 +1939,7 @@ var gotoTab = gotoTable{
 		-1, // AttrStmt
 		-1, // AttrList
 		-1, // AList
-		99, // Attr
+		-1, // Attr
 		-1, // EdgeStmt
 		-1, // EdgeRHS
 		-1, // NodeStmt
@@ -1947,10 +1947,30 @@ var gotoTab = gotoTable{
 		-1, // Port
 		-1, // SubGraphStmt
 		-1, // EdgeOp
-		67, // Id
+		-1, // Id
 
 	},
 	gotoRow{ // S97
+		-1,  // S'
+		-1,  // DotGraph
+		-1,  // StmtList
+		-1,  // Stmt1
+		-1,  // Stmt
+		-1,  // AttrStmt
+		-1,  // AttrList
+		-1,  // AList
+		100, // Attr
+		-1,  // EdgeStmt
+		-1,  // EdgeRHS
+		-1,  // NodeStmt
+		-1,  // NodeId
+		-1,  // Port
+		-1,  // SubGraphStmt
+		-1,  // EdgeOp
+		67,  // Id
+
+	},
+	gotoRow{ // S98
 		-1,  // S'
 		-1,  // DotGraph
 		-1,  // StmtList
@@ -1967,27 +1987,7 @@ var gotoTab = gotoTable{
 		-1,  // Port
 		-1,  // SubGraphStmt
 		-1,  // EdgeOp
-		112, // Id
-
-	},
-	gotoRow{ // S98
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
-		-1, // Stmt1
-		-1, // Stmt
-		-1, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		-1, // Attr
-		-1, // EdgeStmt
-		-1, // EdgeRHS
-		-1, // NodeStmt
-		-1, // NodeId
-		-1, // Port
-		-1, // SubGraphStmt
-		-1, // EdgeOp
-		-1, // Id
+		114, // Id
 
 	},
 	gotoRow{ // S99
@@ -2011,46 +2011,6 @@ var gotoTab = gotoTable{
 
 	},
 	gotoRow{ // S100
-		-1,  // S'
-		-1,  // DotGraph
-		-1,  // StmtList
-		-1,  // Stmt1
-		-1,  // Stmt
-		-1,  // AttrStmt
-		-1,  // AttrList
-		-1,  // AList
-		114, // Attr
-		-1,  // EdgeStmt
-		-1,  // EdgeRHS
-		-1,  // NodeStmt
-		-1,  // NodeId
-		-1,  // Port
-		-1,  // SubGraphStmt
-		-1,  // EdgeOp
-		67,  // Id
-
-	},
-	gotoRow{ // S101
-		-1,  // S'
-		-1,  // DotGraph
-		-1,  // StmtList
-		-1,  // Stmt1
-		-1,  // Stmt
-		-1,  // AttrStmt
-		-1,  // AttrList
-		-1,  // AList
-		-1,  // Attr
-		-1,  // EdgeStmt
-		-1,  // EdgeRHS
-		-1,  // NodeStmt
-		-1,  // NodeId
-		-1,  // Port
-		-1,  // SubGraphStmt
-		-1,  // EdgeOp
-		115, // Id
-
-	},
-	gotoRow{ // S102
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
@@ -2068,6 +2028,46 @@ var gotoTab = gotoTable{
 		-1, // SubGraphStmt
 		-1, // EdgeOp
 		-1, // Id
+
+	},
+	gotoRow{ // S101
+		-1,  // S'
+		-1,  // DotGraph
+		-1,  // StmtList
+		-1,  // Stmt1
+		-1,  // Stmt
+		-1,  // AttrStmt
+		-1,  // AttrList
+		-1,  // AList
+		116, // Attr
+		-1,  // EdgeStmt
+		-1,  // EdgeRHS
+		-1,  // NodeStmt
+		-1,  // NodeId
+		-1,  // Port
+		-1,  // SubGraphStmt
+		-1,  // EdgeOp
+		67,  // Id
+
+	},
+	gotoRow{ // S102
+		-1,  // S'
+		-1,  // DotGraph
+		-1,  // StmtList
+		-1,  // Stmt1
+		-1,  // Stmt
+		-1,  // AttrStmt
+		-1,  // AttrList
+		-1,  // AList
+		-1,  // Attr
+		-1,  // EdgeStmt
+		-1,  // EdgeRHS
+		-1,  // NodeStmt
+		-1,  // NodeId
+		-1,  // Port
+		-1,  // SubGraphStmt
+		-1,  // EdgeOp
+		117, // Id
 
 	},
 	gotoRow{ // S103
@@ -2094,6 +2094,26 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		-1, // EdgeStmt
+		-1, // EdgeRHS
+		-1, // NodeStmt
+		-1, // NodeId
+		-1, // Port
+		-1, // SubGraphStmt
+		-1, // EdgeOp
+		-1, // Id
+
+	},
+	gotoRow{ // S105
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
 		43, // Stmt1
 		18, // Stmt
 		21, // AttrStmt
@@ -2110,10 +2130,10 @@ var gotoTab = gotoTable{
 		15, // Id
 
 	},
-	gotoRow{ // S105
+	gotoRow{ // S106
 		-1,  // S'
 		-1,  // DotGraph
-		118, // StmtList
+		121, // StmtList
 		17,  // Stmt1
 		18,  // Stmt
 		21,  // AttrStmt
@@ -2128,26 +2148,6 @@ var gotoTab = gotoTable{
 		22,  // SubGraphStmt
 		-1,  // EdgeOp
 		15,  // Id
-
-	},
-	gotoRow{ // S106
-		-1, // S'
-		-1, // DotGraph
-		-1, // StmtList
-		-1, // Stmt1
-		-1, // Stmt
-		-1, // AttrStmt
-		-1, // AttrList
-		-1, // AList
-		-1, // Attr
-		-1, // EdgeStmt
-		-1, // EdgeRHS
-		-1, // NodeStmt
-		-1, // NodeId
-		-1, // Port
-		-1, // SubGraphStmt
-		-1, // EdgeOp
-		-1, // Id
 
 	},
 	gotoRow{ // S107
@@ -2174,20 +2174,20 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
-		43, // Stmt1
-		18, // Stmt
-		21, // AttrStmt
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
 		-1, // AttrList
 		-1, // AList
 		-1, // Attr
-		20, // EdgeStmt
+		-1, // EdgeStmt
 		-1, // EdgeRHS
-		19, // NodeStmt
-		25, // NodeId
+		-1, // NodeStmt
+		-1, // NodeId
 		-1, // Port
-		22, // SubGraphStmt
+		-1, // SubGraphStmt
 		-1, // EdgeOp
-		15, // Id
+		-1, // Id
 
 	},
 	gotoRow{ // S109
@@ -2214,20 +2214,20 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
-		-1, // Stmt1
-		-1, // Stmt
-		-1, // AttrStmt
+		43, // Stmt1
+		18, // Stmt
+		21, // AttrStmt
 		-1, // AttrList
 		-1, // AList
 		-1, // Attr
-		-1, // EdgeStmt
+		20, // EdgeStmt
 		-1, // EdgeRHS
-		-1, // NodeStmt
-		-1, // NodeId
+		19, // NodeStmt
+		25, // NodeId
 		-1, // Port
-		-1, // SubGraphStmt
+		22, // SubGraphStmt
 		-1, // EdgeOp
-		-1, // Id
+		15, // Id
 
 	},
 	gotoRow{ // S111
@@ -2374,40 +2374,40 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
-		43, // Stmt1
-		18, // Stmt
-		21, // AttrStmt
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
 		-1, // AttrList
 		-1, // AList
 		-1, // Attr
-		20, // EdgeStmt
+		-1, // EdgeStmt
 		-1, // EdgeRHS
-		19, // NodeStmt
-		25, // NodeId
+		-1, // NodeStmt
+		-1, // NodeId
 		-1, // Port
-		22, // SubGraphStmt
+		-1, // SubGraphStmt
 		-1, // EdgeOp
-		15, // Id
+		-1, // Id
 
 	},
 	gotoRow{ // S119
-		-1,  // S'
-		-1,  // DotGraph
-		122, // StmtList
-		17,  // Stmt1
-		18,  // Stmt
-		21,  // AttrStmt
-		-1,  // AttrList
-		-1,  // AList
-		-1,  // Attr
-		20,  // EdgeStmt
-		-1,  // EdgeRHS
-		19,  // NodeStmt
-		25,  // NodeId
-		-1,  // Port
-		22,  // SubGraphStmt
-		-1,  // EdgeOp
-		15,  // Id
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		-1, // EdgeStmt
+		-1, // EdgeRHS
+		-1, // NodeStmt
+		-1, // NodeId
+		-1, // Port
+		-1, // SubGraphStmt
+		-1, // EdgeOp
+		-1, // Id
 
 	},
 	gotoRow{ // S120
@@ -2434,6 +2434,46 @@ var gotoTab = gotoTable{
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
+		43, // Stmt1
+		18, // Stmt
+		21, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		20, // EdgeStmt
+		-1, // EdgeRHS
+		19, // NodeStmt
+		25, // NodeId
+		-1, // Port
+		22, // SubGraphStmt
+		-1, // EdgeOp
+		15, // Id
+
+	},
+	gotoRow{ // S122
+		-1,  // S'
+		-1,  // DotGraph
+		126, // StmtList
+		17,  // Stmt1
+		18,  // Stmt
+		21,  // AttrStmt
+		-1,  // AttrList
+		-1,  // AList
+		-1,  // Attr
+		20,  // EdgeStmt
+		-1,  // EdgeRHS
+		19,  // NodeStmt
+		25,  // NodeId
+		-1,  // Port
+		22,  // SubGraphStmt
+		-1,  // EdgeOp
+		15,  // Id
+
+	},
+	gotoRow{ // S123
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
 		-1, // Stmt1
 		-1, // Stmt
 		-1, // AttrStmt
@@ -2450,7 +2490,47 @@ var gotoTab = gotoTable{
 		-1, // Id
 
 	},
-	gotoRow{ // S122
+	gotoRow{ // S124
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		-1, // EdgeStmt
+		-1, // EdgeRHS
+		-1, // NodeStmt
+		-1, // NodeId
+		-1, // Port
+		-1, // SubGraphStmt
+		-1, // EdgeOp
+		-1, // Id
+
+	},
+	gotoRow{ // S125
+		-1, // S'
+		-1, // DotGraph
+		-1, // StmtList
+		-1, // Stmt1
+		-1, // Stmt
+		-1, // AttrStmt
+		-1, // AttrList
+		-1, // AList
+		-1, // Attr
+		-1, // EdgeStmt
+		-1, // EdgeRHS
+		-1, // NodeStmt
+		-1, // NodeId
+		-1, // Port
+		-1, // SubGraphStmt
+		-1, // EdgeOp
+		-1, // Id
+
+	},
+	gotoRow{ // S126
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList
@@ -2470,7 +2550,7 @@ var gotoTab = gotoTable{
 		15, // Id
 
 	},
-	gotoRow{ // S123
+	gotoRow{ // S127
 		-1, // S'
 		-1, // DotGraph
 		-1, // StmtList

@@ -56,7 +56,7 @@ func TestClusterSubgraphs(t *testing.T) {
 	g.AddNode("G", "Code deployment", nil)
 	g.AddPortEdge("cluster_2", "", "cluster_1", "", false, nil)
 	s := g.String()
-	if !strings.HasPrefix(s, `graph G {
+	graphStr := `graph G {
 	cluster_2--cluster_1;
 	subgraph cluster0 {
 	subgraph cluster_1 {
@@ -72,7 +72,16 @@ func TestClusterSubgraphs(t *testing.T) {
 ;
 	"Code deployment";
 
-}`) {
+}`
+	if !strings.HasPrefix(s, graphStr) {
 		t.Fatalf("%s", s)
+	}
+	g2, err := Parse([]byte(s))
+	if err != nil {
+		t.Fatal(err)
+	}
+	s2 := g2.String()
+	if !strings.HasPrefix(s2, graphStr) {
+		t.Fatalf("%s", s2)
 	}
 }
