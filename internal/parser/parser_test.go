@@ -35,7 +35,7 @@ func assert(t *testing.T, msg string, v1 interface{}, v2 interface{}) {
 }
 
 func parseTest(t *testing.T, filename string) {
-	localFilename := "../testdata/" + filename
+	localFilename := "../../testdata/" + filename
 	s, err := ioutil.ReadFile(localFilename)
 	check(t, err)
 	t.Logf("Input String = %v", string(s))
@@ -71,7 +71,7 @@ func TestHelloWorldString(t *testing.T) {
 }
 
 func TestHelloWorldFile(t *testing.T) {
-	g, err := ParseFile("../testdata/helloworld.gv.txt")
+	g, err := ParseFile("../../testdata/helloworld.gv.txt")
 	check(t, err)
 	fmt.Printf("%#v", g)
 }

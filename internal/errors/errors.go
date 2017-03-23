@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/awalterschulze/gographviz/token"
+	"github.com/awalterschulze/gographviz/internal/token"
 )
 
 type ErrorSymbol interface {

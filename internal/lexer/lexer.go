@@ -7,8 +7,8 @@ import (
 	"io/ioutil"
 	"unicode/utf8"
 
-	// "github.com/awalterschulze/gographviz/util"
-	"github.com/awalterschulze/gographviz/token"
+	// "github.com/awalterschulze/gographviz/internal/util"
+	"github.com/awalterschulze/gographviz/internal/token"
 )
 
 const (
