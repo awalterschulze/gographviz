@@ -571,10 +571,30 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
+		String: `SubGraphStmt : subgraph "{" "}"	<< ast.NewSubGraph(nil, nil) >>`,
+		Id:         "SubGraphStmt",
+		NTType:     14,
+		Index:      55,
+		NumSymbols: 3,
+		ReduceFunc: func(X []Attrib) (Attrib, error) {
+			return ast.NewSubGraph(nil, nil)
+		},
+	},
+	ProdTabEntry{
+		String: `SubGraphStmt : subgraph Id "{" "}"	<< ast.NewSubGraph(X[1], nil) >>`,
+		Id:         "SubGraphStmt",
+		NTType:     14,
+		Index:      56,
+		NumSymbols: 4,
+		ReduceFunc: func(X []Attrib) (Attrib, error) {
+			return ast.NewSubGraph(X[1], nil)
+		},
+	},
+	ProdTabEntry{
 		String: `EdgeOp : "->"	<< ast.DIRECTED, nil >>`,
 		Id:         "EdgeOp",
 		NTType:     15,
-		Index:      55,
+		Index:      57,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
 			return ast.DIRECTED, nil
@@ -584,7 +604,7 @@ var productionsTable = ProdTab{
 		String: `EdgeOp : "--"	<< ast.UNDIRECTED, nil >>`,
 		Id:         "EdgeOp",
 		NTType:     15,
-		Index:      56,
+		Index:      58,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
 			return ast.UNDIRECTED, nil
@@ -594,7 +614,7 @@ var productionsTable = ProdTab{
 		String: `Id : id	<< ast.NewId(X[0]) >>`,
 		Id:         "Id",
 		NTType:     16,
-		Index:      57,
+		Index:      59,
 		NumSymbols: 1,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
 			return ast.NewId(X[0])

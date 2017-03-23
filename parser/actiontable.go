@@ -192,7 +192,7 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* graphx */
-			reduce(57), /* {, reduce: Id */
+			reduce(59), /* {, reduce: Id */
 			nil,        /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
@@ -691,23 +691,23 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			reduce(57), /* graphx, reduce: Id */
-			reduce(57), /* {, reduce: Id */
-			reduce(57), /* }, reduce: Id */
+			reduce(59), /* graphx, reduce: Id */
+			reduce(59), /* {, reduce: Id */
+			reduce(59), /* }, reduce: Id */
 			nil,        /* strict */
 			nil,        /* digraph */
-			reduce(57), /* ;, reduce: Id */
-			reduce(57), /* =, reduce: Id */
-			reduce(57), /* node, reduce: Id */
-			reduce(57), /* edge, reduce: Id */
-			reduce(57), /* [, reduce: Id */
+			reduce(59), /* ;, reduce: Id */
+			reduce(59), /* =, reduce: Id */
+			reduce(59), /* node, reduce: Id */
+			reduce(59), /* edge, reduce: Id */
+			reduce(59), /* [, reduce: Id */
 			nil,        /* ] */
 			nil,        /* , */
-			reduce(57), /* :, reduce: Id */
-			reduce(57), /* subgraph, reduce: Id */
-			reduce(57), /* ->, reduce: Id */
-			reduce(57), /* --, reduce: Id */
-			reduce(57), /* id, reduce: Id */
+			reduce(59), /* :, reduce: Id */
+			reduce(59), /* subgraph, reduce: Id */
+			reduce(59), /* ->, reduce: Id */
+			reduce(59), /* --, reduce: Id */
+			reduce(59), /* id, reduce: Id */
 
 		},
 	},
@@ -1192,7 +1192,7 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* graphx */
-			reduce(55), /* {, reduce: EdgeOp */
+			reduce(57), /* {, reduce: EdgeOp */
 			nil,        /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
@@ -1204,10 +1204,10 @@ var actionTab = actionTable{
 			nil,        /* ] */
 			nil,        /* , */
 			nil,        /* : */
-			reduce(55), /* subgraph, reduce: EdgeOp */
+			reduce(57), /* subgraph, reduce: EdgeOp */
 			nil,        /* -> */
 			nil,        /* -- */
-			reduce(55), /* id, reduce: EdgeOp */
+			reduce(57), /* id, reduce: EdgeOp */
 
 		},
 	},
@@ -1217,7 +1217,7 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* graphx */
-			reduce(56), /* {, reduce: EdgeOp */
+			reduce(58), /* {, reduce: EdgeOp */
 			nil,        /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
@@ -1229,10 +1229,10 @@ var actionTab = actionTable{
 			nil,        /* ] */
 			nil,        /* , */
 			nil,        /* : */
-			reduce(56), /* subgraph, reduce: EdgeOp */
+			reduce(58), /* subgraph, reduce: EdgeOp */
 			nil,        /* -> */
 			nil,        /* -- */
-			reduce(56), /* id, reduce: EdgeOp */
+			reduce(58), /* id, reduce: EdgeOp */
 
 		},
 	},
@@ -1343,7 +1343,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			nil,       /* } */
+			shift(85), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1367,7 +1367,7 @@ var actionTab = actionTable{
 			nil,       /* INVALID */
 			nil,       /* $ */
 			nil,       /* graphx */
-			shift(86), /* { */
+			shift(87), /* { */
 			nil,       /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
@@ -1418,7 +1418,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(87), /* } */
+			shift(88), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1468,7 +1468,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(88), /* } */
+			shift(89), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1493,7 +1493,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(89), /* } */
+			shift(90), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1543,7 +1543,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(91), /* } */
+			shift(92), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1568,7 +1568,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(92), /* } */
+			shift(93), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1643,7 +1643,7 @@ var actionTab = actionTable{
 			nil,       /* $ */
 			shift(12), /* graphx */
 			shift(13), /* { */
-			shift(94), /* } */
+			shift(95), /* } */
 			nil,       /* strict */
 			nil,       /* digraph */
 			nil,       /* ; */
@@ -1676,7 +1676,7 @@ var actionTab = actionTable{
 			nil,       /* node */
 			nil,       /* edge */
 			nil,       /* [ */
-			shift(95), /* ] */
+			shift(96), /* ] */
 			nil,       /* , */
 			nil,       /* : */
 			nil,       /* subgraph */
@@ -1697,7 +1697,7 @@ var actionTab = actionTable{
 			nil,        /* strict */
 			nil,        /* digraph */
 			nil,        /* ; */
-			shift(97),  /* = */
+			shift(98),  /* = */
 			nil,        /* node */
 			nil,        /* edge */
 			nil,        /* [ */
@@ -1751,8 +1751,8 @@ var actionTab = actionTable{
 			nil,        /* node */
 			nil,        /* edge */
 			nil,        /* [ */
-			shift(98),  /* ] */
-			shift(100), /* , */
+			shift(99),  /* ] */
+			shift(101), /* , */
 			nil,        /* : */
 			nil,        /* subgraph */
 			nil,        /* -> */
@@ -1797,17 +1797,17 @@ var actionTab = actionTable{
 			nil,        /* strict */
 			nil,        /* digraph */
 			nil,        /* ; */
-			reduce(57), /* =, reduce: Id */
+			reduce(59), /* =, reduce: Id */
 			nil,        /* node */
 			nil,        /* edge */
 			nil,        /* [ */
-			reduce(57), /* ], reduce: Id */
-			reduce(57), /* ,, reduce: Id */
+			reduce(59), /* ], reduce: Id */
+			reduce(59), /* ,, reduce: Id */
 			nil,        /* : */
 			nil,        /* subgraph */
 			nil,        /* -> */
 			nil,        /* -- */
-			reduce(57), /* id, reduce: Id */
+			reduce(59), /* id, reduce: Id */
 
 		},
 	},
@@ -1866,23 +1866,23 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			reduce(57), /* graphx, reduce: Id */
-			reduce(57), /* {, reduce: Id */
-			reduce(57), /* }, reduce: Id */
+			reduce(59), /* graphx, reduce: Id */
+			reduce(59), /* {, reduce: Id */
+			reduce(59), /* }, reduce: Id */
 			nil,        /* strict */
 			nil,        /* digraph */
-			reduce(57), /* ;, reduce: Id */
+			reduce(59), /* ;, reduce: Id */
 			nil,        /* = */
-			reduce(57), /* node, reduce: Id */
-			reduce(57), /* edge, reduce: Id */
+			reduce(59), /* node, reduce: Id */
+			reduce(59), /* edge, reduce: Id */
 			nil,        /* [ */
 			nil,        /* ] */
 			nil,        /* , */
 			nil,        /* : */
-			reduce(57), /* subgraph, reduce: Id */
+			reduce(59), /* subgraph, reduce: Id */
 			nil,        /* -> */
 			nil,        /* -- */
-			reduce(57), /* id, reduce: Id */
+			reduce(59), /* id, reduce: Id */
 
 		},
 	},
@@ -1903,7 +1903,7 @@ var actionTab = actionTable{
 			reduce(50), /* [, reduce: Port */
 			nil,        /* ] */
 			nil,        /* , */
-			shift(101), /* : */
+			shift(102), /* : */
 			reduce(50), /* subgraph, reduce: Port */
 			reduce(50), /* ->, reduce: Port */
 			reduce(50), /* --, reduce: Port */
@@ -1916,23 +1916,23 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
-			reduce(57), /* graphx, reduce: Id */
-			reduce(57), /* {, reduce: Id */
-			reduce(57), /* }, reduce: Id */
+			reduce(59), /* graphx, reduce: Id */
+			reduce(59), /* {, reduce: Id */
+			reduce(59), /* }, reduce: Id */
 			nil,        /* strict */
 			nil,        /* digraph */
-			reduce(57), /* ;, reduce: Id */
+			reduce(59), /* ;, reduce: Id */
 			nil,        /* = */
-			reduce(57), /* node, reduce: Id */
-			reduce(57), /* edge, reduce: Id */
-			reduce(57), /* [, reduce: Id */
+			reduce(59), /* node, reduce: Id */
+			reduce(59), /* edge, reduce: Id */
+			reduce(59), /* [, reduce: Id */
 			nil,        /* ] */
 			nil,        /* , */
-			reduce(57), /* :, reduce: Id */
-			reduce(57), /* subgraph, reduce: Id */
-			reduce(57), /* ->, reduce: Id */
-			reduce(57), /* --, reduce: Id */
-			reduce(57), /* id, reduce: Id */
+			reduce(59), /* :, reduce: Id */
+			reduce(59), /* subgraph, reduce: Id */
+			reduce(59), /* ->, reduce: Id */
+			reduce(59), /* --, reduce: Id */
+			reduce(59), /* id, reduce: Id */
 
 		},
 	},
@@ -2092,7 +2092,7 @@ var actionTab = actionTable{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			nil,        /* graphx */
-			shift(105), /* { */
+			shift(106), /* { */
 			nil,        /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
@@ -2141,9 +2141,34 @@ var actionTab = actionTable{
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
+			reduce(55), /* graphx, reduce: SubGraphStmt */
+			reduce(55), /* {, reduce: SubGraphStmt */
+			reduce(55), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(55), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(55), /* node, reduce: SubGraphStmt */
+			reduce(55), /* edge, reduce: SubGraphStmt */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(55), /* subgraph, reduce: SubGraphStmt */
+			reduce(55), /* ->, reduce: SubGraphStmt */
+			reduce(55), /* --, reduce: SubGraphStmt */
+			reduce(55), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S86
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
 			shift(12),  /* graphx */
 			shift(13),  /* { */
-			shift(107), /* } */
+			shift(108), /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
 			nil,        /* ; */
@@ -2161,107 +2186,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S86
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(12), /* graphx */
-			shift(13), /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			shift(23), /* node */
-			shift(24), /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			shift(26), /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			shift(27), /* id */
-
-		},
-	},
 	actionRow{ // S87
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(6), /* $, reduce: DotGraph */
-			nil,       /* graphx */
-			nil,       /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			nil,       /* node */
-			nil,       /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			nil,       /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			nil,       /* id */
-
-		},
-	},
-	actionRow{ // S88
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(7), /* $, reduce: DotGraph */
-			nil,       /* graphx */
-			nil,       /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			nil,       /* node */
-			nil,       /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			nil,       /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			nil,       /* id */
-
-		},
-	},
-	actionRow{ // S89
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(4), /* $, reduce: DotGraph */
-			nil,       /* graphx */
-			nil,       /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			nil,       /* node */
-			nil,       /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			nil,       /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			nil,       /* id */
-
-		},
-	},
-	actionRow{ // S90
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2286,7 +2211,107 @@ var actionTab = actionTable{
 
 		},
 	},
+	actionRow{ // S88
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       /* INVALID */
+			reduce(6), /* $, reduce: DotGraph */
+			nil,       /* graphx */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* strict */
+			nil,       /* digraph */
+			nil,       /* ; */
+			nil,       /* = */
+			nil,       /* node */
+			nil,       /* edge */
+			nil,       /* [ */
+			nil,       /* ] */
+			nil,       /* , */
+			nil,       /* : */
+			nil,       /* subgraph */
+			nil,       /* -> */
+			nil,       /* -- */
+			nil,       /* id */
+
+		},
+	},
+	actionRow{ // S89
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       /* INVALID */
+			reduce(7), /* $, reduce: DotGraph */
+			nil,       /* graphx */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* strict */
+			nil,       /* digraph */
+			nil,       /* ; */
+			nil,       /* = */
+			nil,       /* node */
+			nil,       /* edge */
+			nil,       /* [ */
+			nil,       /* ] */
+			nil,       /* , */
+			nil,       /* : */
+			nil,       /* subgraph */
+			nil,       /* -> */
+			nil,       /* -- */
+			nil,       /* id */
+
+		},
+	},
+	actionRow{ // S90
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       /* INVALID */
+			reduce(4), /* $, reduce: DotGraph */
+			nil,       /* graphx */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* strict */
+			nil,       /* digraph */
+			nil,       /* ; */
+			nil,       /* = */
+			nil,       /* node */
+			nil,       /* edge */
+			nil,       /* [ */
+			nil,       /* ] */
+			nil,       /* , */
+			nil,       /* : */
+			nil,       /* subgraph */
+			nil,       /* -> */
+			nil,       /* -- */
+			nil,       /* id */
+
+		},
+	},
 	actionRow{ // S91
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(12),  /* graphx */
+			shift(13),  /* { */
+			shift(111), /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			shift(23),  /* node */
+			shift(24),  /* edge */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			shift(26),  /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			shift(27),  /* id */
+
+		},
+	},
+	actionRow{ // S92
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2311,7 +2336,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S92
+	actionRow{ // S93
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2336,14 +2361,14 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S93
+	actionRow{ // S94
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			shift(12),  /* graphx */
 			shift(13),  /* { */
-			shift(110), /* } */
+			shift(112), /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
 			nil,        /* ; */
@@ -2361,7 +2386,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S94
+	actionRow{ // S95
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2386,7 +2411,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S95
+	actionRow{ // S96
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2411,7 +2436,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S96
+	actionRow{ // S97
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2426,8 +2451,8 @@ var actionTab = actionTable{
 			nil,        /* node */
 			nil,        /* edge */
 			nil,        /* [ */
-			shift(111), /* ] */
-			shift(100), /* , */
+			shift(113), /* ] */
+			shift(101), /* , */
 			nil,        /* : */
 			nil,        /* subgraph */
 			nil,        /* -> */
@@ -2436,7 +2461,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S97
+	actionRow{ // S98
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2457,11 +2482,11 @@ var actionTab = actionTable{
 			nil,        /* subgraph */
 			nil,        /* -> */
 			nil,        /* -- */
-			shift(113), /* id */
+			shift(115), /* id */
 
 		},
 	},
-	actionRow{ // S98
+	actionRow{ // S99
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2486,7 +2511,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S99
+	actionRow{ // S100
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2511,7 +2536,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S100
+	actionRow{ // S101
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,       /* INVALID */
@@ -2536,7 +2561,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S101
+	actionRow{ // S102
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2557,11 +2582,11 @@ var actionTab = actionTable{
 			nil,        /* subgraph */
 			nil,        /* -> */
 			nil,        /* -- */
-			shift(116), /* id */
+			shift(118), /* id */
 
 		},
 	},
-	actionRow{ // S102
+	actionRow{ // S103
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2586,7 +2611,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S103
+	actionRow{ // S104
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2611,14 +2636,14 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S104
+	actionRow{ // S105
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
 			nil,        /* $ */
 			shift(12),  /* graphx */
 			shift(13),  /* { */
-			shift(117), /* } */
+			shift(119), /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
 			nil,        /* ; */
@@ -2636,82 +2661,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S105
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(12), /* graphx */
-			shift(13), /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			shift(23), /* node */
-			shift(24), /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			shift(26), /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			shift(27), /* id */
-
-		},
-	},
 	actionRow{ // S106
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			nil,        /* graphx */
-			shift(119), /* { */
-			nil,        /* } */
-			nil,        /* strict */
-			nil,        /* digraph */
-			nil,        /* ; */
-			nil,        /* = */
-			nil,        /* node */
-			nil,        /* edge */
-			nil,        /* [ */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			nil,        /* subgraph */
-			nil,        /* -> */
-			nil,        /* -- */
-			nil,        /* id */
-
-		},
-	},
-	actionRow{ // S107
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(53), /* graphx, reduce: SubGraphStmt */
-			reduce(53), /* {, reduce: SubGraphStmt */
-			reduce(53), /* }, reduce: SubGraphStmt */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(53), /* ;, reduce: SubGraphStmt */
-			nil,        /* = */
-			reduce(53), /* node, reduce: SubGraphStmt */
-			reduce(53), /* edge, reduce: SubGraphStmt */
-			nil,        /* [ */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(53), /* subgraph, reduce: SubGraphStmt */
-			reduce(53), /* ->, reduce: SubGraphStmt */
-			reduce(53), /* --, reduce: SubGraphStmt */
-			reduce(53), /* id, reduce: SubGraphStmt */
-
-		},
-	},
-	actionRow{ // S108
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -2736,38 +2686,13 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S109
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			reduce(8), /* $, reduce: DotGraph */
-			nil,       /* graphx */
-			nil,       /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			nil,       /* node */
-			nil,       /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			nil,       /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			nil,       /* id */
-
-		},
-	},
-	actionRow{ // S110
+	actionRow{ // S107
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
-			reduce(16), /* $, reduce: DotGraph */
+			nil,        /* $ */
 			nil,        /* graphx */
-			nil,        /* { */
+			shift(122), /* { */
 			nil,        /* } */
 			nil,        /* strict */
 			nil,        /* digraph */
@@ -2786,257 +2711,7 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S111
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(32), /* graphx, reduce: AttrList */
-			reduce(32), /* {, reduce: AttrList */
-			reduce(32), /* }, reduce: AttrList */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(32), /* ;, reduce: AttrList */
-			nil,        /* = */
-			reduce(32), /* node, reduce: AttrList */
-			reduce(32), /* edge, reduce: AttrList */
-			reduce(32), /* [, reduce: AttrList */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(32), /* subgraph, reduce: AttrList */
-			nil,        /* -> */
-			nil,        /* -- */
-			reduce(32), /* id, reduce: AttrList */
-
-		},
-	},
-	actionRow{ // S112
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			nil,        /* graphx */
-			nil,        /* { */
-			nil,        /* } */
-			nil,        /* strict */
-			nil,        /* digraph */
-			nil,        /* ; */
-			nil,        /* = */
-			nil,        /* node */
-			nil,        /* edge */
-			nil,        /* [ */
-			reduce(37), /* ], reduce: Attr */
-			reduce(37), /* ,, reduce: Attr */
-			nil,        /* : */
-			nil,        /* subgraph */
-			nil,        /* -> */
-			nil,        /* -- */
-			reduce(37), /* id, reduce: Attr */
-
-		},
-	},
-	actionRow{ // S113
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			nil,        /* graphx */
-			nil,        /* { */
-			nil,        /* } */
-			nil,        /* strict */
-			nil,        /* digraph */
-			nil,        /* ; */
-			nil,        /* = */
-			nil,        /* node */
-			nil,        /* edge */
-			nil,        /* [ */
-			reduce(57), /* ], reduce: Id */
-			reduce(57), /* ,, reduce: Id */
-			nil,        /* : */
-			nil,        /* subgraph */
-			nil,        /* -> */
-			nil,        /* -- */
-			reduce(57), /* id, reduce: Id */
-
-		},
-	},
-	actionRow{ // S114
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			nil,        /* graphx */
-			nil,        /* { */
-			nil,        /* } */
-			nil,        /* strict */
-			nil,        /* digraph */
-			nil,        /* ; */
-			nil,        /* = */
-			nil,        /* node */
-			nil,        /* edge */
-			nil,        /* [ */
-			reduce(35), /* ], reduce: AList */
-			reduce(35), /* ,, reduce: AList */
-			nil,        /* : */
-			nil,        /* subgraph */
-			nil,        /* -> */
-			nil,        /* -- */
-			reduce(35), /* id, reduce: AList */
-
-		},
-	},
-	actionRow{ // S115
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(51), /* graphx, reduce: Port */
-			reduce(51), /* {, reduce: Port */
-			reduce(51), /* }, reduce: Port */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(51), /* ;, reduce: Port */
-			nil,        /* = */
-			reduce(51), /* node, reduce: Port */
-			reduce(51), /* edge, reduce: Port */
-			reduce(51), /* [, reduce: Port */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(51), /* subgraph, reduce: Port */
-			reduce(51), /* ->, reduce: Port */
-			reduce(51), /* --, reduce: Port */
-			reduce(51), /* id, reduce: Port */
-
-		},
-	},
-	actionRow{ // S116
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(57), /* graphx, reduce: Id */
-			reduce(57), /* {, reduce: Id */
-			reduce(57), /* }, reduce: Id */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(57), /* ;, reduce: Id */
-			nil,        /* = */
-			reduce(57), /* node, reduce: Id */
-			reduce(57), /* edge, reduce: Id */
-			reduce(57), /* [, reduce: Id */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(57), /* subgraph, reduce: Id */
-			reduce(57), /* ->, reduce: Id */
-			reduce(57), /* --, reduce: Id */
-			reduce(57), /* id, reduce: Id */
-
-		},
-	},
-	actionRow{ // S117
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(52), /* graphx, reduce: SubGraphStmt */
-			reduce(52), /* {, reduce: SubGraphStmt */
-			reduce(52), /* }, reduce: SubGraphStmt */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(52), /* ;, reduce: SubGraphStmt */
-			nil,        /* = */
-			reduce(52), /* node, reduce: SubGraphStmt */
-			reduce(52), /* edge, reduce: SubGraphStmt */
-			reduce(52), /* [, reduce: SubGraphStmt */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(52), /* subgraph, reduce: SubGraphStmt */
-			reduce(52), /* ->, reduce: SubGraphStmt */
-			reduce(52), /* --, reduce: SubGraphStmt */
-			reduce(52), /* id, reduce: SubGraphStmt */
-
-		},
-	},
-	actionRow{ // S118
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			shift(12),  /* graphx */
-			shift(13),  /* { */
-			shift(121), /* } */
-			nil,        /* strict */
-			nil,        /* digraph */
-			nil,        /* ; */
-			nil,        /* = */
-			shift(23),  /* node */
-			shift(24),  /* edge */
-			nil,        /* [ */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			shift(26),  /* subgraph */
-			nil,        /* -> */
-			nil,        /* -- */
-			shift(27),  /* id */
-
-		},
-	},
-	actionRow{ // S119
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,       /* INVALID */
-			nil,       /* $ */
-			shift(12), /* graphx */
-			shift(13), /* { */
-			nil,       /* } */
-			nil,       /* strict */
-			nil,       /* digraph */
-			nil,       /* ; */
-			nil,       /* = */
-			shift(23), /* node */
-			shift(24), /* edge */
-			nil,       /* [ */
-			nil,       /* ] */
-			nil,       /* , */
-			nil,       /* : */
-			shift(26), /* subgraph */
-			nil,       /* -> */
-			nil,       /* -- */
-			shift(27), /* id */
-
-		},
-	},
-	actionRow{ // S120
-		canRecover: false,
-		actions: [numSymbols]action{
-			nil,        /* INVALID */
-			nil,        /* $ */
-			reduce(54), /* graphx, reduce: SubGraphStmt */
-			reduce(54), /* {, reduce: SubGraphStmt */
-			reduce(54), /* }, reduce: SubGraphStmt */
-			nil,        /* strict */
-			nil,        /* digraph */
-			reduce(54), /* ;, reduce: SubGraphStmt */
-			nil,        /* = */
-			reduce(54), /* node, reduce: SubGraphStmt */
-			reduce(54), /* edge, reduce: SubGraphStmt */
-			nil,        /* [ */
-			nil,        /* ] */
-			nil,        /* , */
-			nil,        /* : */
-			reduce(54), /* subgraph, reduce: SubGraphStmt */
-			reduce(54), /* ->, reduce: SubGraphStmt */
-			reduce(54), /* --, reduce: SubGraphStmt */
-			reduce(54), /* id, reduce: SubGraphStmt */
-
-		},
-	},
-	actionRow{ // S121
+	actionRow{ // S108
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -3050,7 +2725,7 @@ var actionTab = actionTable{
 			nil,        /* = */
 			reduce(53), /* node, reduce: SubGraphStmt */
 			reduce(53), /* edge, reduce: SubGraphStmt */
-			reduce(53), /* [, reduce: SubGraphStmt */
+			nil,        /* [ */
 			nil,        /* ] */
 			nil,        /* , */
 			nil,        /* : */
@@ -3061,7 +2736,32 @@ var actionTab = actionTable{
 
 		},
 	},
-	actionRow{ // S122
+	actionRow{ // S109
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(56), /* graphx, reduce: SubGraphStmt */
+			reduce(56), /* {, reduce: SubGraphStmt */
+			reduce(56), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(56), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(56), /* node, reduce: SubGraphStmt */
+			reduce(56), /* edge, reduce: SubGraphStmt */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(56), /* subgraph, reduce: SubGraphStmt */
+			reduce(56), /* ->, reduce: SubGraphStmt */
+			reduce(56), /* --, reduce: SubGraphStmt */
+			reduce(56), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S110
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
@@ -3086,7 +2786,407 @@ var actionTab = actionTable{
 
 		},
 	},
+	actionRow{ // S111
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,       /* INVALID */
+			reduce(8), /* $, reduce: DotGraph */
+			nil,       /* graphx */
+			nil,       /* { */
+			nil,       /* } */
+			nil,       /* strict */
+			nil,       /* digraph */
+			nil,       /* ; */
+			nil,       /* = */
+			nil,       /* node */
+			nil,       /* edge */
+			nil,       /* [ */
+			nil,       /* ] */
+			nil,       /* , */
+			nil,       /* : */
+			nil,       /* subgraph */
+			nil,       /* -> */
+			nil,       /* -- */
+			nil,       /* id */
+
+		},
+	},
+	actionRow{ // S112
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			reduce(16), /* $, reduce: DotGraph */
+			nil,        /* graphx */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			nil,        /* node */
+			nil,        /* edge */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			nil,        /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			nil,        /* id */
+
+		},
+	},
+	actionRow{ // S113
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(32), /* graphx, reduce: AttrList */
+			reduce(32), /* {, reduce: AttrList */
+			reduce(32), /* }, reduce: AttrList */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(32), /* ;, reduce: AttrList */
+			nil,        /* = */
+			reduce(32), /* node, reduce: AttrList */
+			reduce(32), /* edge, reduce: AttrList */
+			reduce(32), /* [, reduce: AttrList */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(32), /* subgraph, reduce: AttrList */
+			nil,        /* -> */
+			nil,        /* -- */
+			reduce(32), /* id, reduce: AttrList */
+
+		},
+	},
+	actionRow{ // S114
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* graphx */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			nil,        /* node */
+			nil,        /* edge */
+			nil,        /* [ */
+			reduce(37), /* ], reduce: Attr */
+			reduce(37), /* ,, reduce: Attr */
+			nil,        /* : */
+			nil,        /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			reduce(37), /* id, reduce: Attr */
+
+		},
+	},
+	actionRow{ // S115
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* graphx */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			nil,        /* node */
+			nil,        /* edge */
+			nil,        /* [ */
+			reduce(59), /* ], reduce: Id */
+			reduce(59), /* ,, reduce: Id */
+			nil,        /* : */
+			nil,        /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			reduce(59), /* id, reduce: Id */
+
+		},
+	},
+	actionRow{ // S116
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			nil,        /* graphx */
+			nil,        /* { */
+			nil,        /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			nil,        /* node */
+			nil,        /* edge */
+			nil,        /* [ */
+			reduce(35), /* ], reduce: AList */
+			reduce(35), /* ,, reduce: AList */
+			nil,        /* : */
+			nil,        /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			reduce(35), /* id, reduce: AList */
+
+		},
+	},
+	actionRow{ // S117
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(51), /* graphx, reduce: Port */
+			reduce(51), /* {, reduce: Port */
+			reduce(51), /* }, reduce: Port */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(51), /* ;, reduce: Port */
+			nil,        /* = */
+			reduce(51), /* node, reduce: Port */
+			reduce(51), /* edge, reduce: Port */
+			reduce(51), /* [, reduce: Port */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(51), /* subgraph, reduce: Port */
+			reduce(51), /* ->, reduce: Port */
+			reduce(51), /* --, reduce: Port */
+			reduce(51), /* id, reduce: Port */
+
+		},
+	},
+	actionRow{ // S118
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(59), /* graphx, reduce: Id */
+			reduce(59), /* {, reduce: Id */
+			reduce(59), /* }, reduce: Id */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(59), /* ;, reduce: Id */
+			nil,        /* = */
+			reduce(59), /* node, reduce: Id */
+			reduce(59), /* edge, reduce: Id */
+			reduce(59), /* [, reduce: Id */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(59), /* subgraph, reduce: Id */
+			reduce(59), /* ->, reduce: Id */
+			reduce(59), /* --, reduce: Id */
+			reduce(59), /* id, reduce: Id */
+
+		},
+	},
+	actionRow{ // S119
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(52), /* graphx, reduce: SubGraphStmt */
+			reduce(52), /* {, reduce: SubGraphStmt */
+			reduce(52), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(52), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(52), /* node, reduce: SubGraphStmt */
+			reduce(52), /* edge, reduce: SubGraphStmt */
+			reduce(52), /* [, reduce: SubGraphStmt */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(52), /* subgraph, reduce: SubGraphStmt */
+			reduce(52), /* ->, reduce: SubGraphStmt */
+			reduce(52), /* --, reduce: SubGraphStmt */
+			reduce(52), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S120
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(55), /* graphx, reduce: SubGraphStmt */
+			reduce(55), /* {, reduce: SubGraphStmt */
+			reduce(55), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(55), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(55), /* node, reduce: SubGraphStmt */
+			reduce(55), /* edge, reduce: SubGraphStmt */
+			reduce(55), /* [, reduce: SubGraphStmt */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(55), /* subgraph, reduce: SubGraphStmt */
+			reduce(55), /* ->, reduce: SubGraphStmt */
+			reduce(55), /* --, reduce: SubGraphStmt */
+			reduce(55), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S121
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(12),  /* graphx */
+			shift(13),  /* { */
+			shift(124), /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			shift(23),  /* node */
+			shift(24),  /* edge */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			shift(26),  /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			shift(27),  /* id */
+
+		},
+	},
+	actionRow{ // S122
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(12),  /* graphx */
+			shift(13),  /* { */
+			shift(125), /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			shift(23),  /* node */
+			shift(24),  /* edge */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			shift(26),  /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			shift(27),  /* id */
+
+		},
+	},
 	actionRow{ // S123
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(54), /* graphx, reduce: SubGraphStmt */
+			reduce(54), /* {, reduce: SubGraphStmt */
+			reduce(54), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(54), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(54), /* node, reduce: SubGraphStmt */
+			reduce(54), /* edge, reduce: SubGraphStmt */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(54), /* subgraph, reduce: SubGraphStmt */
+			reduce(54), /* ->, reduce: SubGraphStmt */
+			reduce(54), /* --, reduce: SubGraphStmt */
+			reduce(54), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S124
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(53), /* graphx, reduce: SubGraphStmt */
+			reduce(53), /* {, reduce: SubGraphStmt */
+			reduce(53), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(53), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(53), /* node, reduce: SubGraphStmt */
+			reduce(53), /* edge, reduce: SubGraphStmt */
+			reduce(53), /* [, reduce: SubGraphStmt */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(53), /* subgraph, reduce: SubGraphStmt */
+			reduce(53), /* ->, reduce: SubGraphStmt */
+			reduce(53), /* --, reduce: SubGraphStmt */
+			reduce(53), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S125
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			reduce(56), /* graphx, reduce: SubGraphStmt */
+			reduce(56), /* {, reduce: SubGraphStmt */
+			reduce(56), /* }, reduce: SubGraphStmt */
+			nil,        /* strict */
+			nil,        /* digraph */
+			reduce(56), /* ;, reduce: SubGraphStmt */
+			nil,        /* = */
+			reduce(56), /* node, reduce: SubGraphStmt */
+			reduce(56), /* edge, reduce: SubGraphStmt */
+			reduce(56), /* [, reduce: SubGraphStmt */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			reduce(56), /* subgraph, reduce: SubGraphStmt */
+			reduce(56), /* ->, reduce: SubGraphStmt */
+			reduce(56), /* --, reduce: SubGraphStmt */
+			reduce(56), /* id, reduce: SubGraphStmt */
+
+		},
+	},
+	actionRow{ // S126
+		canRecover: false,
+		actions: [numSymbols]action{
+			nil,        /* INVALID */
+			nil,        /* $ */
+			shift(12),  /* graphx */
+			shift(13),  /* { */
+			shift(127), /* } */
+			nil,        /* strict */
+			nil,        /* digraph */
+			nil,        /* ; */
+			nil,        /* = */
+			shift(23),  /* node */
+			shift(24),  /* edge */
+			nil,        /* [ */
+			nil,        /* ] */
+			nil,        /* , */
+			nil,        /* : */
+			shift(26),  /* subgraph */
+			nil,        /* -> */
+			nil,        /* -- */
+			shift(27),  /* id */
+
+		},
+	},
+	actionRow{ // S127
 		canRecover: false,
 		actions: [numSymbols]action{
 			nil,        /* INVALID */
