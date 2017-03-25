@@ -46,7 +46,9 @@ func (this *bugSubGraphWorldVisitor) Visit(v ast.Elem) ast.Visitor {
 func TestBugSubGraphWorld(t *testing.T) {
 	g := analtest(t, "world.gv.txt")
 	st, err := parser.ParseString(g.String())
-	check(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	s := &bugSubGraphWorldVisitor{
 		t: t,
 	}

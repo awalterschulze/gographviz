@@ -39,22 +39,12 @@ func (this *Edges) String() string {
 	return s + "\n"
 }
 
-func check(t *testing.T, err error) {
-	if err != nil {
-		t.Fatalf("%v", err)
-	}
-}
-
-func assert(t *testing.T, msg string, v1 interface{}, v2 interface{}) {
-	if v1 != v2 {
-		t.Fatalf("%v %v != %v", msg, v1, v2)
-	}
-}
-
 func anal(t *testing.T, input string) Interface {
 	t.Logf("Input: %v\n", input)
 	g, err := parser.ParseString(input)
-	check(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Logf("Parsed: %v\n", g)
 	ag := NewGraph()
 	if err := Analyse(g, ag); err != nil {
@@ -64,7 +54,9 @@ func anal(t *testing.T, input string) Interface {
 	agstr := ag.String()
 	t.Logf("Written: %v\n", agstr)
 	g2, err := parser.ParseString(agstr)
-	check(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	t.Logf("Parsed %v\n", g2)
 	ag2 := NewEscape()
 	if err := Analyse(g2, ag2); err != nil {
@@ -73,15 +65,21 @@ func anal(t *testing.T, input string) Interface {
 	t.Logf("Analysed %v\n", ag2)
 	ag2str := ag2.String()
 	t.Logf("Written: %v\n", ag2str)
-	assert(t, "analysed", agstr, ag2str)
+	if agstr != ag2str {
+		t.Fatalf("analysed: want %s got %s", agstr, ag2str)
+	}
 	return ag2
 }
 
 func analfile(t *testing.T, filename string) Interface {
 	f, err := os.Open(filename)
-	check(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	all, err := ioutil.ReadAll(f)
-	check(t, err)
+	if err != nil {
+		t.Fatal(err)
+	}
 	return anal(t, string(all))
 }
 
