@@ -69,18 +69,22 @@ func TestIssue21Subgraph(t *testing.T) {
 	g.AddNode("G", "Gb", nil)
 	g.AddEdge("Ga", "Gb", true, nil)
 
-	g.AddSubGraph("G", "clusterone", map[string]string{
+	if err := g.AddSubGraph("G", "clusterone", map[string]string{
 		"style":     "filled",
 		"fillcolor": "red",
-	})
+	}); err != nil {
+		t.Fatal(err)
+	}
 	g.AddNode("clusterone", "sA", nil)
 	g.AddNode("clusterone", "sB", nil)
 	g.AddEdge("sA", "sB", true, nil)
 
-	g.AddSubGraph("clusterone", "clustertwo", map[string]string{
+	if err := g.AddSubGraph("clusterone", "clustertwo", map[string]string{
 		"style":     "filled",
 		"fillcolor": "blue",
-	})
+	}); err != nil {
+		t.Fatal(err)
+	}
 	g.AddNode("clustertwo", "ssA", nil)
 	g.AddNode("clustertwo", "ssB", nil)
 	g.AddEdge("ssA", "ssB", true, nil)

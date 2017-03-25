@@ -166,12 +166,12 @@ func (this *Escape) AddNode(parentGraph string, name string, attrs map[string]st
 	this.Graph.AddNode(esc(parentGraph), esc(name), escAttrs(attrs))
 }
 
-func (this *Escape) AddAttr(parentGraph string, field, value string) {
-	this.Graph.AddAttr(esc(parentGraph), esc(field), esc(value))
+func (this *Escape) AddAttr(parentGraph string, field, value string) error {
+	return this.Graph.AddAttr(esc(parentGraph), esc(field), esc(value))
 }
 
-func (this *Escape) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
-	this.Graph.AddSubGraph(esc(parentGraph), esc(name), escAttrs(attrs))
+func (this *Escape) AddSubGraph(parentGraph string, name string, attrs map[string]string) error {
+	return this.Graph.AddSubGraph(esc(parentGraph), esc(name), escAttrs(attrs))
 }
 
 func (this *Escape) IsNode(name string) bool {

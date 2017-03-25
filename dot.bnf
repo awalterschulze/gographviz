@@ -271,8 +271,8 @@ NodeId
 //port	:	':' ID [ ':' compass_pt ]
 //		|	':' compass_pt
 Port
-	: ":" Id                                      << ast.NewPort($1, nil) >>
-	| ":" Id ":" Id                               << ast.NewPort($1, $3) >>
+	: ":" Id                                      << ast.NewPort($1, nil), nil >>
+	| ":" Id ":" Id                               << ast.NewPort($1, $3), nil >>
 	;
 
 //subgraph	:	[ subgraph [ ID ] ] '{' stmt_list '}'

@@ -521,23 +521,23 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Port : ":" Id	<< ast.NewPort(X[1], nil) >>`,
+		String: `Port : ":" Id	<< ast.NewPort(X[1], nil), nil >>`,
 		Id:         "Port",
 		NTType:     13,
 		Index:      50,
 		NumSymbols: 2,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
-			return ast.NewPort(X[1], nil)
+			return ast.NewPort(X[1], nil), nil
 		},
 	},
 	ProdTabEntry{
-		String: `Port : ":" Id ":" Id	<< ast.NewPort(X[1], X[3]) >>`,
+		String: `Port : ":" Id ":" Id	<< ast.NewPort(X[1], X[3]), nil >>`,
 		Id:         "Port",
 		NTType:     13,
 		Index:      51,
 		NumSymbols: 4,
 		ReduceFunc: func(X []Attrib) (Attrib, error) {
-			return ast.NewPort(X[1], X[3])
+			return ast.NewPort(X[1], X[3]), nil
 		},
 	},
 	ProdTabEntry{

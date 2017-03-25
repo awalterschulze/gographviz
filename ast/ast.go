@@ -51,13 +51,10 @@ const (
 )
 
 func (this Bool) String() string {
-	switch this {
-	case false:
-		return "false"
-	case true:
+	if this {
 		return "true"
 	}
-	panic("unreachable")
+	return "false"
 }
 
 func (this Bool) Walk(v Visitor) {
@@ -75,13 +72,10 @@ const (
 )
 
 func (this GraphType) String() string {
-	switch this {
-	case false:
-		return "graph"
-	case true:
+	if this {
 		return "digraph"
 	}
-	panic("unreachable")
+	return "graph"
 }
 
 func (this GraphType) Walk(v Visitor) {
@@ -203,11 +197,7 @@ func (this *SubGraph) GetId() Id {
 }
 
 func (this *SubGraph) GetPort() Port {
-	port, err := NewPort(nil, nil)
-	if err != nil {
-		panic(err)
-	}
-	return port
+	return NewPort(nil, nil)
 }
 
 func (this *SubGraph) String() string {
@@ -573,13 +563,10 @@ const (
 )
 
 func (this EdgeOp) String() string {
-	switch this {
-	case DIRECTED:
+	if this == DIRECTED {
 		return "->"
-	case UNDIRECTED:
-		return "--"
 	}
-	panic("unreachable")
+	return "--"
 }
 
 func (this EdgeOp) Walk(v Visitor) {
@@ -640,7 +627,7 @@ type Port struct {
 	Id2 Id
 }
 
-func NewPort(id1, id2 Attrib) (Port, error) {
+func NewPort(id1, id2 Attrib) Port {
 	port := Port{Id(""), Id("")}
 	if id1 != nil {
 		port.Id1 = id1.(Id)
@@ -648,7 +635,7 @@ func NewPort(id1, id2 Attrib) (Port, error) {
 	if id2 != nil {
 		port.Id2 = id2.(Id)
 	}
-	return port, nil
+	return port
 }
 
 func (this Port) String() string {

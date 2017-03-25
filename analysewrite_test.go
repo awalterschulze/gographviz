@@ -57,7 +57,9 @@ func anal(t *testing.T, input string) Interface {
 	check(t, err)
 	t.Logf("Parsed: %v\n", g)
 	ag := NewGraph()
-	Analyse(g, ag)
+	if err := Analyse(g, ag); err != nil {
+		t.Fatal(err)
+	}
 	t.Logf("Analysed: %v\n", ag)
 	agstr := ag.String()
 	t.Logf("Written: %v\n", agstr)
@@ -65,7 +67,9 @@ func anal(t *testing.T, input string) Interface {
 	check(t, err)
 	t.Logf("Parsed %v\n", g2)
 	ag2 := NewEscape()
-	Analyse(g2, ag2)
+	if err := Analyse(g2, ag2); err != nil {
+		t.Fatal(err)
+	}
 	t.Logf("Analysed %v\n", ag2)
 	ag2str := ag2.String()
 	t.Logf("Written: %v\n", ag2str)

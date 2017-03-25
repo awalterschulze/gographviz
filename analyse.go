@@ -19,15 +19,19 @@ import (
 )
 
 //Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
-func NewAnalysedGraph(graph *ast.Graph) *Graph {
+func NewAnalysedGraph(graph *ast.Graph) (*Graph, error) {
 	g := NewGraph()
-	Analyse(graph, g)
-	return g
+	if err := Analyse(graph, g); err != nil {
+		return nil, err
+	}
+	return g, nil
 }
 
 //Analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface.
-func Analyse(graph *ast.Graph, g Interface) {
-	graph.Walk(&graphVisitor{g})
+func Analyse(graph *ast.Graph, g Interface) error {
+	gerr := newErrCatcher(g)
+	graph.Walk(&graphVisitor{gerr})
+	return gerr.getError()
 }
 
 type nilVisitor struct {
@@ -38,7 +42,7 @@ func (this *nilVisitor) Visit(v ast.Elem) ast.Visitor {
 }
 
 type graphVisitor struct {
-	g Interface
+	g errInterface
 }
 
 func (this *graphVisitor) Visit(v ast.Elem) ast.Visitor {
@@ -53,12 +57,12 @@ func (this *graphVisitor) Visit(v ast.Elem) ast.Visitor {
 	return newStmtVisitor(this.g, graphName)
 }
 
-func newStmtVisitor(g Interface, graphName string) *stmtVisitor {
+func newStmtVisitor(g errInterface, graphName string) *stmtVisitor {
 	return &stmtVisitor{g, graphName, make(Attrs), make(Attrs), make(Attrs)}
 }
 
 type stmtVisitor struct {
-	g                 Interface
+	g                 errInterface
 	graphName         string
 	currentNodeAttrs  Attrs
 	currentEdgeAttrs  Attrs

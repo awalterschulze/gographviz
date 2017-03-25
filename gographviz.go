@@ -33,8 +33,8 @@ type Interface interface {
 	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
 	AddEdge(src, dst string, directed bool, attrs map[string]string)
 	AddNode(parentGraph string, name string, attrs map[string]string)
-	AddAttr(parentGraph string, field, value string)
-	AddSubGraph(parentGraph string, name string, attrs map[string]string)
+	AddAttr(parentGraph string, field, value string) error
+	AddSubGraph(parentGraph string, name string, attrs map[string]string) error
 	String() string
 }
 
@@ -54,5 +54,5 @@ func Read(buf []byte) (*Graph, error) {
 	if err != nil {
 		return nil, err
 	}
-	return NewAnalysedGraph(st), nil
+	return NewAnalysedGraph(st)
 }

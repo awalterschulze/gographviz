@@ -14,7 +14,10 @@
 
 package gographviz
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 //The analysed representation of the Graph parsed from the DOT format.
 type Graph struct {
@@ -80,29 +83,37 @@ func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]str
 	this.Relations.Add(parentGraph, name)
 }
 
-func (this *Graph) getAttrs(graphName string) Attrs {
+func (this *Graph) getAttrs(graphName string) (Attrs, error) {
 	if this.Name == graphName {
-		return this.Attrs
+		return this.Attrs, nil
 	}
 	g, ok := this.SubGraphs.SubGraphs[graphName]
 	if !ok {
-		panic("graph or subgraph " + graphName + " does not exist")
+		return nil, fmt.Errorf("graph or subgraph %s does not exist", graphName)
 	}
-	return g.Attrs
+	return g.Attrs, nil
 }
 
 //Adds an attribute to a graph/subgraph.
-func (this *Graph) AddAttr(parentGraph string, field string, value string) {
-	this.getAttrs(parentGraph).Add(field, value)
+func (this *Graph) AddAttr(parentGraph string, field string, value string) error {
+	a, err := this.getAttrs(parentGraph)
+	if err != nil {
+		return err
+	}
+	a.Add(field, value)
+	return nil
 }
 
 //Adds a subgraph to a graph/subgraph.
-func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
+func (this *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]string) error {
 	this.Relations.Add(parentGraph, name)
 	this.SubGraphs.Add(name)
 	for key, value := range attrs {
-		this.AddAttr(name, key, value)
+		if err := this.AddAttr(name, key, value); err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
 func (this *Graph) IsNode(name string) bool {

@@ -50,9 +50,15 @@ func TestClusterSubgraphs(t *testing.T) {
 	g := NewEscape()
 	g.SetName("G")
 	g.SetDir(false)
-	g.AddSubGraph("G", "cluster0", nil)
-	g.AddSubGraph("cluster0", "cluster_1", nil)
-	g.AddSubGraph("cluster0", "cluster_2", nil)
+	if err := g.AddSubGraph("G", "cluster0", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("cluster0", "cluster_1", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("cluster0", "cluster_2", nil); err != nil {
+		t.Fatal(err)
+	}
 	g.AddNode("G", "Code deployment", nil)
 	g.AddPortEdge("cluster_2", "", "cluster_1", "", false, nil)
 	s := g.String()

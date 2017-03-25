@@ -40,7 +40,7 @@ func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
 	return list
 }
 
-func (this *writer) newSubGraph(name string) *ast.SubGraph {
+func (this *writer) newSubGraph(name string) (*ast.SubGraph, error) {
 	sub := this.SubGraphs.SubGraphs[name]
 	this.writtenLocations[sub.Name] = true
 	s := &ast.SubGraph{}
@@ -51,12 +51,16 @@ func (this *writer) newSubGraph(name string) *ast.SubGraph {
 		if this.IsNode(child) {
 			s.StmtList = append(s.StmtList, this.newNodeStmt(child))
 		} else if this.IsSubGraph(child) {
-			s.StmtList = append(s.StmtList, this.newSubGraph(child))
+			subgraph, err := this.newSubGraph(child)
+			if err != nil {
+				return nil, err
+			}
+			s.StmtList = append(s.StmtList, subgraph)
 		} else {
-			panic(fmt.Sprintf("%v is not a node or a subgraph", child))
+			return nil, fmt.Errorf("%v is not a node or a subgraph", child)
 		}
 	}
-	return s
+	return s, nil
 }
 
 func (this *writer) newNodeId(name string, port string) *ast.NodeId {
@@ -74,26 +78,32 @@ func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 	}
 }
 
-func (this *writer) newLocation(name string, port string) ast.Location {
+func (this *writer) newLocation(name string, port string) (ast.Location, error) {
 	if this.IsNode(name) {
-		return this.newNodeId(name, port)
+		return this.newNodeId(name, port), nil
 	} else if this.IsClusterSubGraph(name) {
 		if len(port) != 0 {
-			panic(fmt.Sprintf("subgraph cannot have a port: %v", port))
+			return nil, fmt.Errorf("subgraph cannot have a port: %v", port)
 		}
-		return ast.MakeNodeId(name, port)
+		return ast.MakeNodeId(name, port), nil
 	} else if this.IsSubGraph(name) {
 		if len(port) != 0 {
-			panic(fmt.Sprintf("subgraph cannot have a port: %v", port))
+			return nil, fmt.Errorf("subgraph cannot have a port: %v", port)
 		}
 		return this.newSubGraph(name)
 	}
-	panic(fmt.Sprintf("%v is not a node or a subgraph", name))
+	return nil, fmt.Errorf("%v is not a node or a subgraph", name)
 }
 
-func (this *writer) newEdgeStmt(edge *Edge) *ast.EdgeStmt {
-	src := this.newLocation(edge.Src, edge.SrcPort)
-	dst := this.newLocation(edge.Dst, edge.DstPort)
+func (this *writer) newEdgeStmt(edge *Edge) (*ast.EdgeStmt, error) {
+	src, err := this.newLocation(edge.Src, edge.SrcPort)
+	if err != nil {
+		return nil, err
+	}
+	dst, err := this.newLocation(edge.Dst, edge.DstPort)
+	if err != nil {
+		return nil, err
+	}
 	stmt := &ast.EdgeStmt{
 		Source: src,
 		EdgeRHS: ast.EdgeRHS{
@@ -104,10 +114,10 @@ func (this *writer) newEdgeStmt(edge *Edge) *ast.EdgeStmt {
 		},
 		Attrs: ast.PutMap(edge.Attrs),
 	}
-	return stmt
+	return stmt, nil
 }
 
-func (this *writer) Write() *ast.Graph {
+func (this *writer) Write() (*ast.Graph, error) {
 	t := &ast.Graph{}
 	t.Strict = this.Strict
 	t.Type = ast.GraphType(this.Directed)
@@ -116,14 +126,22 @@ func (this *writer) Write() *ast.Graph {
 	t.StmtList = appendAttrs(t.StmtList, this.Attrs)
 
 	for _, edge := range this.Edges.Edges {
-		t.StmtList = append(t.StmtList, this.newEdgeStmt(edge))
+		e, err := this.newEdgeStmt(edge)
+		if err != nil {
+			return nil, err
+		}
+		t.StmtList = append(t.StmtList, e)
 	}
 
 	subGraphs := this.SubGraphs.Sorted()
 	for _, s := range subGraphs {
 		if _, ok := this.writtenLocations[s.Name]; !ok {
 			if _, ok := this.Relations.ParentToChildren[this.Name][s.Name]; ok {
-				t.StmtList = append(t.StmtList, this.newSubGraph(s.Name))
+				s, err := this.newSubGraph(s.Name)
+				if err != nil {
+					return nil, err
+				}
+				t.StmtList = append(t.StmtList, s)
 			}
 		}
 	}
@@ -135,16 +153,20 @@ func (this *writer) Write() *ast.Graph {
 		}
 	}
 
-	return t
+	return t, nil
 }
 
 //Creates an Abstract Syntrax Tree from the Graph.
-func (g *Graph) WriteAst() *ast.Graph {
+func (g *Graph) WriteAst() (*ast.Graph, error) {
 	w := newWriter(g)
 	return w.Write()
 }
 
 //Returns a DOT string representing the Graph.
 func (g *Graph) String() string {
-	return g.WriteAst().String()
+	w, err := g.WriteAst()
+	if err != nil {
+		return fmt.Sprintf("error: %v", err)
+	}
+	return w.String()
 }

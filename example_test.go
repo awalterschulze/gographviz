@@ -95,8 +95,11 @@ func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs m
 	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) {}
-func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string)                  {}
-func (this *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
+func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string) error {
+	return nil
+}
+func (this *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs map[string]string) error {
+	return nil
 }
 func (this *MyOwnGraphStructure) String() string { return "" }
 
@@ -117,7 +120,9 @@ func ExampleMyOwnGraphStructure() {
 		panic(err)
 	}
 	mine := NewMyOwnGraphStructure()
-	Analyse(parsed, mine)
+	if err := Analyse(parsed, mine); err != nil {
+		panic(err)
+	}
 	output := NewGraph()
 	output.SetName(name)
 	output.SetDir(true)
