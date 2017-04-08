@@ -127,11 +127,11 @@ func TestIntLit(t *testing.T) {
 }
 
 func TestFloat1(t *testing.T) {
-	anal(t, `digraph { bla = 2.0 }`)
+	anal(t, `digraph { Damping = 2.0 }`)
 }
 
 func TestFloat2(t *testing.T) {
-	anal(t, `digraph { bla = .1 }`)
+	anal(t, `digraph { Damping = .1 }`)
 }
 
 func TestNegative(t *testing.T) {
@@ -139,7 +139,7 @@ func TestNegative(t *testing.T) {
 }
 
 func TestUnderscore(t *testing.T) {
-	anal(t, `digraph { a_b = 1 }`)
+	anal(t, `digraph { dim = 1 }`)
 }
 
 func TestNonAscii(t *testing.T) {
@@ -151,7 +151,7 @@ func TestPorts(t *testing.T) {
 }
 
 func TestHtml(t *testing.T) {
-	anal(t, `digraph { a = <<table></table>> }`)
+	anal(t, `digraph { tooltip = <<table></table>> }`)
 }
 
 func TestIdWithKeyword(t *testing.T) {

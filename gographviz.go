@@ -32,7 +32,7 @@ type Interface interface {
 	SetName(name string)
 	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
 	AddEdge(src, dst string, directed bool, attrs map[string]string)
-	AddNode(parentGraph string, name string, attrs map[string]string)
+	AddNode(parentGraph string, name string, attrs map[string]string) error
 	AddAttr(parentGraph string, field, value string) error
 	AddSubGraph(parentGraph string, name string, attrs map[string]string) error
 	String() string

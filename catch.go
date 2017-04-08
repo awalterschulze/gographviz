@@ -53,6 +53,12 @@ func (this *errCatcher) AddSubGraph(parentGraph string, name string, attrs map[s
 	}
 }
 
+func (this *errCatcher) AddNode(parentGraph string, name string, attrs map[string]string) {
+	if err := this.Interface.AddNode(parentGraph, name, attrs); err != nil {
+		this.errs = append(this.errs, err)
+	}
+}
+
 func (this *errCatcher) getError() error {
 	if len(this.errs) == 0 {
 		return nil

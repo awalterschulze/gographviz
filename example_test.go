@@ -38,8 +38,12 @@ func ExampleNewGraph() {
 	g := NewGraph()
 	g.SetName("G")
 	g.SetDir(true)
-	g.AddNode("G", "Hello", nil)
-	g.AddNode("G", "World", nil)
+	if err := g.AddNode("G", "Hello", nil); err != nil {
+		panic(err)
+	}
+	if err := g.AddNode("G", "World", nil); err != nil {
+		panic(err)
+	}
 	g.AddEdge("Hello", "World", true, nil)
 	s := g.String()
 	fmt.Println(s)
@@ -94,7 +98,9 @@ func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, 
 func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) {
 	this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
-func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) {}
+func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) error {
+	return nil
+}
 func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string) error {
 	return nil
 }
@@ -127,7 +133,9 @@ func ExampleMyOwnGraphStructure() {
 	output.SetName(name)
 	output.SetDir(true)
 	for i := 1; i <= mine.max; i++ {
-		output.AddNode(name, fmt.Sprintf("%v", i), nil)
+		if err := output.AddNode(name, fmt.Sprintf("%v", i), nil); err != nil {
+			panic(err)
+		}
 		if _, ok := mine.weights[i]; !ok {
 			mine.weights[i] = make(map[int]int)
 		}

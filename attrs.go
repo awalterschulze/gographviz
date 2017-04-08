@@ -16,7 +16,6 @@ package gographviz
 
 import (
 	"fmt"
-	"os"
 	"sort"
 )
 
@@ -29,28 +28,34 @@ func NewAttrs() Attrs {
 }
 
 //Adds an attribute name and value.
-func (this Attrs) Add(field string, value string) {
-	prev, ok := this[field]
-	if ok {
-		fmt.Fprintf(os.Stderr, "WARNING: overwriting field %v value %v, with value %v\n", field, prev, value)
+func (this Attrs) Add(field string, value string) error {
+	if _, ok := validAttrs[field]; !ok {
+		return fmt.Errorf("%s is not a valid attribute", field)
 	}
 	this[field] = value
+	return nil
 }
 
 //Adds the attributes into this Attrs type overwriting duplicates.
-func (this Attrs) Extend(more Attrs) {
+func (this Attrs) Extend(more Attrs) error {
 	for key, value := range more {
-		this.Add(key, value)
+		if err := this.Add(key, value); err != nil {
+			return err
+		}
 	}
+	return nil
 }
 
 //Only adds the missing attributes to this Attrs type.
-func (this Attrs) Ammend(more Attrs) {
+func (this Attrs) Ammend(more Attrs) error {
 	for key, value := range more {
 		if _, ok := this[key]; !ok {
-			this.Add(key, value)
+			if err := this.Add(key, value); err != nil {
+				return err
+			}
 		}
 	}
+	return nil
 }
 
 func (this Attrs) SortedNames() []string {

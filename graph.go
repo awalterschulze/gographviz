@@ -78,9 +78,12 @@ func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]stri
 //Adds a node to a graph/subgraph.
 //If not subgraph exists use the name of the main graph.
 //This does not imply the adding of a missing subgraph.
-func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]string) {
-	this.Nodes.Add(&Node{name, attrs})
+func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]string) error {
+	if err := this.Nodes.Add(&Node{name, attrs}); err != nil {
+		return err
+	}
 	this.Relations.Add(parentGraph, name)
+	return nil
 }
 
 func (this *Graph) getAttrs(graphName string) (Attrs, error) {
@@ -100,7 +103,9 @@ func (this *Graph) AddAttr(parentGraph string, field string, value string) error
 	if err != nil {
 		return err
 	}
-	a.Add(field, value)
+	if err := a.Add(field, value); err != nil {
+		return err
+	}
 	return nil
 }
 

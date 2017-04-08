@@ -65,8 +65,12 @@ func TestIssue21Subgraph(t *testing.T) {
 	g.SetName("G")
 	g.SetDir(true)
 
-	g.AddNode("G", "Ga", nil)
-	g.AddNode("G", "Gb", nil)
+	if err := g.AddNode("G", "Ga", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("G", "Gb", nil); err != nil {
+		t.Fatal(err)
+	}
 	g.AddEdge("Ga", "Gb", true, nil)
 
 	if err := g.AddSubGraph("G", "clusterone", map[string]string{
@@ -75,8 +79,12 @@ func TestIssue21Subgraph(t *testing.T) {
 	}); err != nil {
 		t.Fatal(err)
 	}
-	g.AddNode("clusterone", "sA", nil)
-	g.AddNode("clusterone", "sB", nil)
+	if err := g.AddNode("clusterone", "sA", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("clusterone", "sB", nil); err != nil {
+		t.Fatal(err)
+	}
 	g.AddEdge("sA", "sB", true, nil)
 
 	if err := g.AddSubGraph("clusterone", "clustertwo", map[string]string{
@@ -85,8 +93,12 @@ func TestIssue21Subgraph(t *testing.T) {
 	}); err != nil {
 		t.Fatal(err)
 	}
-	g.AddNode("clustertwo", "ssA", nil)
-	g.AddNode("clustertwo", "ssB", nil)
+	if err := g.AddNode("clustertwo", "ssA", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("clustertwo", "ssB", nil); err != nil {
+		t.Fatal(err)
+	}
 	g.AddEdge("ssA", "ssB", true, nil)
 
 	t.Logf("apiGraph: %s", g.String())
