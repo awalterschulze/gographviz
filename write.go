@@ -30,7 +30,7 @@ func newWriter(g *Graph) *writer {
 }
 
 func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
-	for _, name := range attrs.SortedNames() {
+	for _, name := range attrs.sortedNames() {
 		stmt := &ast.Attr{
 			Field: ast.Id(name),
 			Value: ast.Id(attrs[name]),
@@ -74,7 +74,7 @@ func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 	this.writtenLocations[node.Name] = true
 	return &ast.NodeStmt{
 		id,
-		ast.PutMap(node.Attrs.ToMap()),
+		ast.PutMap(node.Attrs.toMap()),
 	}
 }
 
@@ -112,7 +112,7 @@ func (this *writer) newEdgeStmt(edge *Edge) (*ast.EdgeStmt, error) {
 				dst,
 			},
 		},
-		Attrs: ast.PutMap(edge.Attrs.ToMap()),
+		Attrs: ast.PutMap(edge.Attrs.toMap()),
 	}
 	return stmt, nil
 }

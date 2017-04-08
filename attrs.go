@@ -15,7 +15,6 @@
 package gographviz
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -31,14 +30,6 @@ func NewAttrs(m map[string]string) (Attrs, error) {
 		}
 	}
 	return as, nil
-}
-
-func NewAttr(key string) (Attr, error) {
-	a, ok := validAttrs[key]
-	if !ok {
-		return Attr(""), fmt.Errorf("%s is not a valid attribute", key)
-	}
-	return a, nil
 }
 
 //Adds an attribute name and value.
@@ -71,7 +62,7 @@ func (this Attrs) Ammend(more Attrs) {
 	}
 }
 
-func (this Attrs) ToMap() map[string]string {
+func (this Attrs) toMap() map[string]string {
 	m := make(map[string]string)
 	for k, v := range this {
 		m[string(k)] = v
@@ -89,7 +80,7 @@ func (this attrList) Swap(i, j int) {
 	this[i], this[j] = this[j], this[i]
 }
 
-func (this Attrs) SortedNames() []Attr {
+func (this Attrs) sortedNames() []Attr {
 	keys := make(attrList, 0)
 	for key := range this {
 		keys = append(keys, key)
@@ -98,6 +89,7 @@ func (this Attrs) SortedNames() []Attr {
 	return []Attr(keys)
 }
 
+// Copy returns a copy of the attributes map
 func (this Attrs) Copy() Attrs {
 	mm := make(Attrs)
 	for k, v := range this {

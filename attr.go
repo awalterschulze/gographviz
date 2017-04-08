@@ -14,8 +14,19 @@
 
 package gographviz
 
+import "fmt"
+
 // Attr is an attribute key
 type Attr string
+
+// NewAttr creates a new attribute key by checking whether it is a valid key
+func NewAttr(key string) (Attr, error) {
+	a, ok := validAttrs[key]
+	if !ok {
+		return Attr(""), fmt.Errorf("%s is not a valid attribute", key)
+	}
+	return a, nil
+}
 
 const (
 	DAMPING            Attr = "Damping"

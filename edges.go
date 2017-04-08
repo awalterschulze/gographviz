@@ -107,7 +107,7 @@ func (es edgeSorter) Less(i, j int) bool {
 		attrs[k] = v
 	}
 
-	for _, k := range attrs.SortedNames() {
+	for _, k := range attrs.sortedNames() {
 		if es[i].Attrs[k] < es[j].Attrs[k] {
 			return true
 		} else if es[i].Attrs[k] > es[j].Attrs[k] {
