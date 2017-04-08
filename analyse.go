@@ -58,15 +58,15 @@ func (this *graphVisitor) Visit(v ast.Elem) ast.Visitor {
 }
 
 func newStmtVisitor(g errInterface, graphName string) *stmtVisitor {
-	return &stmtVisitor{g, graphName, make(Attrs), make(Attrs), make(Attrs)}
+	return &stmtVisitor{g, graphName, make(map[string]string), make(map[string]string), make(map[string]string)}
 }
 
 type stmtVisitor struct {
 	g                 errInterface
 	graphName         string
-	currentNodeAttrs  Attrs
-	currentEdgeAttrs  Attrs
-	currentGraphAttrs Attrs
+	currentNodeAttrs  map[string]string
+	currentEdgeAttrs  map[string]string
+	currentGraphAttrs map[string]string
 }
 
 func (this *stmtVisitor) Visit(v ast.Elem) ast.Visitor {
@@ -93,7 +93,7 @@ func (this *stmtVisitor) Visit(v ast.Elem) ast.Visitor {
 	return this
 }
 
-func ammend(attrs Attrs, add Attrs) Attrs {
+func ammend(attrs map[string]string, add map[string]string) map[string]string {
 	for key, value := range add {
 		if _, ok := attrs[key]; !ok {
 			attrs[key] = value
@@ -102,16 +102,23 @@ func ammend(attrs Attrs, add Attrs) Attrs {
 	return attrs
 }
 
-func overwrite(attrs Attrs, overwrite Attrs) Attrs {
+func overwrite(attrs map[string]string, overwrite map[string]string) map[string]string {
 	for key, value := range overwrite {
 		attrs[key] = value
 	}
 	return attrs
 }
 
+func copymap(m map[string]string) map[string]string {
+	mm := make(map[string]string)
+	for k, v := range m {
+		mm[k] = v
+	}
+	return mm
+}
+
 func (this *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
-	attrs := Attrs(stmt.Attrs.GetMap())
-	attrs = ammend(attrs, this.currentNodeAttrs)
+	attrs := ammend(stmt.Attrs.GetMap(), this.currentNodeAttrs)
 	this.g.AddNode(this.graphName, stmt.NodeId.String(), attrs)
 	return &nilVisitor{}
 }
@@ -122,7 +129,7 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	src := stmt.Source.GetId()
 	srcName := src.String()
 	if stmt.Source.IsNode() {
-		this.g.AddNode(this.graphName, srcName, this.currentNodeAttrs.Copy())
+		this.g.AddNode(this.graphName, srcName, copymap(this.currentNodeAttrs))
 	}
 	srcPort := stmt.Source.GetPort()
 	for i := range stmt.EdgeRHS {
@@ -130,7 +137,7 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 		dst := stmt.EdgeRHS[i].Destination.GetId()
 		dstName := dst.String()
 		if stmt.EdgeRHS[i].Destination.IsNode() {
-			this.g.AddNode(this.graphName, dstName, this.currentNodeAttrs.Copy())
+			this.g.AddNode(this.graphName, dstName, copymap(this.currentNodeAttrs))
 		}
 		dstPort := stmt.EdgeRHS[i].Destination.GetPort()
 		this.g.AddPortEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)

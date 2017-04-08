@@ -44,7 +44,9 @@ func ExampleNewGraph() {
 	if err := g.AddNode("G", "World", nil); err != nil {
 		panic(err)
 	}
-	g.AddEdge("Hello", "World", true, nil)
+	if err := g.AddEdge("Hello", "World", true, nil); err != nil {
+		panic(err)
+	}
 	s := g.String()
 	fmt.Println(s)
 	// Output: digraph G {
@@ -70,18 +72,18 @@ func NewMyOwnGraphStructure() *MyOwnGraphStructure {
 func (this *MyOwnGraphStructure) SetStrict(strict bool) {}
 func (this *MyOwnGraphStructure) SetDir(directed bool)  {}
 func (this *MyOwnGraphStructure) SetName(name string)   {}
-func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
 	srci, err := strconv.Atoi(src)
 	if err != nil {
-		return
+		return err
 	}
 	dsti, err := strconv.Atoi(dst)
 	if err != nil {
-		return
+		return err
 	}
 	ai, err := strconv.Atoi(attrs["label"])
 	if err != nil {
-		return
+		return err
 	}
 	if _, ok := this.weights[srci]; !ok {
 		this.weights[srci] = make(map[int]int)
@@ -93,10 +95,10 @@ func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, 
 	if dsti > this.max {
 		this.max = dsti
 	}
-
+	return nil
 }
-func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) {
-	this.AddPortEdge(src, "", dst, "", directed, attrs)
+func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) error {
+	return this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) error {
 	return nil
@@ -142,7 +144,9 @@ func ExampleMyOwnGraphStructure() {
 	}
 	for i := 1; i <= mine.max; i++ {
 		for j := 1; j <= mine.max; j++ {
-			output.AddEdge(fmt.Sprintf("%v", i), fmt.Sprintf("%v", j), true, map[string]string{"label": fmt.Sprintf("%v", mine.weights[i][j])})
+			if err := output.AddEdge(fmt.Sprintf("%v", i), fmt.Sprintf("%v", j), true, map[string]string{"label": fmt.Sprintf("%v", mine.weights[i][j])}); err != nil {
+				panic(err)
+			}
 		}
 	}
 	s := output.String()

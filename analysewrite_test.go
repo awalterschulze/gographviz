@@ -123,7 +123,7 @@ func TestHashComments(t *testing.T) {
 
 func TestIntLit(t *testing.T) {
 	anal(t, `graph G {
-	1 -- 30 [f=1];}`)
+	1 -- 30 [dim=1];}`)
 }
 
 func TestFloat1(t *testing.T) {

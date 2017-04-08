@@ -30,8 +30,8 @@ type Interface interface {
 	SetStrict(strict bool)
 	SetDir(directed bool)
 	SetName(name string)
-	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string)
-	AddEdge(src, dst string, directed bool, attrs map[string]string)
+	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error
+	AddEdge(src, dst string, directed bool, attrs map[string]string) error
 	AddNode(parentGraph string, name string, attrs map[string]string) error
 	AddAttr(parentGraph string, field, value string) error
 	AddSubGraph(parentGraph string, name string, attrs map[string]string) error

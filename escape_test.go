@@ -24,25 +24,27 @@ func TestEscape(t *testing.T) {
 	g.SetName("asdf adsf")
 	g.SetDir(true)
 	if err := g.AddNode("asdf asdf", "kasdf99 99", map[string]string{
-		"<asfd": "1",
+		"URL": "<a",
 	}); err != nil {
 		t.Fatal(err)
 	}
 	if err := g.AddNode("asdf asdf", "7", map[string]string{
-		"<asfd": "1",
+		"URL": "<a",
 	}); err != nil {
 		t.Fatal(err)
 	}
 	if err := g.AddNode("asdf asdf", "a << b", nil); err != nil {
 		t.Fatal(err)
 	}
-	g.AddEdge("kasdf99 99", "7", true, nil)
+	if err := g.AddEdge("kasdf99 99", "7", true, nil); err != nil {
+		t.Fatal(err)
+	}
 	s := g.String()
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
 	"a &lt;&lt; b";
-	"kasdf99 99" [ "<asfd"=1 ];
-	7 [ "<asfd"=1 ];
+	"kasdf99 99" [ URL="<a" ];
+	7 [ URL="<a" ];
 
 }`) {
 		t.Fatalf("%s", s)
@@ -68,7 +70,9 @@ func TestClusterSubgraphs(t *testing.T) {
 	if err := g.AddNode("G", "Code deployment", nil); err != nil {
 		t.Fatal(err)
 	}
-	g.AddPortEdge("cluster_2", "", "cluster_1", "", false, nil)
+	if err := g.AddPortEdge("cluster_2", "", "cluster_1", "", false, nil); err != nil {
+		t.Fatal(err)
+	}
 	s := g.String()
 	graphStr := `graph G {
 	cluster_2--cluster_1;

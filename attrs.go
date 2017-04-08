@@ -20,57 +20,88 @@ import (
 )
 
 //Represents attributes for an Edge, Node or Graph.
-type Attrs map[string]string
+type Attrs map[Attr]string
 
 //Creates an empty Attributes type.
-func NewAttrs() Attrs {
-	return make(Attrs)
+func NewAttrs(m map[string]string) (Attrs, error) {
+	as := make(Attrs)
+	for k, v := range m {
+		if err := as.Add(k, v); err != nil {
+			return nil, err
+		}
+	}
+	return as, nil
+}
+
+func NewAttr(key string) (Attr, error) {
+	a, ok := validAttrs[key]
+	if !ok {
+		return Attr(""), fmt.Errorf("%s is not a valid attribute", key)
+	}
+	return a, nil
 }
 
 //Adds an attribute name and value.
 func (this Attrs) Add(field string, value string) error {
-	if _, ok := validAttrs[field]; !ok {
-		return fmt.Errorf("%s is not a valid attribute", field)
+	a, err := NewAttr(field)
+	if err != nil {
+		return err
 	}
-	this[field] = value
+	this.add(a, value)
 	return nil
+}
+
+func (this Attrs) add(field Attr, value string) {
+	this[field] = value
 }
 
 //Adds the attributes into this Attrs type overwriting duplicates.
-func (this Attrs) Extend(more Attrs) error {
+func (this Attrs) Extend(more Attrs) {
 	for key, value := range more {
-		if err := this.Add(key, value); err != nil {
-			return err
-		}
+		this.add(key, value)
 	}
-	return nil
 }
 
 //Only adds the missing attributes to this Attrs type.
-func (this Attrs) Ammend(more Attrs) error {
+func (this Attrs) Ammend(more Attrs) {
 	for key, value := range more {
 		if _, ok := this[key]; !ok {
-			if err := this.Add(key, value); err != nil {
-				return err
-			}
+			this.add(key, value)
 		}
 	}
-	return nil
 }
 
-func (this Attrs) SortedNames() []string {
-	keys := make([]string, 0)
+func (this Attrs) ToMap() map[string]string {
+	m := make(map[string]string)
+	for k, v := range this {
+		m[string(k)] = v
+	}
+	return m
+}
+
+type attrList []Attr
+
+func (this attrList) Len() int { return len(this) }
+func (this attrList) Less(i, j int) bool {
+	return this[i] < this[j]
+}
+func (this attrList) Swap(i, j int) {
+	this[i], this[j] = this[j], this[i]
+}
+
+func (this Attrs) SortedNames() []Attr {
+	keys := make(attrList, 0)
 	for key := range this {
 		keys = append(keys, key)
 	}
-	sort.Strings(keys)
-	return keys
+	sort.Sort(keys)
+	return []Attr(keys)
 }
 
 func (this Attrs) Copy() Attrs {
-	attrs := make(Attrs)
+	mm := make(Attrs)
 	for k, v := range this {
-		attrs[k] = v
+		mm[k] = v
 	}
-	return attrs
+	return mm
 }

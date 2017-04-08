@@ -154,12 +154,12 @@ func (this *Escape) SetName(name string) {
 	this.Graph.SetName(esc(name))
 }
 
-func (this *Escape) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
-	this.Graph.AddPortEdge(esc(src), srcPort, esc(dst), dstPort, directed, escAttrs(attrs))
+func (this *Escape) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
+	return this.Graph.AddPortEdge(esc(src), srcPort, esc(dst), dstPort, directed, escAttrs(attrs))
 }
 
-func (this *Escape) AddEdge(src, dst string, directed bool, attrs map[string]string) {
-	this.AddPortEdge(src, "", dst, "", directed, attrs)
+func (this *Escape) AddEdge(src, dst string, directed bool, attrs map[string]string) error {
+	return this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 
 func (this *Escape) AddNode(parentGraph string, name string, attrs map[string]string) error {

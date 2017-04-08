@@ -64,24 +64,31 @@ func (this *Graph) SetName(name string) {
 //Adds an edge to the graph from node src to node dst.
 //srcPort and dstPort are the port the node ports, leave as empty strings if it is not required.
 //This does not imply the adding of missing nodes.
-func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
-	this.Edges.Add(&Edge{src, srcPort, dst, dstPort, directed, attrs})
+func (this *Graph) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
+	as, err := NewAttrs(attrs)
+	if err != nil {
+		return err
+	}
+	this.Edges.Add(&Edge{src, srcPort, dst, dstPort, directed, as})
+	return nil
 }
 
 //Adds an edge to the graph from node src to node dst.
 //This does not imply the adding of missing nodes.
 //If directed is set to true then SetDir(true) must also be called or there will be a syntax error in the output.
-func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]string) {
-	this.AddPortEdge(src, "", dst, "", directed, attrs)
+func (this *Graph) AddEdge(src, dst string, directed bool, attrs map[string]string) error {
+	return this.AddPortEdge(src, "", dst, "", directed, attrs)
 }
 
 //Adds a node to a graph/subgraph.
 //If not subgraph exists use the name of the main graph.
 //This does not imply the adding of a missing subgraph.
 func (this *Graph) AddNode(parentGraph string, name string, attrs map[string]string) error {
-	if err := this.Nodes.Add(&Node{name, attrs}); err != nil {
+	as, err := NewAttrs(attrs)
+	if err != nil {
 		return err
 	}
+	this.Nodes.Add(&Node{name, as})
 	this.Relations.Add(parentGraph, name)
 	return nil
 }
@@ -103,10 +110,7 @@ func (this *Graph) AddAttr(parentGraph string, field string, value string) error
 	if err != nil {
 		return err
 	}
-	if err := a.Add(field, value); err != nil {
-		return err
-	}
-	return nil
+	return a.Add(field, value)
 }
 
 //Adds a subgraph to a graph/subgraph.

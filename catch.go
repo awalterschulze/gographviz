@@ -41,6 +41,18 @@ type errCatcher struct {
 	errs []error
 }
 
+func (this *errCatcher) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+	if err := this.Interface.AddPortEdge(src, srcPort, dst, dstPort, directed, attrs); err != nil {
+		this.errs = append(this.errs, err)
+	}
+}
+
+func (this *errCatcher) AddEdge(src, dst string, directed bool, attrs map[string]string) {
+	if err := this.Interface.AddEdge(src, dst, directed, attrs); err != nil {
+		this.errs = append(this.errs, err)
+	}
+}
+
 func (this *errCatcher) AddAttr(parentGraph string, field, value string) {
 	if err := this.Interface.AddAttr(parentGraph, field, value); err != nil {
 		this.errs = append(this.errs, err)

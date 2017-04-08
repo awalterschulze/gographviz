@@ -36,17 +36,14 @@ func NewNodes() *Nodes {
 }
 
 //Adds a Node to the set of Nodes, ammending the attributes of an already existing node.
-func (this *Nodes) Add(node *Node) error {
+func (this *Nodes) Add(node *Node) {
 	n, ok := this.Lookup[node.Name]
 	if ok {
-		if err := n.Attrs.Ammend(node.Attrs); err != nil {
-			return err
-		}
-		return nil
+		n.Attrs.Ammend(node.Attrs)
+		return
 	}
 	this.Lookup[node.Name] = node
 	this.Nodes = append(this.Nodes, node)
-	return nil
 }
 
 //Returns a sorted list of nodes.

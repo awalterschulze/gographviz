@@ -74,7 +74,7 @@ func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 	this.writtenLocations[node.Name] = true
 	return &ast.NodeStmt{
 		id,
-		ast.PutMap(node.Attrs),
+		ast.PutMap(node.Attrs.ToMap()),
 	}
 }
 
@@ -112,7 +112,7 @@ func (this *writer) newEdgeStmt(edge *Edge) (*ast.EdgeStmt, error) {
 				dst,
 			},
 		},
-		Attrs: ast.PutMap(edge.Attrs),
+		Attrs: ast.PutMap(edge.Attrs.ToMap()),
 	}
 	return stmt, nil
 }
