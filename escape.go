@@ -30,7 +30,7 @@ func NewEscape() *Escape {
 	return &Escape{NewGraph()}
 }
 
-func isHtml(s string) bool {
+func isHTML(s string) bool {
 	if len(s) == 0 {
 		return false
 	}
@@ -41,10 +41,10 @@ func isHtml(s string) bool {
 	count := 0
 	for _, c := range ss {
 		if c == '<' {
-			count += 1
+			count++
 		}
 		if c == '>' {
-			count -= 1
+			count--
 		}
 	}
 	if count == 0 {
@@ -58,7 +58,7 @@ func isLetter(ch rune) bool {
 		ch >= 0x80 && unicode.IsLetter(ch) && ch != 'ε'
 }
 
-func isId(s string) bool {
+func isID(s string) bool {
 	i := 0
 	pos := false
 	for _, c := range s {
@@ -123,14 +123,14 @@ func esc(s string) string {
 	if len(s) == 0 {
 		return s
 	}
-	if isHtml(s) {
+	if isHTML(s) {
 		return s
 	}
 	ss := strings.TrimSpace(s)
 	if ss[0] == '<' {
 		return fmt.Sprintf("\"%s\"", strings.Replace(s, "\"", "\\\"", -1))
 	}
-	if isId(s) {
+	if isID(s) {
 		return s
 	}
 	if isNumber(s) {

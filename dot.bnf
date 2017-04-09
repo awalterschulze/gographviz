@@ -262,8 +262,8 @@ NodeStmt
 
 //node_id	:	ID [ port ]
 NodeId
-	: Id                                          << ast.NewNodeId($0, nil) >>
-	| Id Port                                     << ast.NewNodeId($0, $1) >>
+	: Id                                          << ast.NewNodeID($0, nil) >>
+	| Id Port                                     << ast.NewNodeID($0, $1) >>
 	;
 
 //compass_pt	:	(n | ne | e | se | s | sw | w | nw | c | _)
@@ -296,5 +296,5 @@ EdgeOp
 	;
 
 Id
-	: id                                          << ast.NewId($0) >>
+	: id                                          << ast.NewID($0) >>
 	;

@@ -31,7 +31,7 @@ func (this *bugSubGraphWorldVisitor) Visit(v ast.Elem) ast.Visitor {
 	if !ok {
 		return this
 	}
-	if edge.Source.GetId().String() != "2" {
+	if edge.Source.GetID().String() != "2" {
 		return this
 	}
 	dst := edge.EdgeRHS[0].Destination

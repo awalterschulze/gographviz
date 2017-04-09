@@ -52,7 +52,7 @@ func (this *graphVisitor) Visit(v ast.Elem) ast.Visitor {
 	}
 	this.g.SetStrict(graph.Strict)
 	this.g.SetDir(graph.Type == ast.DIGRAPH)
-	graphName := graph.Id.String()
+	graphName := graph.ID.String()
 	this.g.SetName(graphName)
 	return newStmtVisitor(this.g, graphName)
 }
@@ -111,14 +111,14 @@ func overwrite(attrs map[string]string, overwrite map[string]string) map[string]
 
 func (this *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
 	attrs := ammend(stmt.Attrs.GetMap(), this.currentNodeAttrs)
-	this.g.AddNode(this.graphName, stmt.NodeId.String(), attrs)
+	this.g.AddNode(this.graphName, stmt.NodeID.String(), attrs)
 	return &nilVisitor{}
 }
 
 func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	attrs := stmt.Attrs.GetMap()
 	attrs = ammend(attrs, this.currentEdgeAttrs)
-	src := stmt.Source.GetId()
+	src := stmt.Source.GetID()
 	srcName := src.String()
 	if stmt.Source.IsNode() {
 		this.g.AddNode(this.graphName, srcName, this.currentNodeAttrs)
@@ -126,7 +126,7 @@ func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	srcPort := stmt.Source.GetPort()
 	for i := range stmt.EdgeRHS {
 		directed := bool(stmt.EdgeRHS[i].Op)
-		dst := stmt.EdgeRHS[i].Destination.GetId()
+		dst := stmt.EdgeRHS[i].Destination.GetID()
 		dstName := dst.String()
 		if stmt.EdgeRHS[i].Destination.IsNode() {
 			this.g.AddNode(this.graphName, dstName, this.currentNodeAttrs)
@@ -160,7 +160,7 @@ func (this *stmtVisitor) graphAttrs(stmt ast.GraphAttrs) ast.Visitor {
 }
 
 func (this *stmtVisitor) subGraph(stmt *ast.SubGraph) ast.Visitor {
-	subGraphName := stmt.Id.String()
+	subGraphName := stmt.ID.String()
 	this.g.AddSubGraph(this.graphName, subGraphName, this.currentGraphAttrs)
 	return newStmtVisitor(this.g, subGraphName)
 }

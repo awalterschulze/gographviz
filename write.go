@@ -32,8 +32,8 @@ func newWriter(g *Graph) *writer {
 func appendAttrs(list ast.StmtList, attrs Attrs) ast.StmtList {
 	for _, name := range attrs.sortedNames() {
 		stmt := &ast.Attr{
-			Field: ast.Id(name),
-			Value: ast.Id(attrs[name]),
+			Field: ast.ID(name),
+			Value: ast.ID(attrs[name]),
 		}
 		list = append(list, stmt)
 	}
@@ -44,7 +44,7 @@ func (this *writer) newSubGraph(name string) (*ast.SubGraph, error) {
 	sub := this.SubGraphs.SubGraphs[name]
 	this.writtenLocations[sub.Name] = true
 	s := &ast.SubGraph{}
-	s.Id = ast.Id(sub.Name)
+	s.ID = ast.ID(sub.Name)
 	s.StmtList = appendAttrs(s.StmtList, sub.Attrs)
 	children := this.Relations.SortedChildren(name)
 	for _, child := range children {
@@ -63,14 +63,14 @@ func (this *writer) newSubGraph(name string) (*ast.SubGraph, error) {
 	return s, nil
 }
 
-func (this *writer) newNodeId(name string, port string) *ast.NodeId {
+func (this *writer) newNodeID(name string, port string) *ast.NodeID {
 	node := this.Nodes.Lookup[name]
-	return ast.MakeNodeId(node.Name, port)
+	return ast.MakeNodeID(node.Name, port)
 }
 
 func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 	node := this.Nodes.Lookup[name]
-	id := ast.MakeNodeId(node.Name, "")
+	id := ast.MakeNodeID(node.Name, "")
 	this.writtenLocations[node.Name] = true
 	return &ast.NodeStmt{
 		id,
@@ -80,12 +80,12 @@ func (this *writer) newNodeStmt(name string) *ast.NodeStmt {
 
 func (this *writer) newLocation(name string, port string) (ast.Location, error) {
 	if this.IsNode(name) {
-		return this.newNodeId(name, port), nil
+		return this.newNodeID(name, port), nil
 	} else if this.IsClusterSubGraph(name) {
 		if len(port) != 0 {
 			return nil, fmt.Errorf("subgraph cannot have a port: %v", port)
 		}
-		return ast.MakeNodeId(name, port), nil
+		return ast.MakeNodeID(name, port), nil
 	} else if this.IsSubGraph(name) {
 		if len(port) != 0 {
 			return nil, fmt.Errorf("subgraph cannot have a port: %v", port)
@@ -121,7 +121,7 @@ func (this *writer) Write() (*ast.Graph, error) {
 	t := &ast.Graph{}
 	t.Strict = this.Strict
 	t.Type = ast.GraphType(this.Directed)
-	t.Id = ast.Id(this.Name)
+	t.ID = ast.ID(this.Name)
 
 	t.StmtList = appendAttrs(t.StmtList, this.Attrs)
 
