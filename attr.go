@@ -29,355 +29,355 @@ func NewAttr(key string) (Attr, error) {
 }
 
 const (
-	DAMPING            Attr = "Damping"
+	Damping            Attr = "Damping"
 	K                  Attr = "K"
 	URL                Attr = "URL"
-	BACKGROUND         Attr = "_background"
-	AREA               Attr = "area"
-	ARROWHEAD          Attr = "arrowhead"
-	ARROWSIZE          Attr = "arrowsize"
-	ARROWTAIL          Attr = "arrowtail"
+	Background         Attr = "_background"
+	Area               Attr = "area"
+	ArrowHead          Attr = "arrowhead"
+	ArrowSize          Attr = "arrowsize"
+	ArrowTail          Attr = "arrowtail"
 	BB                 Attr = "bb"
-	BGCOLOR            Attr = "bgcolor"
-	CENTER             Attr = "center"
-	CHARSET            Attr = "charset"
-	CLUSTERRANK        Attr = "clusterrank"
-	COLOR              Attr = "color"
-	COLORSCHEME        Attr = "colorscheme"
-	COMMENT            Attr = "comment"
-	COMPOUND           Attr = "compound"
-	CONCENTRATE        Attr = "concentrate"
-	CONSTRAINT         Attr = "constraint"
-	DECORATE           Attr = "decorate"
-	DEFAULTDIST        Attr = "defaultdist"
-	DIM                Attr = "dim"
-	DIMEN              Attr = "dimen"
-	DIR                Attr = "dir"
-	DIREDGECONSTRAINTS Attr = "diredgeconstraints"
-	DISTORTION         Attr = "distortion"
+	BgColor            Attr = "bgcolor"
+	Center             Attr = "center"
+	Charset            Attr = "charset"
+	ClusterRank        Attr = "clusterrank"
+	Color              Attr = "color"
+	ColorScheme        Attr = "colorscheme"
+	Comment            Attr = "comment"
+	Compound           Attr = "compound"
+	Concentrate        Attr = "concentrate"
+	Constraint         Attr = "constraint"
+	Decorate           Attr = "decorate"
+	DefaultDist        Attr = "defaultdist"
+	Dim                Attr = "dim"
+	Dimen              Attr = "dimen"
+	Dir                Attr = "dir"
+	DirEdgeConstraints Attr = "diredgeconstraints"
+	Distortion         Attr = "distortion"
 	DPI                Attr = "dpi"
-	EDGEURL            Attr = "edgeURL"
-	EDGEHREF           Attr = "edgehref"
-	EDGETARGET         Attr = "edgetarget"
-	EDGETOOLTIP        Attr = "edgetooltip"
-	EPSILON            Attr = "epsilon"
-	ESEP               Attr = "esep"
-	FILLCOLOR          Attr = "fillcolor"
-	FIXEDSIZE          Attr = "fixedsize"
-	FONTCOLOR          Attr = "fontcolor"
-	FONTNAME           Attr = "fontname"
-	FONTNAMES          Attr = "fontnames"
-	FONTPATH           Attr = "fontpath"
-	FONTSIZE           Attr = "fontsize"
-	FORCELABELS        Attr = "forcelabels"
-	GRADIENTANGLE      Attr = "gradientangle"
-	GROUP              Attr = "group"
-	HEADURL            Attr = "headURL"
-	HEAD_LP            Attr = "head_lp"
-	HEADCLIP           Attr = "headclip"
-	HEADHREF           Attr = "headhref"
-	HEADLABEL          Attr = "headlabel"
-	HEADPORT           Attr = "headport"
-	HEADTARGET         Attr = "headtarget"
-	HEADTOOLTIP        Attr = "headtooltip"
-	HEIGHT             Attr = "height"
+	EdgeURL            Attr = "edgeURL"
+	EdgeHREF           Attr = "edgehref"
+	EdgeTarget         Attr = "edgetarget"
+	EdgeTooltip        Attr = "edgetooltip"
+	Epsilon            Attr = "epsilon"
+	ESep               Attr = "esep"
+	FillColor          Attr = "fillcolor"
+	FixedSize          Attr = "fixedsize"
+	FontColor          Attr = "fontcolor"
+	FontName           Attr = "fontname"
+	FontNames          Attr = "fontnames"
+	FontPath           Attr = "fontpath"
+	FontSize           Attr = "fontsize"
+	ForceLabels        Attr = "forcelabels"
+	GradientAngle      Attr = "gradientangle"
+	Group              Attr = "group"
+	HeadURL            Attr = "headURL"
+	HeadLP             Attr = "head_lp"
+	HeadClip           Attr = "headclip"
+	HeadHREF           Attr = "headhref"
+	HeadLabel          Attr = "headlabel"
+	HeadPort           Attr = "headport"
+	HeadTarget         Attr = "headtarget"
+	HeadTooltip        Attr = "headtooltip"
+	Height             Attr = "height"
 	HREF               Attr = "href"
 	ID                 Attr = "id"
-	IMAGE              Attr = "image"
-	IMAGEPATH          Attr = "imagepath"
-	IMAGESCALE         Attr = "imagescale"
-	INPUTSCALE         Attr = "inputscale"
-	LABEL              Attr = "label"
-	LABELURL           Attr = "labelURL"
-	LABEL_SCHEME       Attr = "label_scheme"
-	LABELANGLE         Attr = "labelangle"
-	LABELDISTANCE      Attr = "labeldistance"
-	LABELFLOAT         Attr = "labelfloat"
-	LABELFONTCOLOR     Attr = "labelfontcolor"
-	LABELFONTNAME      Attr = "labelfontname"
-	LABELFONTSIZE      Attr = "labelfontsize"
-	LABELHREF          Attr = "labelhref"
-	LABELJUST          Attr = "labeljust"
-	LABELLOC           Attr = "labelloc"
-	LABELTARGET        Attr = "labeltarget"
-	LABELTOOLTIP       Attr = "labeltooltip"
-	LANDSCAPE          Attr = "landscape"
-	LAYER              Attr = "layer"
-	LAYERLISTSEP       Attr = "layerlistsep"
-	LAYERS             Attr = "layers"
-	LAYERSELECT        Attr = "layerselect"
-	LAYERSEP           Attr = "layersep"
-	LAYOUT             Attr = "layout"
-	LEN                Attr = "len"
-	LEVELS             Attr = "levels"
-	LEVELSGAP          Attr = "levelsgap"
-	LHEAD              Attr = "lhead"
-	LHEIGHT            Attr = "lheight"
+	Image              Attr = "image"
+	ImagePath          Attr = "imagepath"
+	ImageScale         Attr = "imagescale"
+	InputScale         Attr = "inputscale"
+	Label              Attr = "label"
+	LabelURL           Attr = "labelURL"
+	LabelScheme        Attr = "label_scheme"
+	LabelAngle         Attr = "labelangle"
+	LabelDistance      Attr = "labeldistance"
+	LabelFloat         Attr = "labelfloat"
+	LabelFontColor     Attr = "labelfontcolor"
+	LabelFontName      Attr = "labelfontname"
+	LabelFontSize      Attr = "labelfontsize"
+	LabelHREF          Attr = "labelhref"
+	LabelJust          Attr = "labeljust"
+	LabelLOC           Attr = "labelloc"
+	LabelTarget        Attr = "labeltarget"
+	LabelTooltip       Attr = "labeltooltip"
+	Landscape          Attr = "landscape"
+	Layer              Attr = "layer"
+	LayerListSep       Attr = "layerlistsep"
+	Layers             Attr = "layers"
+	LayerSelect        Attr = "layerselect"
+	LayerSep           Attr = "layersep"
+	Layout             Attr = "layout"
+	Len                Attr = "len"
+	Levels             Attr = "levels"
+	LevelsGap          Attr = "levelsgap"
+	LHead              Attr = "lhead"
+	LHeight            Attr = "lheight"
 	LP                 Attr = "lp"
-	LTAIL              Attr = "ltail"
-	LWIDTH             Attr = "lwidth"
-	MARGIN             Attr = "margin"
-	MAXITER            Attr = "maxiter"
-	MCLIMIT            Attr = "mclimit"
-	MINDIST            Attr = "mindist"
-	MINLEN             Attr = "minlen"
-	MODE               Attr = "mode"
-	MODEL              Attr = "model"
-	MOSEK              Attr = "mosek"
-	NODESEP            Attr = "nodesep"
-	NOJUSTIFY          Attr = "nojustify"
-	NORMALIZE          Attr = "normalize"
-	NOTRANSLATE        Attr = "notranslate"
-	NSLIMIT            Attr = "nslimit"
-	NSLIMIT1           Attr = "nslimit1"
-	ORDERING           Attr = "ordering"
-	ORIENTATION        Attr = "orientation"
-	OUTPUTORDER        Attr = "outputorder"
-	OVERLAP            Attr = "overlap"
-	OVERLAP_SCALING    Attr = "overlap_scaling"
-	OVERLAP_SHRINK     Attr = "overlap_shrink"
-	PACK               Attr = "pack"
-	PACKMODE           Attr = "packmode"
-	PAD                Attr = "pad"
-	PAGE               Attr = "page"
-	PAGEDIR            Attr = "pagedir"
-	PENCOLOR           Attr = "pencolor"
-	PENWIDTH           Attr = "penwidth"
-	PERIPHERIES        Attr = "peripheries"
-	PIN                Attr = "pin"
-	POS                Attr = "pos"
-	QUADTREE           Attr = "quadtree"
-	QUANTUM            Attr = "quantum"
-	RANK               Attr = "rank"
-	RANKDIR            Attr = "rankdir"
-	RANKSEP            Attr = "ranksep"
-	RATIO              Attr = "ratio"
-	RECTS              Attr = "rects"
-	REGULAR            Attr = "regular"
-	REMINCROSS         Attr = "remincross"
-	REPULSIVEFORCE     Attr = "repulsiveforce"
-	RESOLUTION         Attr = "resolution"
-	ROOT               Attr = "root"
-	ROTATE             Attr = "rotate"
-	ROTATION           Attr = "rotation"
-	SAMEHEAD           Attr = "samehead"
-	SAMETAIL           Attr = "sametail"
-	SAMPLEPOINTS       Attr = "samplepoints"
-	SCALE              Attr = "scale"
-	SEARCHSIZE         Attr = "searchsize"
-	SEP                Attr = "sep"
-	SHAPE              Attr = "shape"
-	SHAPEFILE          Attr = "shapefile"
-	SHOWBOXES          Attr = "showboxes"
-	SIDES              Attr = "sides"
-	SIZE               Attr = "size"
-	SKEW               Attr = "skew"
-	SMOOTHING          Attr = "smoothing"
-	SORTV              Attr = "sortv"
-	SPLINES            Attr = "splines"
-	START              Attr = "start"
-	STYLE              Attr = "style"
-	STYLESHEET         Attr = "stylesheet"
-	TAILURL            Attr = "tailURL"
-	TAIL_LP            Attr = "tail_lp"
-	TAILCLIP           Attr = "tailclip"
-	TAILHREF           Attr = "tailhref"
-	TAILLABEL          Attr = "taillabel"
-	TAILPORT           Attr = "tailport"
-	TAILTARGET         Attr = "tailtarget"
-	TAILTOOLTIP        Attr = "tailtooltip"
-	TARGET             Attr = "target"
-	TOOLTIP            Attr = "tooltip"
-	TRUECOLOR          Attr = "truecolor"
-	VERTICES           Attr = "vertices"
-	VIEWPORT           Attr = "viewport"
-	VORO_MARGIN        Attr = "voro_margin"
-	WEIGHT             Attr = "weight"
-	WIDTH              Attr = "width"
-	XDOTVERSION        Attr = "xdotversion"
-	XLABEL             Attr = "xlabel"
+	LTail              Attr = "ltail"
+	LWidth             Attr = "lwidth"
+	Margin             Attr = "margin"
+	MaxIter            Attr = "maxiter"
+	MCLimit            Attr = "mclimit"
+	MinDist            Attr = "mindist"
+	MinLen             Attr = "minlen"
+	Mode               Attr = "mode"
+	Model              Attr = "model"
+	Mosek              Attr = "mosek"
+	NodeSep            Attr = "nodesep"
+	NoJustify          Attr = "nojustify"
+	Normalize          Attr = "normalize"
+	NoTranslate        Attr = "notranslate"
+	NSLimit            Attr = "nslimit"
+	NSLimit1           Attr = "nslimit1"
+	Ordering           Attr = "ordering"
+	Orientation        Attr = "orientation"
+	Outputorder        Attr = "outputorder"
+	Overlap            Attr = "overlap"
+	OverlapScaling     Attr = "overlap_scaling"
+	OverlapShrink      Attr = "overlap_shrink"
+	Pack               Attr = "pack"
+	PackMode           Attr = "packmode"
+	Pad                Attr = "pad"
+	Page               Attr = "page"
+	PageDir            Attr = "pagedir"
+	PenColor           Attr = "pencolor"
+	PenWidth           Attr = "penwidth"
+	Peripheries        Attr = "peripheries"
+	Pin                Attr = "pin"
+	Pos                Attr = "pos"
+	Quadtree           Attr = "quadtree"
+	Quantum            Attr = "quantum"
+	Rank               Attr = "rank"
+	RankDir            Attr = "rankdir"
+	RankSep            Attr = "ranksep"
+	Ratio              Attr = "ratio"
+	Rects              Attr = "rects"
+	Regular            Attr = "regular"
+	ReMinCross         Attr = "remincross"
+	RepulsiveForce     Attr = "repulsiveforce"
+	Resolution         Attr = "resolution"
+	Root               Attr = "root"
+	Rotate             Attr = "rotate"
+	Rotation           Attr = "rotation"
+	SameHead           Attr = "samehead"
+	SameTail           Attr = "sametail"
+	SamplePoints       Attr = "samplepoints"
+	Scale              Attr = "scale"
+	SearchSize         Attr = "searchsize"
+	Sep                Attr = "sep"
+	Shape              Attr = "shape"
+	ShapeFile          Attr = "shapefile"
+	ShowBoxes          Attr = "showboxes"
+	Sides              Attr = "sides"
+	Size               Attr = "size"
+	Skew               Attr = "skew"
+	Smoothing          Attr = "smoothing"
+	SortV              Attr = "sortv"
+	Splines            Attr = "splines"
+	Start              Attr = "start"
+	Style              Attr = "style"
+	StyleSheet         Attr = "stylesheet"
+	TailURL            Attr = "tailURL"
+	TailLP             Attr = "tail_lp"
+	TailClip           Attr = "tailclip"
+	TailHREF           Attr = "tailhref"
+	TailLabel          Attr = "taillabel"
+	TailPort           Attr = "tailport"
+	TailTarget         Attr = "tailtarget"
+	TailTooltip        Attr = "tailtooltip"
+	Target             Attr = "target"
+	Tooltip            Attr = "tooltip"
+	TrueColor          Attr = "truecolor"
+	Vertices           Attr = "vertices"
+	ViewPort           Attr = "viewport"
+	VoroMargin         Attr = "voro_margin"
+	Weight             Attr = "weight"
+	Width              Attr = "width"
+	XDotVersion        Attr = "xdotversion"
+	XLabel             Attr = "xlabel"
 	XLP                Attr = "xlp"
 	Z                  Attr = "z"
 
-	MINCROSS Attr = "mincross" // not in the documentation, but found in the Ped_Lion_Share (lion_share.gv.txt) example
-	SSIZE    Attr = "ssize"    // not in the documentation, but found in the siblings.gv.txt example
-	OUTLINE  Attr = "outline"  // not in the documentation, but found in the siblings.gv.txt example
+	MinCross Attr = "mincross" // not in the documentation, but found in the Ped_Lion_Share (lion_share.gv.txt) example
+	SSize    Attr = "ssize"    // not in the documentation, but found in the siblings.gv.txt example
+	Outline  Attr = "outline"  // not in the documentation, but found in the siblings.gv.txt example
 	F        Attr = "f"        // not in the documentation, but found in the transparency.gv.txt example
 )
 
 var validAttrs = map[string]Attr{
-	string(DAMPING):            DAMPING,
+	string(Damping):            Damping,
 	string(K):                  K,
 	string(URL):                URL,
-	string(BACKGROUND):         BACKGROUND,
-	string(AREA):               AREA,
-	string(ARROWHEAD):          ARROWHEAD,
-	string(ARROWSIZE):          ARROWSIZE,
-	string(ARROWTAIL):          ARROWTAIL,
+	string(Background):         Background,
+	string(Area):               Area,
+	string(ArrowHead):          ArrowHead,
+	string(ArrowSize):          ArrowSize,
+	string(ArrowTail):          ArrowTail,
 	string(BB):                 BB,
-	string(BGCOLOR):            BGCOLOR,
-	string(CENTER):             CENTER,
-	string(CHARSET):            CHARSET,
-	string(CLUSTERRANK):        CLUSTERRANK,
-	string(COLOR):              COLOR,
-	string(COLORSCHEME):        COLORSCHEME,
-	string(COMMENT):            COMMENT,
-	string(COMPOUND):           COMPOUND,
-	string(CONCENTRATE):        CONCENTRATE,
-	string(CONSTRAINT):         CONSTRAINT,
-	string(DECORATE):           DECORATE,
-	string(DEFAULTDIST):        DEFAULTDIST,
-	string(DIM):                DIM,
-	string(DIMEN):              DIMEN,
-	string(DIR):                DIR,
-	string(DIREDGECONSTRAINTS): DIREDGECONSTRAINTS,
-	string(DISTORTION):         DISTORTION,
+	string(BgColor):            BgColor,
+	string(Center):             Center,
+	string(Charset):            Charset,
+	string(ClusterRank):        ClusterRank,
+	string(Color):              Color,
+	string(ColorScheme):        ColorScheme,
+	string(Comment):            Comment,
+	string(Compound):           Compound,
+	string(Concentrate):        Concentrate,
+	string(Constraint):         Constraint,
+	string(Decorate):           Decorate,
+	string(DefaultDist):        DefaultDist,
+	string(Dim):                Dim,
+	string(Dimen):              Dimen,
+	string(Dir):                Dir,
+	string(DirEdgeConstraints): DirEdgeConstraints,
+	string(Distortion):         Distortion,
 	string(DPI):                DPI,
-	string(EDGEURL):            EDGEURL,
-	string(EDGEHREF):           EDGEHREF,
-	string(EDGETARGET):         EDGETARGET,
-	string(EDGETOOLTIP):        EDGETOOLTIP,
-	string(EPSILON):            EPSILON,
-	string(ESEP):               ESEP,
-	string(FILLCOLOR):          FILLCOLOR,
-	string(FIXEDSIZE):          FIXEDSIZE,
-	string(FONTCOLOR):          FONTCOLOR,
-	string(FONTNAME):           FONTNAME,
-	string(FONTNAMES):          FONTNAMES,
-	string(FONTPATH):           FONTPATH,
-	string(FONTSIZE):           FONTSIZE,
-	string(FORCELABELS):        FORCELABELS,
-	string(GRADIENTANGLE):      GRADIENTANGLE,
-	string(GROUP):              GROUP,
-	string(HEADURL):            HEADURL,
-	string(HEAD_LP):            HEAD_LP,
-	string(HEADCLIP):           HEADCLIP,
-	string(HEADHREF):           HEADHREF,
-	string(HEADLABEL):          HEADLABEL,
-	string(HEADPORT):           HEADPORT,
-	string(HEADTARGET):         HEADTARGET,
-	string(HEADTOOLTIP):        HEADTOOLTIP,
-	string(HEIGHT):             HEIGHT,
+	string(EdgeURL):            EdgeURL,
+	string(EdgeHREF):           EdgeHREF,
+	string(EdgeTarget):         EdgeTarget,
+	string(EdgeTooltip):        EdgeTooltip,
+	string(Epsilon):            Epsilon,
+	string(ESep):               ESep,
+	string(FillColor):          FillColor,
+	string(FixedSize):          FixedSize,
+	string(FontColor):          FontColor,
+	string(FontName):           FontName,
+	string(FontNames):          FontNames,
+	string(FontPath):           FontPath,
+	string(FontSize):           FontSize,
+	string(ForceLabels):        ForceLabels,
+	string(GradientAngle):      GradientAngle,
+	string(Group):              Group,
+	string(HeadURL):            HeadURL,
+	string(HeadLP):             HeadLP,
+	string(HeadClip):           HeadClip,
+	string(HeadHREF):           HeadHREF,
+	string(HeadLabel):          HeadLabel,
+	string(HeadPort):           HeadPort,
+	string(HeadTarget):         HeadTarget,
+	string(HeadTooltip):        HeadTooltip,
+	string(Height):             Height,
 	string(HREF):               HREF,
 	string(ID):                 ID,
-	string(IMAGE):              IMAGE,
-	string(IMAGEPATH):          IMAGEPATH,
-	string(IMAGESCALE):         IMAGESCALE,
-	string(INPUTSCALE):         INPUTSCALE,
-	string(LABEL):              LABEL,
-	string(LABELURL):           LABELURL,
-	string(LABEL_SCHEME):       LABEL_SCHEME,
-	string(LABELANGLE):         LABELANGLE,
-	string(LABELDISTANCE):      LABELDISTANCE,
-	string(LABELFLOAT):         LABELFLOAT,
-	string(LABELFONTCOLOR):     LABELFONTCOLOR,
-	string(LABELFONTNAME):      LABELFONTNAME,
-	string(LABELFONTSIZE):      LABELFONTSIZE,
-	string(LABELHREF):          LABELHREF,
-	string(LABELJUST):          LABELJUST,
-	string(LABELLOC):           LABELLOC,
-	string(LABELTARGET):        LABELTARGET,
-	string(LABELTOOLTIP):       LABELTOOLTIP,
-	string(LANDSCAPE):          LANDSCAPE,
-	string(LAYER):              LAYER,
-	string(LAYERLISTSEP):       LAYERLISTSEP,
-	string(LAYERS):             LAYERS,
-	string(LAYERSELECT):        LAYERSELECT,
-	string(LAYERSEP):           LAYERSEP,
-	string(LAYOUT):             LAYOUT,
-	string(LEN):                LEN,
-	string(LEVELS):             LEVELS,
-	string(LEVELSGAP):          LEVELSGAP,
-	string(LHEAD):              LHEAD,
-	string(LHEIGHT):            LHEIGHT,
+	string(Image):              Image,
+	string(ImagePath):          ImagePath,
+	string(ImageScale):         ImageScale,
+	string(InputScale):         InputScale,
+	string(Label):              Label,
+	string(LabelURL):           LabelURL,
+	string(LabelScheme):        LabelScheme,
+	string(LabelAngle):         LabelAngle,
+	string(LabelDistance):      LabelDistance,
+	string(LabelFloat):         LabelFloat,
+	string(LabelFontColor):     LabelFontColor,
+	string(LabelFontName):      LabelFontName,
+	string(LabelFontSize):      LabelFontSize,
+	string(LabelHREF):          LabelHREF,
+	string(LabelJust):          LabelJust,
+	string(LabelLOC):           LabelLOC,
+	string(LabelTarget):        LabelTarget,
+	string(LabelTooltip):       LabelTooltip,
+	string(Landscape):          Landscape,
+	string(Layer):              Layer,
+	string(LayerListSep):       LayerListSep,
+	string(Layers):             Layers,
+	string(LayerSelect):        LayerSelect,
+	string(LayerSep):           LayerSep,
+	string(Layout):             Layout,
+	string(Len):                Len,
+	string(Levels):             Levels,
+	string(LevelsGap):          LevelsGap,
+	string(LHead):              LHead,
+	string(LHeight):            LHeight,
 	string(LP):                 LP,
-	string(LTAIL):              LTAIL,
-	string(LWIDTH):             LWIDTH,
-	string(MARGIN):             MARGIN,
-	string(MAXITER):            MAXITER,
-	string(MCLIMIT):            MCLIMIT,
-	string(MINDIST):            MINDIST,
-	string(MINLEN):             MINLEN,
-	string(MODE):               MODE,
-	string(MODEL):              MODEL,
-	string(MOSEK):              MOSEK,
-	string(NODESEP):            NODESEP,
-	string(NOJUSTIFY):          NOJUSTIFY,
-	string(NORMALIZE):          NORMALIZE,
-	string(NOTRANSLATE):        NOTRANSLATE,
-	string(NSLIMIT):            NSLIMIT,
-	string(NSLIMIT1):           NSLIMIT1,
-	string(ORDERING):           ORDERING,
-	string(ORIENTATION):        ORIENTATION,
-	string(OUTPUTORDER):        OUTPUTORDER,
-	string(OVERLAP):            OVERLAP,
-	string(OVERLAP_SCALING):    OVERLAP_SCALING,
-	string(OVERLAP_SHRINK):     OVERLAP_SHRINK,
-	string(PACK):               PACK,
-	string(PACKMODE):           PACKMODE,
-	string(PAD):                PAD,
-	string(PAGE):               PAGE,
-	string(PAGEDIR):            PAGEDIR,
-	string(PENCOLOR):           PENCOLOR,
-	string(PENWIDTH):           PENWIDTH,
-	string(PERIPHERIES):        PERIPHERIES,
-	string(PIN):                PIN,
-	string(POS):                POS,
-	string(QUADTREE):           QUADTREE,
-	string(QUANTUM):            QUANTUM,
-	string(RANK):               RANK,
-	string(RANKDIR):            RANKDIR,
-	string(RANKSEP):            RANKSEP,
-	string(RATIO):              RATIO,
-	string(RECTS):              RECTS,
-	string(REGULAR):            REGULAR,
-	string(REMINCROSS):         REMINCROSS,
-	string(REPULSIVEFORCE):     REPULSIVEFORCE,
-	string(RESOLUTION):         RESOLUTION,
-	string(ROOT):               ROOT,
-	string(ROTATE):             ROTATE,
-	string(ROTATION):           ROTATION,
-	string(SAMEHEAD):           SAMEHEAD,
-	string(SAMETAIL):           SAMETAIL,
-	string(SAMPLEPOINTS):       SAMPLEPOINTS,
-	string(SCALE):              SCALE,
-	string(SEARCHSIZE):         SEARCHSIZE,
-	string(SEP):                SEP,
-	string(SHAPE):              SHAPE,
-	string(SHAPEFILE):          SHAPEFILE,
-	string(SHOWBOXES):          SHOWBOXES,
-	string(SIDES):              SIDES,
-	string(SIZE):               SIZE,
-	string(SKEW):               SKEW,
-	string(SMOOTHING):          SMOOTHING,
-	string(SORTV):              SORTV,
-	string(SPLINES):            SPLINES,
-	string(START):              START,
-	string(STYLE):              STYLE,
-	string(STYLESHEET):         STYLESHEET,
-	string(TAILURL):            TAILURL,
-	string(TAIL_LP):            TAIL_LP,
-	string(TAILCLIP):           TAILCLIP,
-	string(TAILHREF):           TAILHREF,
-	string(TAILLABEL):          TAILLABEL,
-	string(TAILPORT):           TAILPORT,
-	string(TAILTARGET):         TAILTARGET,
-	string(TAILTOOLTIP):        TAILTOOLTIP,
-	string(TARGET):             TARGET,
-	string(TOOLTIP):            TOOLTIP,
-	string(TRUECOLOR):          TRUECOLOR,
-	string(VERTICES):           VERTICES,
-	string(VIEWPORT):           VIEWPORT,
-	string(VORO_MARGIN):        VORO_MARGIN,
-	string(WEIGHT):             WEIGHT,
-	string(WIDTH):              WIDTH,
-	string(XDOTVERSION):        XDOTVERSION,
-	string(XLABEL):             XLABEL,
+	string(LTail):              LTail,
+	string(LWidth):             LWidth,
+	string(Margin):             Margin,
+	string(MaxIter):            MaxIter,
+	string(MCLimit):            MCLimit,
+	string(MinDist):            MinDist,
+	string(MinLen):             MinLen,
+	string(Mode):               Mode,
+	string(Model):              Model,
+	string(Mosek):              Mosek,
+	string(NodeSep):            NodeSep,
+	string(NoJustify):          NoJustify,
+	string(Normalize):          Normalize,
+	string(NoTranslate):        NoTranslate,
+	string(NSLimit):            NSLimit,
+	string(NSLimit1):           NSLimit1,
+	string(Ordering):           Ordering,
+	string(Orientation):        Orientation,
+	string(Outputorder):        Outputorder,
+	string(Overlap):            Overlap,
+	string(OverlapScaling):     OverlapScaling,
+	string(OverlapShrink):      OverlapShrink,
+	string(Pack):               Pack,
+	string(PackMode):           PackMode,
+	string(Pad):                Pad,
+	string(Page):               Page,
+	string(PageDir):            PageDir,
+	string(PenColor):           PenColor,
+	string(PenWidth):           PenWidth,
+	string(Peripheries):        Peripheries,
+	string(Pin):                Pin,
+	string(Pos):                Pos,
+	string(Quadtree):           Quadtree,
+	string(Quantum):            Quantum,
+	string(Rank):               Rank,
+	string(RankDir):            RankDir,
+	string(RankSep):            RankSep,
+	string(Ratio):              Ratio,
+	string(Rects):              Rects,
+	string(Regular):            Regular,
+	string(ReMinCross):         ReMinCross,
+	string(RepulsiveForce):     RepulsiveForce,
+	string(Resolution):         Resolution,
+	string(Root):               Root,
+	string(Rotate):             Rotate,
+	string(Rotation):           Rotation,
+	string(SameHead):           SameHead,
+	string(SameTail):           SameTail,
+	string(SamplePoints):       SamplePoints,
+	string(Scale):              Scale,
+	string(SearchSize):         SearchSize,
+	string(Sep):                Sep,
+	string(Shape):              Shape,
+	string(ShapeFile):          ShapeFile,
+	string(ShowBoxes):          ShowBoxes,
+	string(Sides):              Sides,
+	string(Size):               Size,
+	string(Skew):               Skew,
+	string(Smoothing):          Smoothing,
+	string(SortV):              SortV,
+	string(Splines):            Splines,
+	string(Start):              Start,
+	string(Style):              Style,
+	string(StyleSheet):         StyleSheet,
+	string(TailURL):            TailURL,
+	string(TailLP):             TailLP,
+	string(TailClip):           TailClip,
+	string(TailHREF):           TailHREF,
+	string(TailLabel):          TailLabel,
+	string(TailPort):           TailPort,
+	string(TailTarget):         TailTarget,
+	string(TailTooltip):        TailTooltip,
+	string(Target):             Target,
+	string(Tooltip):            Tooltip,
+	string(TrueColor):          TrueColor,
+	string(Vertices):           Vertices,
+	string(ViewPort):           ViewPort,
+	string(VoroMargin):         VoroMargin,
+	string(Weight):             Weight,
+	string(Width):              Width,
+	string(XDotVersion):        XDotVersion,
+	string(XLabel):             XLabel,
 	string(XLP):                XLP,
 	string(Z):                  Z,
 
-	string(MINCROSS): MINCROSS,
-	string(SSIZE):    SSIZE,
-	string(OUTLINE):  OUTLINE,
+	string(MinCross): MinCross,
+	string(SSize):    SSize,
+	string(Outline):  Outline,
 	string(F):        F,
 }
