@@ -26,21 +26,21 @@ type bugSubGraphWorldVisitor struct {
 	found bool
 }
 
-func (this *bugSubGraphWorldVisitor) Visit(v ast.Elem) ast.Visitor {
+func (w *bugSubGraphWorldVisitor) Visit(v ast.Elem) ast.Visitor {
 	edge, ok := v.(ast.EdgeStmt)
 	if !ok {
-		return this
+		return w
 	}
 	if edge.Source.GetID().String() != "2" {
-		return this
+		return w
 	}
 	dst := edge.EdgeRHS[0].Destination
 	if _, ok := dst.(*ast.SubGraph); !ok {
-		this.t.Fatalf("2 -> Not SubGraph")
+		w.t.Fatalf("2 -> Not SubGraph")
 	} else {
-		this.found = true
+		w.found = true
 	}
-	return this
+	return w
 }
 
 func TestBugSubGraphWorld(t *testing.T) {

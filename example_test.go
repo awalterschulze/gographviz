@@ -69,10 +69,10 @@ func NewMyOwnGraphStructure() *MyOwnGraphStructure {
 	}
 }
 
-func (this *MyOwnGraphStructure) SetStrict(strict bool) {}
-func (this *MyOwnGraphStructure) SetDir(directed bool)  {}
-func (this *MyOwnGraphStructure) SetName(name string)   {}
-func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
+func (myown *MyOwnGraphStructure) SetStrict(strict bool) {}
+func (myown *MyOwnGraphStructure) SetDir(directed bool)  {}
+func (myown *MyOwnGraphStructure) SetName(name string)   {}
+func (myown *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
 	srci, err := strconv.Atoi(src)
 	if err != nil {
 		return err
@@ -85,31 +85,31 @@ func (this *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, 
 	if err != nil {
 		return err
 	}
-	if _, ok := this.weights[srci]; !ok {
-		this.weights[srci] = make(map[int]int)
+	if _, ok := myown.weights[srci]; !ok {
+		myown.weights[srci] = make(map[int]int)
 	}
-	this.weights[srci][dsti] = ai
-	if srci > this.max {
-		this.max = srci
+	myown.weights[srci][dsti] = ai
+	if srci > myown.max {
+		myown.max = srci
 	}
-	if dsti > this.max {
-		this.max = dsti
+	if dsti > myown.max {
+		myown.max = dsti
 	}
 	return nil
 }
-func (this *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) error {
-	return this.AddPortEdge(src, "", dst, "", directed, attrs)
+func (myown *MyOwnGraphStructure) AddEdge(src, dst string, directed bool, attrs map[string]string) error {
+	return myown.AddPortEdge(src, "", dst, "", directed, attrs)
 }
-func (this *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) error {
+func (myown *MyOwnGraphStructure) AddNode(parentGraph string, name string, attrs map[string]string) error {
 	return nil
 }
-func (this *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string) error {
+func (myown *MyOwnGraphStructure) AddAttr(parentGraph string, field, value string) error {
 	return nil
 }
-func (this *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs map[string]string) error {
+func (myown *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, attrs map[string]string) error {
 	return nil
 }
-func (this *MyOwnGraphStructure) String() string { return "" }
+func (myown *MyOwnGraphStructure) String() string { return "" }
 
 //An Example of how to parse into your own simpler graph structure and output it back to graphviz.
 //This example reads in only numbers and outputs a matrix graph.

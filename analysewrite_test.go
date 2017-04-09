@@ -23,18 +23,18 @@ import (
 	"github.com/awalterschulze/gographviz/internal/parser"
 )
 
-func (this *Nodes) String() string {
+func (nodes *Nodes) String() string {
 	s := "Nodes:"
-	for i := range this.Nodes {
-		s += fmt.Sprintf("Node{%v}", this.Nodes[i])
+	for i := range nodes.Nodes {
+		s += fmt.Sprintf("Node{%v}", nodes.Nodes[i])
 	}
 	return s + "\n"
 }
 
-func (this *Edges) String() string {
+func (edges *Edges) String() string {
 	s := "Edges:"
-	for i := range this.Edges {
-		s += fmt.Sprintf("Edge{%v}", this.Edges[i])
+	for i := range edges.Edges {
+		s += fmt.Sprintf("Edge{%v}", edges.Edges[i])
 	}
 	return s + "\n"
 }

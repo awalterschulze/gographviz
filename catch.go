@@ -41,42 +41,42 @@ type errCatcher struct {
 	errs []error
 }
 
-func (this *errCatcher) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
-	if err := this.Interface.AddPortEdge(src, srcPort, dst, dstPort, directed, attrs); err != nil {
-		this.errs = append(this.errs, err)
+func (e *errCatcher) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
+	if err := e.Interface.AddPortEdge(src, srcPort, dst, dstPort, directed, attrs); err != nil {
+		e.errs = append(e.errs, err)
 	}
 }
 
-func (this *errCatcher) AddEdge(src, dst string, directed bool, attrs map[string]string) {
-	if err := this.Interface.AddEdge(src, dst, directed, attrs); err != nil {
-		this.errs = append(this.errs, err)
+func (e *errCatcher) AddEdge(src, dst string, directed bool, attrs map[string]string) {
+	if err := e.Interface.AddEdge(src, dst, directed, attrs); err != nil {
+		e.errs = append(e.errs, err)
 	}
 }
 
-func (this *errCatcher) AddAttr(parentGraph string, field, value string) {
-	if err := this.Interface.AddAttr(parentGraph, field, value); err != nil {
-		this.errs = append(this.errs, err)
+func (e *errCatcher) AddAttr(parentGraph string, field, value string) {
+	if err := e.Interface.AddAttr(parentGraph, field, value); err != nil {
+		e.errs = append(e.errs, err)
 	}
 }
 
-func (this *errCatcher) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
-	if err := this.Interface.AddSubGraph(parentGraph, name, attrs); err != nil {
-		this.errs = append(this.errs, err)
+func (e *errCatcher) AddSubGraph(parentGraph string, name string, attrs map[string]string) {
+	if err := e.Interface.AddSubGraph(parentGraph, name, attrs); err != nil {
+		e.errs = append(e.errs, err)
 	}
 }
 
-func (this *errCatcher) AddNode(parentGraph string, name string, attrs map[string]string) {
-	if err := this.Interface.AddNode(parentGraph, name, attrs); err != nil {
-		this.errs = append(this.errs, err)
+func (e *errCatcher) AddNode(parentGraph string, name string, attrs map[string]string) {
+	if err := e.Interface.AddNode(parentGraph, name, attrs); err != nil {
+		e.errs = append(e.errs, err)
 	}
 }
 
-func (this *errCatcher) getError() error {
-	if len(this.errs) == 0 {
+func (e *errCatcher) getError() error {
+	if len(e.errs) == 0 {
 		return nil
 	}
-	ss := make([]string, len(this.errs))
-	for i, err := range this.errs {
+	ss := make([]string, len(e.errs))
+	for i, err := range e.errs {
 		ss[i] = err.Error()
 	}
 	return fmt.Errorf("errors: [%s]", strings.Join(ss, ","))
