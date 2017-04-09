@@ -32,7 +32,7 @@ const (
 	DAMPING            Attr = "Damping"
 	K                  Attr = "K"
 	URL                Attr = "URL"
-	_BACKGROUND        Attr = "_background"
+	BACKGROUND         Attr = "_background"
 	AREA               Attr = "area"
 	ARROWHEAD          Attr = "arrowhead"
 	ARROWSIZE          Attr = "arrowsize"
@@ -209,7 +209,7 @@ var validAttrs = map[string]Attr{
 	string(DAMPING):            DAMPING,
 	string(K):                  K,
 	string(URL):                URL,
-	string(_BACKGROUND):        _BACKGROUND,
+	string(BACKGROUND):         BACKGROUND,
 	string(AREA):               AREA,
 	string(ARROWHEAD):          ARROWHEAD,
 	string(ARROWSIZE):          ARROWSIZE,
