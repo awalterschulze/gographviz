@@ -21,8 +21,12 @@ import (
 
 func TestEscape(t *testing.T) {
 	g := NewEscape()
-	g.SetName("asdf adsf")
-	g.SetDir(true)
+	if err := g.SetName("asdf adsf"); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.SetDir(true); err != nil {
+		t.Fatal(err)
+	}
 	if err := g.AddNode("asdf asdf", "kasdf99 99", map[string]string{
 		"URL": "<a",
 	}); err != nil {
@@ -56,8 +60,12 @@ func TestEscape(t *testing.T) {
 
 func TestClusterSubgraphs(t *testing.T) {
 	g := NewEscape()
-	g.SetName("G")
-	g.SetDir(false)
+	if err := g.SetName("G"); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.SetDir(false); err != nil {
+		t.Fatal(err)
+	}
 	if err := g.AddSubGraph("G", "cluster0", nil); err != nil {
 		t.Fatal(err)
 	}

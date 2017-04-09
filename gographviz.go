@@ -27,9 +27,9 @@ var _ Interface = NewGraph()
 
 //Interface allows you to parse the graph into your own structure.
 type Interface interface {
-	SetStrict(strict bool)
-	SetDir(directed bool)
-	SetName(name string)
+	SetStrict(strict bool) error
+	SetDir(directed bool) error
+	SetName(name string) error
 	AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error
 	AddEdge(src, dst string, directed bool, attrs map[string]string) error
 	AddNode(parentGraph string, name string, attrs map[string]string) error

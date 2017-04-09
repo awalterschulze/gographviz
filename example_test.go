@@ -36,8 +36,12 @@ func ExampleRead() {
 
 func ExampleNewGraph() {
 	g := NewGraph()
-	g.SetName("G")
-	g.SetDir(true)
+	if err := g.SetName("G"); err != nil {
+		panic(err)
+	}
+	if err := g.SetDir(true); err != nil {
+		panic(err)
+	}
 	if err := g.AddNode("G", "Hello", nil); err != nil {
 		panic(err)
 	}
@@ -69,9 +73,9 @@ func NewMyOwnGraphStructure() *MyOwnGraphStructure {
 	}
 }
 
-func (myown *MyOwnGraphStructure) SetStrict(strict bool) {}
-func (myown *MyOwnGraphStructure) SetDir(directed bool)  {}
-func (myown *MyOwnGraphStructure) SetName(name string)   {}
+func (myown *MyOwnGraphStructure) SetStrict(strict bool) error { return nil }
+func (myown *MyOwnGraphStructure) SetDir(directed bool) error  { return nil }
+func (myown *MyOwnGraphStructure) SetName(name string) error   { return nil }
 func (myown *MyOwnGraphStructure) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) error {
 	srci, err := strconv.Atoi(src)
 	if err != nil {
@@ -132,8 +136,12 @@ func ExampleMyOwnGraphStructure() {
 		panic(err)
 	}
 	output := NewGraph()
-	output.SetName(name)
-	output.SetDir(true)
+	if err := output.SetName(name); err != nil {
+		panic(err)
+	}
+	if err := output.SetDir(true); err != nil {
+		panic(err)
+	}
 	for i := 1; i <= mine.max; i++ {
 		if err := output.AddNode(name, fmt.Sprintf("%v", i), nil); err != nil {
 			panic(err)

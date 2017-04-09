@@ -41,6 +41,24 @@ type errCatcher struct {
 	errs []error
 }
 
+func (e *errCatcher) SetStrict(strict bool) {
+	if err := e.Interface.SetStrict(strict); err != nil {
+		e.errs = append(e.errs, err)
+	}
+}
+
+func (e *errCatcher) SetDir(directed bool) {
+	if err := e.Interface.SetDir(directed); err != nil {
+		e.errs = append(e.errs, err)
+	}
+}
+
+func (e *errCatcher) SetName(name string) {
+	if err := e.Interface.SetName(name); err != nil {
+		e.errs = append(e.errs, err)
+	}
+}
+
 func (e *errCatcher) AddPortEdge(src, srcPort, dst, dstPort string, directed bool, attrs map[string]string) {
 	if err := e.Interface.AddPortEdge(src, srcPort, dst, dstPort, directed, attrs); err != nil {
 		e.errs = append(e.errs, err)

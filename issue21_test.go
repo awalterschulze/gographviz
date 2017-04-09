@@ -62,8 +62,12 @@ func TestIssue21Subgraph(t *testing.T) {
 	}
 
 	g := NewGraph()
-	g.SetName("G")
-	g.SetDir(true)
+	if err := g.SetName("G"); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.SetDir(true); err != nil {
+		t.Fatal(err)
+	}
 
 	if err := g.AddNode("G", "Ga", nil); err != nil {
 		t.Fatal(err)

@@ -48,18 +48,21 @@ func NewGraph() *Graph {
 // SetStrict sets whether a graph is strict.
 // If the graph is strict then multiple edges are not allowed between the same pairs of nodes,
 // see dot man page.
-func (g *Graph) SetStrict(strict bool) {
+func (g *Graph) SetStrict(strict bool) error {
 	g.Strict = strict
+	return nil
 }
 
 // SetDir sets whether the graph is directed (true) or undirected (false).
-func (g *Graph) SetDir(dir bool) {
+func (g *Graph) SetDir(dir bool) error {
 	g.Directed = dir
+	return nil
 }
 
 // SetName sets the graph name.
-func (g *Graph) SetName(name string) {
+func (g *Graph) SetName(name string) error {
 	g.Name = name
+	return nil
 }
 
 // AddPortEdge adds an edge to the graph from node src to node dst.

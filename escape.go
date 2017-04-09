@@ -152,8 +152,8 @@ func escAttrs(attrs map[string]string) map[string]string {
 }
 
 // SetName sets the graph name and escapes it, if needed.
-func (escape *Escape) SetName(name string) {
-	escape.Graph.SetName(esc(name))
+func (escape *Escape) SetName(name string) error {
+	return escape.Graph.SetName(esc(name))
 }
 
 // AddPortEdge adds an edge with ports and escapes the src, dst and attrs, if needed.
