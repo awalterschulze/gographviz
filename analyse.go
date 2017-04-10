@@ -18,78 +18,82 @@ import (
 	"github.com/awalterschulze/gographviz/ast"
 )
 
-//Creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
-func NewAnalysedGraph(graph *ast.Graph) *Graph {
+// NewAnalysedGraph creates a Graph structure by analysing an Abstract Syntax Tree representing a parsed graph.
+func NewAnalysedGraph(graph *ast.Graph) (*Graph, error) {
 	g := NewGraph()
-	Analyse(graph, g)
-	return g
+	if err := Analyse(graph, g); err != nil {
+		return nil, err
+	}
+	return g, nil
 }
 
-//Analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface.
-func Analyse(graph *ast.Graph, g Interface) {
-	graph.Walk(&graphVisitor{g})
+// Analyse analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface.
+func Analyse(graph *ast.Graph, g Interface) error {
+	gerr := newErrCatcher(g)
+	graph.Walk(&graphVisitor{gerr})
+	return gerr.getError()
 }
 
 type nilVisitor struct {
 }
 
-func (this *nilVisitor) Visit(v ast.Elem) ast.Visitor {
-	return this
+func (w *nilVisitor) Visit(v ast.Elem) ast.Visitor {
+	return w
 }
 
 type graphVisitor struct {
-	g Interface
+	g errInterface
 }
 
-func (this *graphVisitor) Visit(v ast.Elem) ast.Visitor {
+func (w *graphVisitor) Visit(v ast.Elem) ast.Visitor {
 	graph, ok := v.(*ast.Graph)
 	if !ok {
-		return this
+		return w
 	}
-	this.g.SetStrict(graph.Strict)
-	this.g.SetDir(graph.Type == ast.DIGRAPH)
-	graphName := graph.Id.String()
-	this.g.SetName(graphName)
-	return newStmtVisitor(this.g, graphName)
+	w.g.SetStrict(graph.Strict)
+	w.g.SetDir(graph.Type == ast.DIGRAPH)
+	graphName := graph.ID.String()
+	w.g.SetName(graphName)
+	return newStmtVisitor(w.g, graphName)
 }
 
-func newStmtVisitor(g Interface, graphName string) *stmtVisitor {
-	return &stmtVisitor{g, graphName, make(Attrs), make(Attrs), make(Attrs)}
+func newStmtVisitor(g errInterface, graphName string) *stmtVisitor {
+	return &stmtVisitor{g, graphName, make(map[string]string), make(map[string]string), make(map[string]string)}
 }
 
 type stmtVisitor struct {
-	g                 Interface
+	g                 errInterface
 	graphName         string
-	currentNodeAttrs  Attrs
-	currentEdgeAttrs  Attrs
-	currentGraphAttrs Attrs
+	currentNodeAttrs  map[string]string
+	currentEdgeAttrs  map[string]string
+	currentGraphAttrs map[string]string
 }
 
-func (this *stmtVisitor) Visit(v ast.Elem) ast.Visitor {
+func (w *stmtVisitor) Visit(v ast.Elem) ast.Visitor {
 	switch s := v.(type) {
 	case ast.NodeStmt:
-		return this.nodeStmt(s)
+		return w.nodeStmt(s)
 	case ast.EdgeStmt:
-		return this.edgeStmt(s)
+		return w.edgeStmt(s)
 	case ast.NodeAttrs:
-		return this.nodeAttrs(s)
+		return w.nodeAttrs(s)
 	case ast.EdgeAttrs:
-		return this.edgeAttrs(s)
+		return w.edgeAttrs(s)
 	case ast.GraphAttrs:
-		return this.graphAttrs(s)
+		return w.graphAttrs(s)
 	case *ast.SubGraph:
-		return this.subGraph(s)
+		return w.subGraph(s)
 	case *ast.Attr:
-		return this.attr(s)
+		return w.attr(s)
 	case ast.AttrList:
 		return &nilVisitor{}
 	default:
 		//fmt.Fprintf(os.Stderr, "unknown stmt %T\n", v)
 	}
-	return this
+	return w
 }
 
-func ammend(attrs Attrs, add Attrs) Attrs {
+func ammend(attrs map[string]string, add map[string]string) map[string]string {
 	for key, value := range add {
 		if _, ok := attrs[key]; !ok {
 			attrs[key] = value
@@ -98,71 +102,70 @@ func ammend(attrs Attrs, add Attrs) Attrs {
 	return attrs
 }
 
-func overwrite(attrs Attrs, overwrite Attrs) Attrs {
+func overwrite(attrs map[string]string, overwrite map[string]string) map[string]string {
 	for key, value := range overwrite {
 		attrs[key] = value
 	}
 	return attrs
 }
 
-func (this *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
-	attrs := Attrs(stmt.Attrs.GetMap())
-	attrs = ammend(attrs, this.currentNodeAttrs)
-	this.g.AddNode(this.graphName, stmt.NodeId.String(), attrs)
+func (w *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
+	attrs := ammend(stmt.Attrs.GetMap(), w.currentNodeAttrs)
+	w.g.AddNode(w.graphName, stmt.NodeID.String(), attrs)
 	return &nilVisitor{}
 }
 
-func (this *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
+func (w *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	attrs := stmt.Attrs.GetMap()
-	attrs = ammend(attrs, this.currentEdgeAttrs)
-	src := stmt.Source.GetId()
+	attrs = ammend(attrs, w.currentEdgeAttrs)
+	src := stmt.Source.GetID()
 	srcName := src.String()
 	if stmt.Source.IsNode() {
-		this.g.AddNode(this.graphName, srcName, this.currentNodeAttrs.Copy())
+		w.g.AddNode(w.graphName, srcName, w.currentNodeAttrs)
 	}
 	srcPort := stmt.Source.GetPort()
 	for i := range stmt.EdgeRHS {
 		directed := bool(stmt.EdgeRHS[i].Op)
-		dst := stmt.EdgeRHS[i].Destination.GetId()
+		dst := stmt.EdgeRHS[i].Destination.GetID()
 		dstName := dst.String()
 		if stmt.EdgeRHS[i].Destination.IsNode() {
-			this.g.AddNode(this.graphName, dstName, this.currentNodeAttrs.Copy())
+			w.g.AddNode(w.graphName, dstName, w.currentNodeAttrs)
 		}
 		dstPort := stmt.EdgeRHS[i].Destination.GetPort()
-		this.g.AddPortEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
+		w.g.AddPortEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
 		src = dst
 		srcPort = dstPort
 		srcName = dstName
 	}
-	return this
+	return w
 }
 
-func (this *stmtVisitor) nodeAttrs(stmt ast.NodeAttrs) ast.Visitor {
-	this.currentNodeAttrs = overwrite(this.currentNodeAttrs, ast.AttrList(stmt).GetMap())
+func (w *stmtVisitor) nodeAttrs(stmt ast.NodeAttrs) ast.Visitor {
+	w.currentNodeAttrs = overwrite(w.currentNodeAttrs, ast.AttrList(stmt).GetMap())
 	return &nilVisitor{}
 }
 
-func (this *stmtVisitor) edgeAttrs(stmt ast.EdgeAttrs) ast.Visitor {
-	this.currentEdgeAttrs = overwrite(this.currentEdgeAttrs, ast.AttrList(stmt).GetMap())
+func (w *stmtVisitor) edgeAttrs(stmt ast.EdgeAttrs) ast.Visitor {
+	w.currentEdgeAttrs = overwrite(w.currentEdgeAttrs, ast.AttrList(stmt).GetMap())
 	return &nilVisitor{}
 }
 
-func (this *stmtVisitor) graphAttrs(stmt ast.GraphAttrs) ast.Visitor {
+func (w *stmtVisitor) graphAttrs(stmt ast.GraphAttrs) ast.Visitor {
 	attrs := ast.AttrList(stmt).GetMap()
 	for key, value := range attrs {
-		this.g.AddAttr(this.graphName, key, value)
+		w.g.AddAttr(w.graphName, key, value)
 	}
-	this.currentGraphAttrs = overwrite(this.currentGraphAttrs, attrs)
+	w.currentGraphAttrs = overwrite(w.currentGraphAttrs, attrs)
 	return &nilVisitor{}
 }
 
-func (this *stmtVisitor) subGraph(stmt *ast.SubGraph) ast.Visitor {
-	subGraphName := stmt.Id.String()
-	this.g.AddSubGraph(this.graphName, subGraphName, this.currentGraphAttrs)
-	return newStmtVisitor(this.g, subGraphName)
+func (w *stmtVisitor) subGraph(stmt *ast.SubGraph) ast.Visitor {
+	subGraphName := stmt.ID.String()
+	w.g.AddSubGraph(w.graphName, subGraphName, w.currentGraphAttrs)
+	return newStmtVisitor(w.g, subGraphName)
 }
 
-func (this *stmtVisitor) attr(stmt *ast.Attr) ast.Visitor {
-	this.g.AddAttr(this.graphName, stmt.Field.String(), stmt.Value.String())
-	return this
+func (w *stmtVisitor) attr(stmt *ast.Attr) ast.Visitor {
+	w.g.AddAttr(w.graphName, stmt.Field.String(), stmt.Value.String())
+	return w
 }

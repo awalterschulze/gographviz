@@ -7,7 +7,9 @@ This parser has been created using [gocc](http://code.google.com/p/gocc).
 ```
 graphAst, _ := gographviz.ParseString(`digraph G {}`)
 graph := gographviz.NewGraph()
-gographviz.Analyse(graphAst, graph)
+if err := gographviz.Analyse(graphAst, graph); err != nil {
+    panic(err)
+}
 graph.AddNode("G", "a", nil)
 graph.AddNode("G", "b", nil)
 graph.AddEdge("a", "b", true, nil)
