@@ -1,6 +1,6 @@
 regenerate:
 	go install github.com/goccmack/gocc
-	gocc -o ./internal/ dot.bnf 
+	gocc -zip -o ./internal/ dot.bnf 
 	find . -type f -name '*.go' | xargs goimports -w
 
 test:
