@@ -15,8 +15,6 @@
 //This bnf has been derived from http://www.graphviz.org/content/dot-language
 //The rules have been copied and are shown in the comments, with their derived bnf rules below.
 
-//TODO: Note there are still 3 sections on the webpage which have not been included (Subgraphs and Clusters, Lexical and Semantic Notes, and Character Encodings)
-
 // ### [ Tokens ] ##############################################################
 
 // The keywords node, edge, graph, digraph, subgraph, and strict are case-
@@ -126,12 +124,6 @@ _int_lit
 // In quoted strings in DOT, the only escaped character is double-quote (").
 // That is, in quoted strings, the dyad \" is converted to "; all other
 // characters are left unchanged. In particular, \\ remains \\.
-
-// TODO: As another aid for readability, dot allows double-quoted strings to span
-// multiple physical lines using the standard C convention of a backslash
-// immediately preceding a newline character.
-
-// TODO: In addition, double-quoted strings can be concatenated using a '+' operator.
 
 _escaped_char : '\\' ( _unicode_char | '"' | '\\' ) ;
 _char         : _unicode_char | _escaped_char ;
