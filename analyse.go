@@ -112,19 +112,23 @@ func overwrite(attrs map[string]string, overwrite map[string]string) map[string]
 	return attrs
 }
 
-func (w *stmtVisitor) addNode(nodeID string, attrs map[string]string) {
+func (w *stmtVisitor) addNodeFromEdge(nodeID string) {
 	if _, ok := w.createdNodes[nodeID]; !ok {
 		w.createdNodes[nodeID] = struct{}{}
-		if attrs == nil {
-			attrs = make(map[string]string)
-		}
-		attrs = ammend(attrs, w.currentNodeAttrs)
+		w.g.AddNode(w.graphName, nodeID, w.currentNodeAttrs)
 	}
-	w.g.AddNode(w.graphName, nodeID, attrs)
 }
 
 func (w *stmtVisitor) nodeStmt(stmt ast.NodeStmt) ast.Visitor {
-	w.addNode(stmt.NodeID.String(), stmt.Attrs.GetMap())
+	nodeID := stmt.NodeID.String()
+	var defaultAttrs map[string]string
+	if _, ok := w.createdNodes[nodeID]; !ok {
+		defaultAttrs = w.currentNodeAttrs
+		w.createdNodes[nodeID] = struct{}{}
+	}
+	// else the defaults were already inherited
+	attrs := ammend(stmt.Attrs.GetMap(), defaultAttrs)
+	w.g.AddNode(w.graphName, nodeID, attrs)
 	return &nilVisitor{}
 }
 
@@ -134,7 +138,7 @@ func (w *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 	src := stmt.Source.GetID()
 	srcName := src.String()
 	if stmt.Source.IsNode() {
-		w.addNode(srcName, nil)
+		w.addNodeFromEdge(srcName)
 	}
 	srcPort := stmt.Source.GetPort()
 	for i := range stmt.EdgeRHS {
@@ -142,7 +146,7 @@ func (w *stmtVisitor) edgeStmt(stmt ast.EdgeStmt) ast.Visitor {
 		dst := stmt.EdgeRHS[i].Destination.GetID()
 		dstName := dst.String()
 		if stmt.EdgeRHS[i].Destination.IsNode() {
-			w.addNode(dstName, nil)
+			w.addNodeFromEdge(dstName)
 		}
 		dstPort := stmt.EdgeRHS[i].Destination.GetPort()
 		w.g.AddPortEdge(srcName, srcPort.String(), dstName, dstPort.String(), directed, attrs)
