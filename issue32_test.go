@@ -24,8 +24,14 @@ func TestIssue32DefaultAttrs(t *testing.T) {
 	digraph G {
 		node [shape=record, fillcolor=red, style=filled];
 		A [shape=circle];
-		A -> B;
+		A -> B -> C;
 		B [fillcolor=blue];
+		node [shape=ellipse, fillcolor=yellow, color=brown];
+		A -> C;
+		C [fillcolor=green, color=gray];
+		node [shape=triangle];
+		C [fillcolor=orange];
+		C -> D;
 	}
 	`
 
@@ -41,11 +47,23 @@ func TestIssue32DefaultAttrs(t *testing.T) {
 	}
 	for _, c := range []nodeCase{
 		{"A", "shape", "circle"},
+		// Simple inheritance
 		{"A", "fillcolor", "red"},
 		{"B", "shape", "record"},
-		// Node declarations after the nodes' edges
+		// The attributes from a node's latest statement take precedence.
+		{"C", "fillcolor", "orange"},
+		// Default attributes appearing after a node's statement are not used.
+		{"A", "color", ""},
+		// Node statements after the nodes' edges
 		// still override the default attributes.
 		{"B", "fillcolor", "blue"},
+		// The default attributes from a node's first appearance are used,
+		// whether from an edge statement or a node statement.
+		{"C", "shape", "record"},
+		// Non-conflicting default attributes are cumulative.
+		{"D", "style", "filled"},
+		// Attributes from node statements are cumulative.
+		{"C", "color", "gray"},
 	} {
 		node := g.Nodes.Lookup[c.name]
 		if value := node.Attrs[c.attr]; value != c.value {

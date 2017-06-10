@@ -35,11 +35,11 @@ func NewNodes() *Nodes {
 	return &Nodes{make(map[string]*Node), make([]*Node, 0)}
 }
 
-// Add adds a Node to the set of Nodes, ammending the attributes of an already existing node.
+// Add adds a Node to the set of Nodes, extending the attributes of an already existing node.
 func (nodes *Nodes) Add(node *Node) {
 	n, ok := nodes.Lookup[node.Name]
 	if ok {
-		n.Attrs.Ammend(node.Attrs)
+		n.Attrs.Extend(node.Attrs)
 		return
 	}
 	nodes.Lookup[node.Name] = node
