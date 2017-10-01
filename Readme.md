@@ -30,7 +30,7 @@ go get github.com/awalterschulze/gographviz
 ### Users ###
 
   - [aptly](https://github.com/smira/aptly) - Debian repository management tool
-  - [gorgonai](https://github.com/chewxy/gorgonia) - A Library that helps facilitate machine learning in Go
+  - [gorgonia](https://github.com/chewxy/gorgonia) - A Library that helps facilitate machine learning in Go
 
 ### Mentions ###
 
