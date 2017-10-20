@@ -104,7 +104,11 @@ func NewGraph(t, strict, id, l Attrib) (*Graph, error) {
 }
 
 func (this *Graph) String() string {
-	s := this.Type.String() + " " + this.ID.String() + " {\n"
+	var s string
+	if this.Strict {
+		s += "strict "
+	}
+	s += this.Type.String() + " " + this.ID.String() + " {\n"
 	if this.StmtList != nil {
 		s += this.StmtList.String()
 	}
