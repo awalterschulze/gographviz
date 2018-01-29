@@ -597,7 +597,7 @@ func MakeNodeID(id string, port string) *NodeID {
 	if len(port) > 0 {
 		ps := strings.Split(port, ":")
 		p.ID1 = ID(ps[0])
-		if len(ps) > 2 {
+		if len(ps) > 1 {
 			p.ID2 = ID(ps[1])
 		}
 	}
