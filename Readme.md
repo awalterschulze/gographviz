@@ -31,6 +31,7 @@ go get github.com/awalterschulze/gographviz
 
   - [aptly](https://github.com/smira/aptly) - Debian repository management tool
   - [gorgonia](https://github.com/chewxy/gorgonia) - A Library that helps facilitate machine learning in Go
+  - [imagemonkey](https://imagemonkey.io/graph?editor=true) - Let's create our own image dataset
 
 ### Mentions ###
 
