@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-//This bnf has been derived from http://www.graphviz.org/content/dot-language
+//This bnf has been derived from https://graphviz.gitlab.io/_pages/doc/info/lang.html
 //The rules have been copied and are shown in the comments, with their derived bnf rules below.
 
 // ### [ Tokens ] ##############################################################
