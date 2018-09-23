@@ -97,6 +97,29 @@ func (g *Graph) AddNode(parentGraph string, name string, attrs map[string]string
 	return nil
 }
 
+// RemoveNode removes a node from the graph
+func (g *Graph) RemoveNode(parentGraph string, name string) error {
+	err := g.Nodes.Remove(name)
+	if err != nil {
+		return err
+	}
+
+	g.Relations.Remove(parentGraph, name)
+
+	edges := NewEdges()
+	for _, e := range g.Edges.Edges {
+		if e.Dst == name || e.Src == name {
+			continue
+		}
+
+		edges.Add(e)
+	}
+
+	g.Edges = edges
+
+	return nil
+}
+
 func (g *Graph) getAttrs(graphName string) (Attrs, error) {
 	if g.Name == graphName {
 		return g.Attrs, nil
