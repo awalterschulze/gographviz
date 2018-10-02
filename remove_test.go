@@ -205,3 +205,194 @@ func TestRemoveNode(t *testing.T) {
 		t.Fatalf("output is not expected")
 	}
 }
+
+func TestRemoveSubGraph(t *testing.T) {
+	g := NewGraph()
+	if err := g.SetName("G"); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.SetDir(true); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("G", "Hello", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("G", "World", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddEdge("Hello", "World", true, nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("G", "cluster_Core", map[string]string{
+		"label": "Core",
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("cluster_Core", "CoreFunction", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("G", "cluster_Supporting", map[string]string{
+		"label": "Supporting",
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("cluster_Supporting", "SupportingFunction", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("G", "cluster_Development", map[string]string{
+		"label": "Development",
+	}); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("cluster_Development", "DevelopmentFunction", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddPortEdge("DevelopmentFunction", "cluster_Development", "CoreFunction", "cluster_Core", true, nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddPortEdge("SupportingFunction", "cluster_Supporting", "CoreFunction", "cluster_Core", true, nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddPortEdge("Hello", "", "CoreFunction", "cluster_Core", true, nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddSubGraph("G", "cluster_FooBar", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddEdge("Hello", "cluster_FooBar", true, nil); err != nil {
+		t.Fatal(err)
+	}
+
+	expected := `digraph G {
+	Hello->World;
+	DevelopmentFunction:cluster_Development->CoreFunction:cluster_Core;
+	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
+	Hello->CoreFunction:cluster_Core;
+	Hello->cluster_FooBar;
+	subgraph cluster_Core {
+	label=Core;
+	CoreFunction;
+
+}
+;
+	subgraph cluster_Development {
+	label=Development;
+	DevelopmentFunction;
+
+}
+;
+	subgraph cluster_FooBar {
+
+}
+;
+	subgraph cluster_Supporting {
+	label=Supporting;
+	SupportingFunction;
+
+}
+;
+	Hello;
+	World;
+
+}
+`
+	if g.String() != expected {
+		t.Fatalf("output is not expected")
+	}
+
+	if err := g.RemoveSubGraph("G", "cluster_Development"); err != nil {
+		t.Fatal(err)
+	}
+
+	expected = `digraph G {
+	Hello->World;
+	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
+	Hello->CoreFunction:cluster_Core;
+	Hello->cluster_FooBar;
+	subgraph cluster_Core {
+	label=Core;
+	CoreFunction;
+
+}
+;
+	subgraph cluster_FooBar {
+
+}
+;
+	subgraph cluster_Supporting {
+	label=Supporting;
+	SupportingFunction;
+
+}
+;
+	Hello;
+	World;
+
+}
+`
+	if g.String() != expected {
+		t.Fatalf("output is not expected")
+	}
+
+	if err := g.RemoveSubGraph("G", "cluster_Supporting"); err != nil {
+		t.Fatal(err)
+	}
+
+	expected = `digraph G {
+	Hello->World;
+	Hello->CoreFunction:cluster_Core;
+	Hello->cluster_FooBar;
+	subgraph cluster_Core {
+	label=Core;
+	CoreFunction;
+
+}
+;
+	subgraph cluster_FooBar {
+
+}
+;
+	Hello;
+	World;
+
+}
+`
+	if g.String() != expected {
+		t.Fatalf("output is not expected")
+	}
+
+	if err := g.RemoveSubGraph("G", "cluster_Core"); err != nil {
+		t.Fatal(err)
+	}
+
+	expected = `digraph G {
+	Hello->World;
+	Hello->cluster_FooBar;
+	subgraph cluster_FooBar {
+
+}
+;
+	Hello;
+	World;
+
+}
+`
+	if g.String() != expected {
+		t.Fatalf("output is not expected")
+	}
+
+	if err := g.RemoveSubGraph("G", "cluster_FooBar"); err != nil {
+		t.Fatal(err)
+	}
+
+	expected = `digraph G {
+	Hello->World;
+	Hello;
+	World;
+
+}
+`
+	if g.String() != expected {
+		t.Fatalf("output is not expected")
+	}
+}

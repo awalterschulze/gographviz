@@ -152,6 +152,32 @@ func (g *Graph) AddSubGraph(parentGraph string, name string, attrs map[string]st
 	return nil
 }
 
+// RemoveSubGraph removes the subgraph including nodes
+func (g *Graph) RemoveSubGraph(parentGraph string, name string) error {
+	for child := range g.Relations.ParentToChildren[name] {
+		err := g.RemoveNode(parentGraph, child)
+		if err != nil {
+			return err
+		}
+	}
+
+	g.Relations.Remove(parentGraph, name)
+	g.SubGraphs.Remove(name)
+
+	edges := NewEdges()
+	for _, e := range g.Edges.Edges {
+		if e.Dst == name || e.DstPort == name || e.Src == name || e.SrcPort == name {
+			continue
+		}
+
+		edges.Add(e)
+	}
+
+	g.Edges = edges
+
+	return nil
+}
+
 // IsNode returns whether a given node name exists as a node in the graph.
 func (g *Graph) IsNode(name string) bool {
 	_, ok := g.Nodes.Lookup[name]
