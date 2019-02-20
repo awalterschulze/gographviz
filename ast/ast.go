@@ -25,10 +25,6 @@ import (
 	"github.com/awalterschulze/gographviz/internal/token"
 )
 
-var (
-	r = rand.New(rand.NewSource(1234))
-)
-
 type Visitor interface {
 	Visit(e Elem) Visitor
 }
@@ -184,11 +180,11 @@ type SubGraph struct {
 }
 
 func NewSubGraph(id, l Attrib) (*SubGraph, error) {
-	g := &SubGraph{ID: ID(fmt.Sprintf("anon%d", r.Int63()))}
-	if id != nil {
-		if len(id.(ID)) > 0 {
-			g.ID = id.(ID)
-		}
+	g := &SubGraph{}
+	if id == nil {
+		g.ID = ID(fmt.Sprintf("anon%d", rand.Int63()))
+	} else if len(id.(ID)) > 0 {
+		g.ID = id.(ID)
 	}
 	if l != nil {
 		g.StmtList = l.(StmtList)
