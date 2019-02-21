@@ -191,7 +191,7 @@ func NewSubGraph(maybeId, l Attrib) (*SubGraph, error) {
 		g.ID = ID(fmt.Sprintf("anon%d", randInt63()))
 	} else if ok && (len(id) > 0) {
 		g.ID = id
-	} else if maybeId != nil && !ok {
+	} else {
 		return nil, fmt.Errorf("expected maybeId.(ID) got=%v", maybeId)
 	}
 	if l != nil {
