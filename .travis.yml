@@ -7,5 +7,4 @@ script:
 language: go
 
 go:
-  - "1.x"
-  - tip
+  - 1.x
