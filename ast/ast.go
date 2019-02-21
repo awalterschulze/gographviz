@@ -200,7 +200,7 @@ func NewSubGraph(id, l Attrib) (*SubGraph, error) {
 
 func randInt63() int64 {
 	randLock.Lock()
-	result := r.int63()
+	result := r.Int63()
 	randLock.Unlock()
 	return result
 }
