@@ -189,8 +189,10 @@ func NewSubGraph(id, l Attrib) (*SubGraph, error) {
 	g := &SubGraph{}
 	if idTyped, ok := id.(ID); id == nil || (ok && len(idTyped) == 0) {
 		g.ID = ID(fmt.Sprintf("anon%d", randInt63()))
-	} else if len(idTyped) > 0 {
+	} else if ok && (len(idTyped) > 0) {
 		g.ID = idTyped
+	} else if id != nil && !ok {
+		return nil, fmt.Errorf("expected id.(ID) got=%v", id)
 	}
 	if l != nil {
 		g.StmtList = l.(StmtList)
