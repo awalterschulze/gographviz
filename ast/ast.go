@@ -187,10 +187,10 @@ type SubGraph struct {
 
 func NewSubGraph(id, l Attrib) (*SubGraph, error) {
 	g := &SubGraph{}
-	if id == nil {
+	if idTyped, ok := id.(ID); id == nil || (ok && len(idTyped) == 0) {
 		g.ID = ID(fmt.Sprintf("anon%d", randInt63()))
-	} else if len(id.(ID)) > 0 {
-		g.ID = id.(ID)
+	} else if len(idTyped) > 0 {
+		g.ID = idTyped
 	}
 	if l != nil {
 		g.StmtList = l.(StmtList)
