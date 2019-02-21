@@ -185,14 +185,14 @@ type SubGraph struct {
 	StmtList StmtList
 }
 
-func NewSubGraph(id, l Attrib) (*SubGraph, error) {
+func NewSubGraph(maybeId, l Attrib) (*SubGraph, error) {
 	g := &SubGraph{}
-	if idTyped, ok := id.(ID); id == nil || (ok && len(idTyped) == 0) {
+	if id, ok := maybeId.(ID); maybeId == nil || (ok && len(id) == 0) {
 		g.ID = ID(fmt.Sprintf("anon%d", randInt63()))
-	} else if ok && (len(idTyped) > 0) {
-		g.ID = idTyped
-	} else if id != nil && !ok {
-		return nil, fmt.Errorf("expected id.(ID) got=%v", id)
+	} else if ok && (len(id) > 0) {
+		g.ID = id
+	} else if maybeId != nil && !ok {
+		return nil, fmt.Errorf("expected maybeId.(ID) got=%v", maybeId)
 	}
 	if l != nil {
 		g.StmtList = l.(StmtList)
