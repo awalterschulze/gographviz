@@ -27,7 +27,7 @@ import (
 )
 
 var (
-	r = rand.New(rand.NewSource(1234))
+	r        = rand.New(rand.NewSource(1234))
 	randLock sync.Mutex
 )
 
