@@ -33,6 +33,7 @@ go get github.com/awalterschulze/gographviz
   - [gorgonia](https://github.com/chewxy/gorgonia) - A Library that helps facilitate machine learning in Go
   - [imagemonkey](https://imagemonkey.io/graph?editor=true) - Let's create our own image dataset
   - [depviz](https://github.com/moul/depviz) - GitHub dependency visualizer (auto-roadmap)
+  - [kustomize-graph](https://github.com/jpreese/kustomize-graph) - A tool to visualize Kustomize dependencies
 
 ### Mentions ###
 
