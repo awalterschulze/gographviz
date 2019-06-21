@@ -34,7 +34,7 @@ func Analyse(graph *ast.Graph, g Interface) error {
 	return gerr.getError()
 }
 
-// AnalyseWithExtraAttrs analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface, will add extraAttr to authorized attributes 
+// Analyse analyses an Abstract Syntax Tree representing a parsed graph into a newly created graph structure Interface.
 func AnalyseWithExtraAttrs(graph *ast.Graph, g Interface, extraAttr []string) error {
 
 	backupValidAttrs := make(map[string]Attr)
@@ -51,7 +51,6 @@ func AnalyseWithExtraAttrs(graph *ast.Graph, g Interface, extraAttr []string) er
 	}
 	return err
 }
-
 
 type nilVisitor struct {
 }
