@@ -27,5 +27,8 @@ func TestInvalidAttr(t *testing.T) {
 	if err := AnalyseWithExtraAttrs(graphAst, graph, []string{"invalid", "invalid2"}); err != nil {
 		t.Fatal(err)
 	}
-
+	
+	if err := Analyse(graphAst, graph); err == nil {
+		t.Fatal(err)
+	}
 }
