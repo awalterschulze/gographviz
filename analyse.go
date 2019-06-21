@@ -34,6 +34,13 @@ func Analyse(graph *ast.Graph, g Interface) error {
 	return gerr.getError()
 }
 
+func AnalyseWithExtraAttrs(graph *ast.Graph, g Interface, extraAttr []string) error {
+	for _, v := range extraAttr {
+		validAttrs[v] = Attr(v)
+	}
+	return Analyse(graph, g)
+}
+
 type nilVisitor struct {
 }
 
