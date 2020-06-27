@@ -18,7 +18,8 @@ output := graph.String()
 
 ### Documentation ###
 
-The [godoc](https://godoc.org/github.com/awalterschulze/gographviz) includes some more examples.
+  - The [godoc](https://godoc.org/github.com/awalterschulze/gographviz) includes some more examples.
+  - [How to implement an anonymous subgraph](https://github.com/awalterschulze/gographviz/issues/59)
 
 ### Installation ###
 go get github.com/awalterschulze/gographviz
