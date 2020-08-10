@@ -106,6 +106,11 @@ func TestString(t *testing.T) {
 		`digraph finite_state { rankdir = "LR" }`)
 }
 
+func TestAttrImgPos(t *testing.T) {
+	anal(t,
+		"digraph finite_state { imagepos = tc }")
+}
+
 func TestAttrList(t *testing.T) {
 	anal(t, `
 digraph { node [ shape = doublecircle ] }`)
