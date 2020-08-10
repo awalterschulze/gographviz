@@ -35,6 +35,7 @@ go get github.com/awalterschulze/gographviz
   - [imagemonkey](https://imagemonkey.io/graph?editor=true) - Let's create our own image dataset
   - [depviz](https://github.com/moul/depviz) - GitHub dependency visualizer (auto-roadmap)
   - [kustomize-graph](https://github.com/jpreese/kustomize-graph) - A tool to visualize Kustomize dependencies
+  - [inframap](https://github.com/cycloidio/inframap) - Read your tfstate or HCL to generate a graph specific for each Terraform provider
 
 ### Mentions ###
 
