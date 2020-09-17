@@ -36,6 +36,7 @@ go get github.com/awalterschulze/gographviz
   - [depviz](https://github.com/moul/depviz) - GitHub dependency visualizer (auto-roadmap)
   - [kustomize-graph](https://github.com/jpreese/kustomize-graph) - A tool to visualize Kustomize dependencies
   - [inframap](https://github.com/cycloidio/inframap) - Read your tfstate or HCL to generate a graph specific for each Terraform provider
+  - [Antrea Traceflow](https://github.com/vmware-tanzu/antrea/blob/master/docs/traceflow-guide.md) supports using Traceflow for network diagnosis for Antrea, a Kubernetes networking solution intended to be Kubernetes native
 
 ### Mentions ###
 
