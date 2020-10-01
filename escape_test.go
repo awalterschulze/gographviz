@@ -46,11 +46,23 @@ func TestEscape(t *testing.T) {
 	if err := g.AddNode("asdf asdf", "a/b", nil); err != nil {
 		t.Fatal(err)
 	}
+	if err := g.AddNode("asdf asdf", "c.d", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("asdf asdf", "e-f", nil); err != nil {
+		t.Fatal(err)
+	}
+	if err := g.AddNode("asdf asdf", "12_34", nil); err != nil {
+		t.Fatal(err)
+	}
 	s := g.String()
 	if !strings.HasPrefix(s, `digraph "asdf adsf" {
 	"kasdf99 99"->7;
+	"12_34";
 	"a &lt;&lt; b";
 	"a/b";
+	"c.d";
+	"e-f";
 	"kasdf99 99" [ URL="<a" ];
 	7 [ URL="<a" ];
 
