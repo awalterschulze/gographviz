@@ -24,9 +24,10 @@ output := graph.String()
 ### Installation ###
 go get github.com/awalterschulze/gographviz
 
-### Tests ###
+### Build and Tests ###
 
-[![Build Status](https://travis-ci.org/awalterschulze/gographviz.svg?branch=master)](https://travis-ci.org/awalterschulze/gographviz)
+[![Build Status](https://github.com/awalterschulze/gographviz/workflows/build/badge.svg)](https://github.com/awalterschulze/gographviz/actions)
+
 
 ### Users ###
 
