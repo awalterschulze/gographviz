@@ -1,6 +1,6 @@
 name: build
 
-on: push
+on: [push, pull_request]
 
 jobs:
   build:
@@ -15,24 +15,11 @@ jobs:
       with:
         go-version: '1.14'
 
-    - name: Install dependencies
-      run: |
-        go version
-        go get github.com/goccmack/gocc
-        go get golang.org/x/tools/cmd/goimports
-        go get github.com/kisielk/errcheck
-        go get -u golang.org/x/lint/golint
-        go mod tidy
-
     - name: Run build
-      run: go build .
+      run: make build
 
     - name: Run checkers
-      run: |
-        errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
-        gofmt -l -s -w .
-        golint -set_exit_status
-        git diff --exit-code
+      run: make checkers
 
     - name: Run testing
-      run: go test ./...
+      run: make test
