@@ -8,7 +8,6 @@ help:
 
 regenerate: ## Re-generate lexers and parsers and pass through goimports
 	go get github.com/goccmack/gocc
-	go get golang.org/x/tools/cmd/goimports
 	go install github.com/goccmack/gocc
 	gocc -zip -o ./internal/ dot.bnf
 	find . -type f -name '*.go' | xargs goimports -w
@@ -27,10 +26,10 @@ dependencies: ## Grab necessary dependencies for checkers
 build: ## Perform build process
 	go build .
 
-checkers: dependencies ## Run all checkers (errcheck, gofmt and golint)
+checkers: ## Run all checkers (errcheck, gofmt and golint)
 	errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
 	gofmt -l -s -w .
 	golint -set_exit_status
 	git diff --exit-code
 
-action: build test checkers ## Run steps of github action
+action: dependencies regenerate build test checkers ## Run steps of github action
