@@ -20,7 +20,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/awalterschulze/gographviz/internal/parser"
+	"github.com/awalterschulze/gographviz/v2/internal/parser"
 )
 
 func (nodes *Nodes) String() string {

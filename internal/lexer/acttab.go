@@ -5,7 +5,7 @@ package lexer
 import (
 	"fmt"
 
-	"github.com/awalterschulze/gographviz/internal/token"
+	"github.com/awalterschulze/gographviz/v2/internal/token"
 )
 
 type ActionTable [NumStates]ActionRow

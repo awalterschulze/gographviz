@@ -2,7 +2,7 @@
 
 package parser
 
-import "github.com/awalterschulze/gographviz/ast"
+import "github.com/awalterschulze/gographviz/v2/ast"
 
 type (
 	//TODO: change type and variable names to be consistent with other tables

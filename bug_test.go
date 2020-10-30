@@ -17,8 +17,8 @@ package gographviz
 import (
 	"testing"
 
-	"github.com/awalterschulze/gographviz/ast"
-	"github.com/awalterschulze/gographviz/internal/parser"
+	"github.com/awalterschulze/gographviz/v2/ast"
+	"github.com/awalterschulze/gographviz/v2/internal/parser"
 )
 
 type bugSubGraphWorldVisitor struct {

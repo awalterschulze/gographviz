@@ -23,7 +23,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/awalterschulze/gographviz/internal/token"
+	"github.com/awalterschulze/gographviz/v2/internal/token"
 )
 
 var (
