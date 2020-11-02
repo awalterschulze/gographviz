@@ -11,7 +11,6 @@ regenerate: ## Re-generate lexers and parsers and pass through goimports
 	go install github.com/goccmack/gocc
 	gocc -zip -o ./internal/ dot.bnf
 	find . -type f -name '*.go' | xargs goimports -w
-	go mod tidy
 
 test: ## Perform package tests
 	go test ./...
@@ -21,7 +20,6 @@ dependencies: ## Grab necessary dependencies for checkers
 	go get golang.org/x/tools/cmd/goimports
 	go get github.com/kisielk/errcheck
 	go get -u golang.org/x/lint/golint
-	go mod tidy
 
 build: ## Perform build process
 	go build .
