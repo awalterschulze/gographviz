@@ -110,9 +110,10 @@ func (this *Graph) String() string {
 	if this.Strict {
 		s += "strict "
 	}
-	s += this.Type.String() + " " + this.ID.String() + " {\n"
+	s += this.Type.String() + " " + this.ID.String() + " {\n\t"
 	if this.StmtList != nil {
-		s += this.StmtList.String()
+		lines := strings.Split(this.StmtList.String(), "\n")
+		s += strings.Join(lines, "\n\t")
 	}
 	s += "\n}\n"
 	return s
@@ -150,9 +151,10 @@ func (this StmtList) String() string {
 	for i := 0; i < len(this); i++ {
 		ss := this[i].String()
 		if len(ss) > 0 {
-			s += "\t" + ss + ";\n"
+			s += ss + ";\n"
 		}
 	}
+	s = strings.TrimSuffix(s, "\n")
 	return s
 }
 
@@ -220,11 +222,12 @@ func (this *SubGraph) String() string {
 	if strings.HasPrefix(gName, "anon") {
 		gName = ""
 	}
-	s := "subgraph " + this.ID.String() + " {\n"
+	s := "subgraph " + this.ID.String() + " {\n\t"
 	if this.StmtList != nil {
-		s += this.StmtList.String()
+		lines := strings.Split(this.StmtList.String(), "\n")
+		s += strings.Join(lines, "\n\t")
 	}
-	s += "\n}\n"
+	s += "\n}"
 	return s
 }
 
