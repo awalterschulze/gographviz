@@ -507,7 +507,7 @@ func (this EdgeStmt) String() string {
 }
 
 func (this EdgeStmt) indentString(indent string) string {
-	return indent + strings.TrimSpace(this.Source.String() + this.EdgeRHS.String() + ` ` + this.Attrs.String())
+	return indent + strings.TrimSpace(this.Source.String()+this.EdgeRHS.String()+` `+this.Attrs.String())
 }
 
 func (this EdgeStmt) Walk(v Visitor) {
@@ -593,7 +593,7 @@ func (this NodeStmt) String() string {
 }
 
 func (this NodeStmt) indentString(indent string) string {
-	return indent + strings.TrimSpace(this.NodeID.String() + ` ` + this.Attrs.String())
+	return indent + strings.TrimSpace(this.NodeID.String()+` `+this.Attrs.String())
 }
 
 func (this NodeStmt) Walk(v Visitor) {
