@@ -69,23 +69,16 @@ func TestRemoveNode(t *testing.T) {
 	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	Hello->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
-	CoreFunction;
-
-}
-;
+		CoreFunction;
+	};
 	subgraph cluster_Development {
-	DevelopmentFunction;
-
-}
-;
+		DevelopmentFunction;
+	};
 	subgraph cluster_Supporting {
-	SupportingFunction;
-
-}
-;
+		SupportingFunction;
+	};
 	Hello;
 	World;
-
 }
 `
 
@@ -102,22 +95,16 @@ func TestRemoveNode(t *testing.T) {
 	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	Hello->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
-	CoreFunction;
-
-}
-;
+		CoreFunction;
+	};
 	subgraph cluster_Development {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
-	SupportingFunction;
-
-}
-;
+		SupportingFunction;
+	};
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
@@ -134,20 +121,14 @@ func TestRemoveNode(t *testing.T) {
 	expected = `digraph G {
 	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
-	CoreFunction;
-
-}
-;
+		CoreFunction;
+	};
 	subgraph cluster_Development {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
-	SupportingFunction;
-
-}
-;
-
+		SupportingFunction;
+	};
 }
 `
 	if g.String() != expected {
@@ -160,19 +141,14 @@ func TestRemoveNode(t *testing.T) {
 
 	expected = `digraph G {
 	subgraph cluster_Core {
-	CoreFunction;
-
-}
-;
+		CoreFunction;
+	};
 	subgraph cluster_Development {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
 
-}
-;
-
+	};
 }
 `
 
@@ -187,17 +163,13 @@ func TestRemoveNode(t *testing.T) {
 	expected = `digraph G {
 	subgraph cluster_Core {
 
-}
-;
+	};
 	subgraph cluster_Development {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
 
-}
-;
-
+	};
 }
 `
 
@@ -270,30 +242,22 @@ func TestRemoveSubGraph(t *testing.T) {
 	Hello->CoreFunction:cluster_Core;
 	Hello->cluster_FooBar;
 	subgraph cluster_Core {
-	label=Core;
-	CoreFunction;
-
-}
-;
+		label=Core;
+		CoreFunction;
+	};
 	subgraph cluster_Development {
-	label=Development;
-	DevelopmentFunction;
-
-}
-;
+		label=Development;
+		DevelopmentFunction;
+	};
 	subgraph cluster_FooBar {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
-	label=Supporting;
-	SupportingFunction;
-
-}
-;
+		label=Supporting;
+		SupportingFunction;
+	};
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
@@ -310,24 +274,18 @@ func TestRemoveSubGraph(t *testing.T) {
 	Hello->CoreFunction:cluster_Core;
 	Hello->cluster_FooBar;
 	subgraph cluster_Core {
-	label=Core;
-	CoreFunction;
-
-}
-;
+		label=Core;
+		CoreFunction;
+	};
 	subgraph cluster_FooBar {
 
-}
-;
+	};
 	subgraph cluster_Supporting {
-	label=Supporting;
-	SupportingFunction;
-
-}
-;
+		label=Supporting;
+		SupportingFunction;
+	};
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
@@ -343,18 +301,14 @@ func TestRemoveSubGraph(t *testing.T) {
 	Hello->CoreFunction:cluster_Core;
 	Hello->cluster_FooBar;
 	subgraph cluster_Core {
-	label=Core;
-	CoreFunction;
-
-}
-;
+		label=Core;
+		CoreFunction;
+	};
 	subgraph cluster_FooBar {
 
-}
-;
+	};
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
@@ -370,11 +324,9 @@ func TestRemoveSubGraph(t *testing.T) {
 	Hello->cluster_FooBar;
 	subgraph cluster_FooBar {
 
-}
-;
+	};
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
@@ -389,7 +341,6 @@ func TestRemoveSubGraph(t *testing.T) {
 	Hello->World;
 	Hello;
 	World;
-
 }
 `
 	if g.String() != expected {
