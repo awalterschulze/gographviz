@@ -110,10 +110,9 @@ func (this *Graph) String() string {
 	if this.Strict {
 		s += "strict "
 	}
-	s += this.Type.String() + " " + this.ID.String() + " {\n\t"
+	s += this.Type.String() + " " + this.ID.String() + " {\n"
 	if this.StmtList != nil {
-		lines := strings.Split(this.StmtList.String(), "\n")
-		s += strings.Join(lines, "\n\t")
+		s += this.StmtList.indentString("\t")
 	}
 	s += "\n}\n"
 	return s
@@ -144,12 +143,16 @@ func AppendStmtList(ss, s Attrib) (StmtList, error) {
 }
 
 func (this StmtList) String() string {
+	return this.indentString("")
+}
+
+func (this StmtList) indentString(indent string) string {
 	if len(this) == 0 {
 		return ""
 	}
 	s := ""
 	for i := 0; i < len(this); i++ {
-		ss := this[i].String()
+		ss := this[i].indentString(indent)
 		if len(ss) > 0 {
 			s += ss + ";\n"
 		}
@@ -172,6 +175,7 @@ type Stmt interface {
 	Elem
 	Walkable
 	isStmt()
+	indentString(string) string
 }
 
 func (this NodeStmt) isStmt()   {}
@@ -218,16 +222,20 @@ func (this *SubGraph) GetPort() Port {
 }
 
 func (this *SubGraph) String() string {
+	return this.indentString("")
+}
+
+func (this *SubGraph) indentString(indent string) string {
 	gName := this.ID.String()
 	if strings.HasPrefix(gName, "anon") {
 		gName = ""
 	}
-	s := "subgraph " + this.ID.String() + " {\n\t"
+
+	s := indent + "subgraph " + this.ID.String() + " {\n"
 	if this.StmtList != nil {
-		lines := strings.Split(this.StmtList.String(), "\n")
-		s += strings.Join(lines, "\n\t")
+		s += this.StmtList.indentString(indent + "\t")
 	}
-	s += "\n}"
+	s += "\n" + indent + "}"
 	return s
 }
 
@@ -247,11 +255,15 @@ func NewEdgeAttrs(a Attrib) (EdgeAttrs, error) {
 }
 
 func (this EdgeAttrs) String() string {
+	return this.indentString("")
+}
+
+func (this EdgeAttrs) indentString(indent string) string {
 	s := AttrList(this).String()
 	if len(s) == 0 {
 		return ""
 	}
-	return `edge ` + s
+	return indent + `edge ` + s
 }
 
 func (this EdgeAttrs) Walk(v Visitor) {
@@ -271,11 +283,15 @@ func NewNodeAttrs(a Attrib) (NodeAttrs, error) {
 }
 
 func (this NodeAttrs) String() string {
+	return this.indentString("")
+}
+
+func (this NodeAttrs) indentString(indent string) string {
 	s := AttrList(this).String()
 	if len(s) == 0 {
 		return ""
 	}
-	return `node ` + s
+	return indent + `node ` + s
 }
 
 func (this NodeAttrs) Walk(v Visitor) {
@@ -295,11 +311,15 @@ func NewGraphAttrs(a Attrib) (GraphAttrs, error) {
 }
 
 func (this GraphAttrs) String() string {
+	return this.indentString("")
+}
+
+func (this GraphAttrs) indentString(indent string) string {
 	s := AttrList(this).String()
 	if len(s) == 0 {
 		return ""
 	}
-	return `graph ` + s
+	return indent + `graph ` + s
 }
 
 func (this GraphAttrs) Walk(v Visitor) {
@@ -432,7 +452,11 @@ func NewAttr(f, v Attrib) (*Attr, error) {
 }
 
 func (this *Attr) String() string {
-	return this.Field.String() + `=` + this.Value.String()
+	return this.indentString("")
+}
+
+func (this *Attr) indentString(indent string) string {
+	return indent + this.Field.String() + `=` + this.Value.String()
 }
 
 func (this *Attr) Walk(v Visitor) {
@@ -479,7 +503,11 @@ func NewEdgeStmt(id, e, attrs Attrib) (*EdgeStmt, error) {
 }
 
 func (this EdgeStmt) String() string {
-	return strings.TrimSpace(this.Source.String() + this.EdgeRHS.String() + this.Attrs.String())
+	return this.indentString("")
+}
+
+func (this EdgeStmt) indentString(indent string) string {
+	return indent + strings.TrimSpace(this.Source.String() + this.EdgeRHS.String() + ` ` + this.Attrs.String())
 }
 
 func (this EdgeStmt) Walk(v Visitor) {
@@ -561,7 +589,11 @@ func NewNodeStmt(id, attrs Attrib) (*NodeStmt, error) {
 }
 
 func (this NodeStmt) String() string {
-	return strings.TrimSpace(this.NodeID.String() + ` ` + this.Attrs.String())
+	return this.indentString("")
+}
+
+func (this NodeStmt) indentString(indent string) string {
+	return indent + strings.TrimSpace(this.NodeID.String() + ` ` + this.Attrs.String())
 }
 
 func (this NodeStmt) Walk(v Visitor) {
@@ -695,4 +727,11 @@ func (this ID) Walk(v Visitor) {
 		return
 	}
 	v.Visit(this)
+}
+
+func genIndent(lvl int) (idt string) {
+	for i := 0; i < lvl; i++ {
+		idt += "\t"
+	}
+	return idt
 }
