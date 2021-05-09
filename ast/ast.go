@@ -728,10 +728,3 @@ func (this ID) Walk(v Visitor) {
 	}
 	v.Visit(this)
 }
-
-func genIndent(lvl int) (idt string) {
-	for i := 0; i < lvl; i++ {
-		idt += "\t"
-	}
-	return idt
-}
