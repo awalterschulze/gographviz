@@ -30,7 +30,6 @@ func ExampleRead() {
 	//	Hello->World;
 	//	Hello;
 	//	World;
-	//
 	//}
 }
 
@@ -57,7 +56,6 @@ func ExampleNewGraph() {
 	//	Hello->World;
 	//	Hello;
 	//	World;
-	//
 	//}
 }
 
@@ -160,26 +158,25 @@ func ExampleMyOwnGraphStructure() {
 	s := output.String()
 	fmt.Println(s)
 	// Output: digraph matrix {
-	//	1->1[ label=0 ];
-	//	1->2[ label=5 ];
-	//	1->3[ label=0 ];
-	//	1->4[ label=0 ];
-	//	2->1[ label=0 ];
-	//	2->2[ label=0 ];
-	//	2->3[ label=0 ];
-	//	2->4[ label=0 ];
-	//	3->1[ label=0 ];
-	//	3->2[ label=0 ];
-	//	3->3[ label=0 ];
-	//	3->4[ label=0 ];
-	//	4->1[ label=2 ];
-	//	4->2[ label=1 ];
-	//	4->3[ label=0 ];
-	//	4->4[ label=0 ];
+	//	1->1 [ label=0 ];
+	//	1->2 [ label=5 ];
+	//	1->3 [ label=0 ];
+	//	1->4 [ label=0 ];
+	//	2->1 [ label=0 ];
+	//	2->2 [ label=0 ];
+	//	2->3 [ label=0 ];
+	//	2->4 [ label=0 ];
+	//	3->1 [ label=0 ];
+	//	3->2 [ label=0 ];
+	//	3->3 [ label=0 ];
+	//	3->4 [ label=0 ];
+	//	4->1 [ label=2 ];
+	//	4->2 [ label=1 ];
+	//	4->3 [ label=0 ];
+	//	4->4 [ label=0 ];
 	//	1;
 	//	2;
 	//	3;
 	//	4;
-	//
 	//}
 }

@@ -65,7 +65,6 @@ func TestEscape(t *testing.T) {
 	"e-f";
 	"kasdf99 99" [ URL="<a" ];
 	7 [ URL="<a" ];
-
 }`) {
 		t.Fatalf("%s", s)
 	}
@@ -101,19 +100,14 @@ func TestClusterSubgraphs(t *testing.T) {
 	graphStr := `graph G {
 	cluster_2--cluster_1;
 	subgraph cluster0 {
-	subgraph cluster_1 {
+		subgraph cluster_1 {
 
-}
-;
-	subgraph cluster_2 {
+		};
+		subgraph cluster_2 {
 
-}
-;
-
-}
-;
+		};
+	};
 	"Code deployment";
-
 }`
 	if !strings.HasPrefix(s, graphStr) {
 		t.Fatalf("%s", s)
