@@ -11,8 +11,8 @@ jobs:
     steps:
     - name: Set GOPATH
       run: |
-        echo "##[set-env name=GOPATH;]$(dirname $GITHUB_WORKSPACE)/gographviz"
-        echo "##[add-path]$(dirname $GITHUB_WORKSPACE)/gographviz/bin"
+        echo "GOPATH=$(dirname $GITHUB_WORKSPACE)/gographviz" >> $GITHUB_ENV
+        echo "$(dirname $GITHUB_WORKSPACE)/gographviz/bin" >> $GITHUB_PATH
       shell: bash
 
     - name: Setup Go
