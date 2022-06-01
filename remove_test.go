@@ -64,10 +64,10 @@ func TestRemoveNode(t *testing.T) {
 	}
 
 	expected := `digraph G {
-	Hello->World;
 	DevelopmentFunction:cluster_Development->CoreFunction:cluster_Core;
-	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	Hello->CoreFunction:cluster_Core;
+	Hello->World;
+	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
 		CoreFunction;
 	};
@@ -82,7 +82,7 @@ func TestRemoveNode(t *testing.T) {
 }
 `
 
-	if g.String() != expected {
+	if got := g.String(); got != expected {
 		t.Fatalf("output is not expected")
 	}
 
@@ -91,9 +91,9 @@ func TestRemoveNode(t *testing.T) {
 	}
 
 	expected = `digraph G {
+	Hello->CoreFunction:cluster_Core;
 	Hello->World;
 	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
-	Hello->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
 		CoreFunction;
 	};
@@ -107,7 +107,7 @@ func TestRemoveNode(t *testing.T) {
 	World;
 }
 `
-	if g.String() != expected {
+	if got := g.String(); got != expected {
 		t.Fatalf("output is not expected")
 	}
 
@@ -236,11 +236,11 @@ func TestRemoveSubGraph(t *testing.T) {
 	}
 
 	expected := `digraph G {
-	Hello->World;
 	DevelopmentFunction:cluster_Development->CoreFunction:cluster_Core;
-	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	Hello->CoreFunction:cluster_Core;
+	Hello->World;
 	Hello->cluster_FooBar;
+	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
 		label=Core;
 		CoreFunction;
@@ -260,7 +260,7 @@ func TestRemoveSubGraph(t *testing.T) {
 	World;
 }
 `
-	if g.String() != expected {
+	if got := g.String(); got != expected {
 		t.Fatalf("output is not expected")
 	}
 
@@ -269,10 +269,10 @@ func TestRemoveSubGraph(t *testing.T) {
 	}
 
 	expected = `digraph G {
-	Hello->World;
-	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	Hello->CoreFunction:cluster_Core;
+	Hello->World;
 	Hello->cluster_FooBar;
+	SupportingFunction:cluster_Supporting->CoreFunction:cluster_Core;
 	subgraph cluster_Core {
 		label=Core;
 		CoreFunction;
@@ -288,7 +288,7 @@ func TestRemoveSubGraph(t *testing.T) {
 	World;
 }
 `
-	if g.String() != expected {
+	if got := g.String(); got != expected {
 		t.Fatalf("output is not expected")
 	}
 
@@ -297,8 +297,8 @@ func TestRemoveSubGraph(t *testing.T) {
 	}
 
 	expected = `digraph G {
-	Hello->World;
 	Hello->CoreFunction:cluster_Core;
+	Hello->World;
 	Hello->cluster_FooBar;
 	subgraph cluster_Core {
 		label=Core;
@@ -311,7 +311,7 @@ func TestRemoveSubGraph(t *testing.T) {
 	World;
 }
 `
-	if g.String() != expected {
+	if got := g.String(); got != expected {
 		t.Fatalf("output is not expected")
 	}
 

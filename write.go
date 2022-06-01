@@ -125,7 +125,7 @@ func (w *writer) Write() (*ast.Graph, error) {
 
 	t.StmtList = appendAttrs(t.StmtList, w.Attrs)
 
-	for _, edge := range w.Edges.Edges {
+	for _, edge := range w.Edges.Sorted() {
 		e, err := w.newEdgeStmt(edge)
 		if err != nil {
 			return nil, err
