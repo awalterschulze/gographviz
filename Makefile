@@ -7,7 +7,6 @@ help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 regenerate: ## Re-generate lexers and parsers
-	go get github.com/goccmack/gocc
 	go install github.com/goccmack/gocc
 	gocc -zip -o ./internal/ dot.bnf
 
@@ -16,8 +15,8 @@ test: ## Perform package tests
 
 dependencies: ## Grab necessary dependencies for checkers
 	go version
-	go get github.com/kisielk/errcheck
-	go get -u golang.org/x/lint/golint
+	go install github.com/kisielk/errcheck
+	go install golang.org/x/lint/golint
 
 build: ## Perform build process
 	go build .
