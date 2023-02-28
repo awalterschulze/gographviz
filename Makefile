@@ -9,7 +9,6 @@ help:
 regenerate: ## Re-generate lexers and parsers
 	go install github.com/goccmack/gocc
 	gocc -zip -o ./internal/ dot.bnf
-	go fmt .
 
 test: ## Perform package tests
 	go test ./...
@@ -23,7 +22,7 @@ build: ## Perform build process
 
 checkers: ## Run all checkers (errcheck, gofmt and golint)
 	errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
-	go fmt .
+	go fmt ./...
 	golint -set_exit_status
 	git diff --exit-code
 
