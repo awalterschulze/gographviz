@@ -5,15 +5,8 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./src/github.com/awalterschulze/gographviz
 
     steps:
-    - name: Set GOPATH
-      run: |
-        echo "GOPATH=$(dirname $GITHUB_WORKSPACE)/gographviz" >> $GITHUB_ENV
-        echo "$(dirname $GITHUB_WORKSPACE)/gographviz/bin" >> $GITHUB_PATH
-      shell: bash
 
     - name: Setup Go
       uses: actions/setup-go@v3
@@ -28,20 +21,15 @@ jobs:
 
     - name: Install dependencies
       run: make dependencies
-      working-directory: ${{env.working-directory}}
 
     - name: Run regenerate
       run: make regenerate
-      working-directory: ${{env.working-directory}}
 
     - name: Run build
       run: make build
-      working-directory: ${{env.working-directory}}
 
     - name: Run checkers
       run: make checkers
-      working-directory: ${{env.working-directory}}
 
     - name: Run testing
       run: make test
-      working-directory: ${{env.working-directory}}

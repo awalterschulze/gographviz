@@ -10,7 +10,6 @@ dependencies: ## Grab necessary dependencies for checkers
 
 regenerate: ## Re-generate lexers and parsers
 	go install github.com/goccmack/gocc
-	gofmt -l -s -w .
 	gocc -zip -o ./internal/ dot.bnf
 
 build: ## Perform build process
