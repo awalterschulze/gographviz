@@ -15,8 +15,7 @@ test: ## Perform package tests
 
 dependencies: ## Grab necessary dependencies for checkers
 	go version
-	go install github.com/kisielk/errcheck
-	go install golang.org/x/lint/golint
+	go install -x github.com/kisielk/errcheck golang.org/x/lint/golint
 
 build: ## Perform build process
 	go build .
