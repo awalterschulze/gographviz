@@ -20,7 +20,7 @@ type (
 
 var productionsTable = ProdTab{
 	ProdTabEntry{
-		String: `S' : DotGraph	<<  >>`,
+		String:     `S' : DotGraph	<<  >>`,
 		Id:         "S'",
 		NTType:     0,
 		Index:      0,
@@ -30,7 +30,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : graphx "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, nil, nil) >>`,
+		String:     `DotGraph : graphx "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, nil, nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      1,
@@ -40,7 +40,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict graphx "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, nil, nil) >>`,
+		String:     `DotGraph : strict graphx "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, nil, nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      2,
@@ -50,7 +50,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : graphx Id "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, X[1], nil) >>`,
+		String:     `DotGraph : graphx Id "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, X[1], nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      3,
@@ -60,7 +60,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict graphx Id "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, X[2], nil) >>`,
+		String:     `DotGraph : strict graphx Id "{" "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, X[2], nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      4,
@@ -70,7 +70,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : graphx "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, nil, X[2]) >>`,
+		String:     `DotGraph : graphx "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, nil, X[2]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      5,
@@ -80,7 +80,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : graphx Id "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, X[1], X[3]) >>`,
+		String:     `DotGraph : graphx Id "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.FALSE, X[1], X[3]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      6,
@@ -90,7 +90,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict graphx "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, nil, X[3]) >>`,
+		String:     `DotGraph : strict graphx "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, nil, X[3]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      7,
@@ -100,7 +100,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict graphx Id "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, X[2], X[4]) >>`,
+		String:     `DotGraph : strict graphx Id "{" StmtList "}"	<< ast.NewGraph(ast.GRAPH, ast.TRUE, X[2], X[4]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      8,
@@ -110,7 +110,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : digraph "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, nil) >>`,
+		String:     `DotGraph : digraph "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      9,
@@ -120,7 +120,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict digraph "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, nil) >>`,
+		String:     `DotGraph : strict digraph "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      10,
@@ -130,7 +130,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : digraph Id "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, X[1], nil) >>`,
+		String:     `DotGraph : digraph Id "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, X[1], nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      11,
@@ -140,7 +140,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict digraph Id "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, X[2], nil) >>`,
+		String:     `DotGraph : strict digraph Id "{" "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, X[2], nil) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      12,
@@ -150,7 +150,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : digraph "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, X[2]) >>`,
+		String:     `DotGraph : digraph "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, nil, X[2]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      13,
@@ -160,7 +160,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : digraph Id "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, X[1], X[3]) >>`,
+		String:     `DotGraph : digraph Id "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.FALSE, X[1], X[3]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      14,
@@ -170,7 +170,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict digraph "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, X[3]) >>`,
+		String:     `DotGraph : strict digraph "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, nil, X[3]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      15,
@@ -180,7 +180,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `DotGraph : strict digraph Id "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, X[2], X[4]) >>`,
+		String:     `DotGraph : strict digraph Id "{" StmtList "}"	<< ast.NewGraph(ast.DIGRAPH, ast.TRUE, X[2], X[4]) >>`,
 		Id:         "DotGraph",
 		NTType:     1,
 		Index:      16,
@@ -190,7 +190,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `StmtList : Stmt1	<< ast.NewStmtList(X[0]) >>`,
+		String:     `StmtList : Stmt1	<< ast.NewStmtList(X[0]) >>`,
 		Id:         "StmtList",
 		NTType:     2,
 		Index:      17,
@@ -200,7 +200,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `StmtList : StmtList Stmt1	<< ast.AppendStmtList(X[0], X[1]) >>`,
+		String:     `StmtList : StmtList Stmt1	<< ast.AppendStmtList(X[0], X[1]) >>`,
 		Id:         "StmtList",
 		NTType:     2,
 		Index:      18,
@@ -210,7 +210,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt1 : Stmt	<< X[0], nil >>`,
+		String:     `Stmt1 : Stmt	<< X[0], nil >>`,
 		Id:         "Stmt1",
 		NTType:     3,
 		Index:      19,
@@ -220,7 +220,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt1 : Stmt ";"	<< X[0], nil >>`,
+		String:     `Stmt1 : Stmt ";"	<< X[0], nil >>`,
 		Id:         "Stmt1",
 		NTType:     3,
 		Index:      20,
@@ -230,7 +230,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt : Id "=" Id	<< ast.NewAttr(X[0], X[2]) >>`,
+		String:     `Stmt : Id "=" Id	<< ast.NewAttr(X[0], X[2]) >>`,
 		Id:         "Stmt",
 		NTType:     4,
 		Index:      21,
@@ -240,7 +240,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt : NodeStmt	<< X[0], nil >>`,
+		String:     `Stmt : NodeStmt	<< X[0], nil >>`,
 		Id:         "Stmt",
 		NTType:     4,
 		Index:      22,
@@ -250,7 +250,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt : EdgeStmt	<< X[0], nil >>`,
+		String:     `Stmt : EdgeStmt	<< X[0], nil >>`,
 		Id:         "Stmt",
 		NTType:     4,
 		Index:      23,
@@ -260,7 +260,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt : AttrStmt	<< X[0], nil >>`,
+		String:     `Stmt : AttrStmt	<< X[0], nil >>`,
 		Id:         "Stmt",
 		NTType:     4,
 		Index:      24,
@@ -270,7 +270,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Stmt : SubGraphStmt	<< X[0], nil >>`,
+		String:     `Stmt : SubGraphStmt	<< X[0], nil >>`,
 		Id:         "Stmt",
 		NTType:     4,
 		Index:      25,
@@ -280,7 +280,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrStmt : graphx AttrList	<< ast.NewGraphAttrs(X[1]) >>`,
+		String:     `AttrStmt : graphx AttrList	<< ast.NewGraphAttrs(X[1]) >>`,
 		Id:         "AttrStmt",
 		NTType:     5,
 		Index:      26,
@@ -290,7 +290,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrStmt : node AttrList	<< ast.NewNodeAttrs(X[1]) >>`,
+		String:     `AttrStmt : node AttrList	<< ast.NewNodeAttrs(X[1]) >>`,
 		Id:         "AttrStmt",
 		NTType:     5,
 		Index:      27,
@@ -300,7 +300,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrStmt : edge AttrList	<< ast.NewEdgeAttrs(X[1]) >>`,
+		String:     `AttrStmt : edge AttrList	<< ast.NewEdgeAttrs(X[1]) >>`,
 		Id:         "AttrStmt",
 		NTType:     5,
 		Index:      28,
@@ -310,7 +310,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrList : "[" "]"	<< ast.NewAttrList(nil) >>`,
+		String:     `AttrList : "[" "]"	<< ast.NewAttrList(nil) >>`,
 		Id:         "AttrList",
 		NTType:     6,
 		Index:      29,
@@ -320,7 +320,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrList : "[" AList "]"	<< ast.NewAttrList(X[1]) >>`,
+		String:     `AttrList : "[" AList "]"	<< ast.NewAttrList(X[1]) >>`,
 		Id:         "AttrList",
 		NTType:     6,
 		Index:      30,
@@ -330,7 +330,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrList : AttrList "[" "]"	<< ast.AppendAttrList(X[0], nil) >>`,
+		String:     `AttrList : AttrList "[" "]"	<< ast.AppendAttrList(X[0], nil) >>`,
 		Id:         "AttrList",
 		NTType:     6,
 		Index:      31,
@@ -340,7 +340,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AttrList : AttrList "[" AList "]"	<< ast.AppendAttrList(X[0], X[2]) >>`,
+		String:     `AttrList : AttrList "[" AList "]"	<< ast.AppendAttrList(X[0], X[2]) >>`,
 		Id:         "AttrList",
 		NTType:     6,
 		Index:      32,
@@ -350,7 +350,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AList : Attr	<< ast.NewAList(X[0]) >>`,
+		String:     `AList : Attr	<< ast.NewAList(X[0]) >>`,
 		Id:         "AList",
 		NTType:     7,
 		Index:      33,
@@ -360,7 +360,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AList : AList Attr	<< ast.AppendAList(X[0], X[1]) >>`,
+		String:     `AList : AList Attr	<< ast.AppendAList(X[0], X[1]) >>`,
 		Id:         "AList",
 		NTType:     7,
 		Index:      34,
@@ -370,7 +370,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `AList : AList "," Attr	<< ast.AppendAList(X[0], X[2]) >>`,
+		String:     `AList : AList "," Attr	<< ast.AppendAList(X[0], X[2]) >>`,
 		Id:         "AList",
 		NTType:     7,
 		Index:      35,
@@ -380,7 +380,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Attr : Id	<< ast.NewAttr(X[0], nil) >>`,
+		String:     `Attr : Id	<< ast.NewAttr(X[0], nil) >>`,
 		Id:         "Attr",
 		NTType:     8,
 		Index:      36,
@@ -390,7 +390,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Attr : Id "=" Id	<< ast.NewAttr(X[0], X[2]) >>`,
+		String:     `Attr : Id "=" Id	<< ast.NewAttr(X[0], X[2]) >>`,
 		Id:         "Attr",
 		NTType:     8,
 		Index:      37,
@@ -400,7 +400,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeStmt : NodeId EdgeRHS	<< ast.NewEdgeStmt(X[0], X[1], nil) >>`,
+		String:     `EdgeStmt : NodeId EdgeRHS	<< ast.NewEdgeStmt(X[0], X[1], nil) >>`,
 		Id:         "EdgeStmt",
 		NTType:     9,
 		Index:      38,
@@ -410,7 +410,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeStmt : NodeId EdgeRHS AttrList	<< ast.NewEdgeStmt(X[0], X[1], X[2]) >>`,
+		String:     `EdgeStmt : NodeId EdgeRHS AttrList	<< ast.NewEdgeStmt(X[0], X[1], X[2]) >>`,
 		Id:         "EdgeStmt",
 		NTType:     9,
 		Index:      39,
@@ -420,7 +420,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeStmt : SubGraphStmt EdgeRHS	<< ast.NewEdgeStmt(X[0], X[1], nil) >>`,
+		String:     `EdgeStmt : SubGraphStmt EdgeRHS	<< ast.NewEdgeStmt(X[0], X[1], nil) >>`,
 		Id:         "EdgeStmt",
 		NTType:     9,
 		Index:      40,
@@ -430,7 +430,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeStmt : SubGraphStmt EdgeRHS AttrList	<< ast.NewEdgeStmt(X[0], X[1], X[2]) >>`,
+		String:     `EdgeStmt : SubGraphStmt EdgeRHS AttrList	<< ast.NewEdgeStmt(X[0], X[1], X[2]) >>`,
 		Id:         "EdgeStmt",
 		NTType:     9,
 		Index:      41,
@@ -440,7 +440,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeRHS : EdgeOp NodeId	<< ast.NewEdgeRHS(X[0], X[1]) >>`,
+		String:     `EdgeRHS : EdgeOp NodeId	<< ast.NewEdgeRHS(X[0], X[1]) >>`,
 		Id:         "EdgeRHS",
 		NTType:     10,
 		Index:      42,
@@ -450,7 +450,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeRHS : EdgeOp SubGraphStmt	<< ast.NewEdgeRHS(X[0], X[1]) >>`,
+		String:     `EdgeRHS : EdgeOp SubGraphStmt	<< ast.NewEdgeRHS(X[0], X[1]) >>`,
 		Id:         "EdgeRHS",
 		NTType:     10,
 		Index:      43,
@@ -460,7 +460,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeRHS : EdgeRHS EdgeOp NodeId	<< ast.AppendEdgeRHS(X[0], X[1], X[2]) >>`,
+		String:     `EdgeRHS : EdgeRHS EdgeOp NodeId	<< ast.AppendEdgeRHS(X[0], X[1], X[2]) >>`,
 		Id:         "EdgeRHS",
 		NTType:     10,
 		Index:      44,
@@ -470,7 +470,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeRHS : EdgeRHS EdgeOp SubGraphStmt	<< ast.AppendEdgeRHS(X[0], X[1], X[2]) >>`,
+		String:     `EdgeRHS : EdgeRHS EdgeOp SubGraphStmt	<< ast.AppendEdgeRHS(X[0], X[1], X[2]) >>`,
 		Id:         "EdgeRHS",
 		NTType:     10,
 		Index:      45,
@@ -480,7 +480,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `NodeStmt : NodeId	<< ast.NewNodeStmt(X[0], nil) >>`,
+		String:     `NodeStmt : NodeId	<< ast.NewNodeStmt(X[0], nil) >>`,
 		Id:         "NodeStmt",
 		NTType:     11,
 		Index:      46,
@@ -490,7 +490,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `NodeStmt : NodeId AttrList	<< ast.NewNodeStmt(X[0], X[1]) >>`,
+		String:     `NodeStmt : NodeId AttrList	<< ast.NewNodeStmt(X[0], X[1]) >>`,
 		Id:         "NodeStmt",
 		NTType:     11,
 		Index:      47,
@@ -500,7 +500,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `NodeId : Id	<< ast.NewNodeID(X[0], nil) >>`,
+		String:     `NodeId : Id	<< ast.NewNodeID(X[0], nil) >>`,
 		Id:         "NodeId",
 		NTType:     12,
 		Index:      48,
@@ -510,7 +510,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `NodeId : Id Port	<< ast.NewNodeID(X[0], X[1]) >>`,
+		String:     `NodeId : Id Port	<< ast.NewNodeID(X[0], X[1]) >>`,
 		Id:         "NodeId",
 		NTType:     12,
 		Index:      49,
@@ -520,7 +520,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Port : ":" Id	<< ast.NewPort(X[1], nil), nil >>`,
+		String:     `Port : ":" Id	<< ast.NewPort(X[1], nil), nil >>`,
 		Id:         "Port",
 		NTType:     13,
 		Index:      50,
@@ -530,7 +530,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Port : ":" Id ":" Id	<< ast.NewPort(X[1], X[3]), nil >>`,
+		String:     `Port : ":" Id ":" Id	<< ast.NewPort(X[1], X[3]), nil >>`,
 		Id:         "Port",
 		NTType:     13,
 		Index:      51,
@@ -540,7 +540,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `SubGraphStmt : "{" StmtList "}"	<< ast.NewSubGraph(nil, X[1]) >>`,
+		String:     `SubGraphStmt : "{" StmtList "}"	<< ast.NewSubGraph(nil, X[1]) >>`,
 		Id:         "SubGraphStmt",
 		NTType:     14,
 		Index:      52,
@@ -550,7 +550,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `SubGraphStmt : subgraph "{" StmtList "}"	<< ast.NewSubGraph(nil, X[2]) >>`,
+		String:     `SubGraphStmt : subgraph "{" StmtList "}"	<< ast.NewSubGraph(nil, X[2]) >>`,
 		Id:         "SubGraphStmt",
 		NTType:     14,
 		Index:      53,
@@ -560,7 +560,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `SubGraphStmt : subgraph Id "{" StmtList "}"	<< ast.NewSubGraph(X[1], X[3]) >>`,
+		String:     `SubGraphStmt : subgraph Id "{" StmtList "}"	<< ast.NewSubGraph(X[1], X[3]) >>`,
 		Id:         "SubGraphStmt",
 		NTType:     14,
 		Index:      54,
@@ -570,7 +570,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `SubGraphStmt : subgraph "{" "}"	<< ast.NewSubGraph(nil, nil) >>`,
+		String:     `SubGraphStmt : subgraph "{" "}"	<< ast.NewSubGraph(nil, nil) >>`,
 		Id:         "SubGraphStmt",
 		NTType:     14,
 		Index:      55,
@@ -580,7 +580,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `SubGraphStmt : subgraph Id "{" "}"	<< ast.NewSubGraph(X[1], nil) >>`,
+		String:     `SubGraphStmt : subgraph Id "{" "}"	<< ast.NewSubGraph(X[1], nil) >>`,
 		Id:         "SubGraphStmt",
 		NTType:     14,
 		Index:      56,
@@ -590,7 +590,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeOp : "->"	<< ast.DIRECTED, nil >>`,
+		String:     `EdgeOp : "->"	<< ast.DIRECTED, nil >>`,
 		Id:         "EdgeOp",
 		NTType:     15,
 		Index:      57,
@@ -600,7 +600,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `EdgeOp : "--"	<< ast.UNDIRECTED, nil >>`,
+		String:     `EdgeOp : "--"	<< ast.UNDIRECTED, nil >>`,
 		Id:         "EdgeOp",
 		NTType:     15,
 		Index:      58,
@@ -610,7 +610,7 @@ var productionsTable = ProdTab{
 		},
 	},
 	ProdTabEntry{
-		String: `Id : id	<< ast.NewID(X[0]) >>`,
+		String:     `Id : id	<< ast.NewID(X[0]) >>`,
 		Id:         "Id",
 		NTType:     16,
 		Index:      59,
