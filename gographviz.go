@@ -12,10 +12,10 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-//Package gographviz provides parsing for the DOT grammar into
-//an abstract syntax tree representing a graph,
-//analysis of the abstract syntax tree into a more usable structure,
-//and writing back of this structure into the DOT format.
+// Package gographviz provides parsing for the DOT grammar into
+// an abstract syntax tree representing a graph,
+// analysis of the abstract syntax tree into a more usable structure,
+// and writing back of this structure into the DOT format.
 package gographviz
 
 import (
@@ -25,7 +25,7 @@ import (
 
 var _ Interface = NewGraph()
 
-//Interface allows you to parse the graph into your own structure.
+// Interface allows you to parse the graph into your own structure.
 type Interface interface {
 	SetStrict(strict bool) error
 	SetDir(directed bool) error
@@ -38,17 +38,17 @@ type Interface interface {
 	String() string
 }
 
-//Parse parses the buffer into a abstract syntax tree representing the graph.
+// Parse parses the buffer into a abstract syntax tree representing the graph.
 func Parse(buf []byte) (*ast.Graph, error) {
 	return parser.ParseBytes(buf)
 }
 
-//ParseString parses the buffer into a abstract syntax tree representing the graph.
+// ParseString parses the buffer into a abstract syntax tree representing the graph.
 func ParseString(buf string) (*ast.Graph, error) {
 	return parser.ParseBytes([]byte(buf))
 }
 
-//Read parses and creates a new Graph from the data.
+// Read parses and creates a new Graph from the data.
 func Read(buf []byte) (*Graph, error) {
 	st, err := Parse(buf)
 	if err != nil {

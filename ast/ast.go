@@ -12,7 +12,7 @@
 //See the License for the specific language governing permissions and
 //limitations under the License.
 
-//Abstract Syntax Tree representing the DOT grammar
+// Abstract Syntax Tree representing the DOT grammar
 package ast
 
 import (
@@ -671,7 +671,7 @@ func (this *NodeID) Walk(v Visitor) {
 	this.Port.Walk(v)
 }
 
-//TODO semantic analysis should decide which ID is an ID and which is a Compass Point
+// TODO semantic analysis should decide which ID is an ID and which is a Compass Point
 type Port struct {
 	ID1 ID
 	ID2 ID

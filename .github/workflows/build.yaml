@@ -5,43 +5,38 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./src/github.com/awalterschulze/gographviz
-
     steps:
-    - name: Set GOPATH
-      run: |
-        echo "GOPATH=$(dirname $GITHUB_WORKSPACE)/gographviz" >> $GITHUB_ENV
-        echo "$(dirname $GITHUB_WORKSPACE)/gographviz/bin" >> $GITHUB_PATH
-      shell: bash
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Setup Go
-      uses: actions/setup-go@v2
+      uses: actions/setup-go@v3
       with:
-        go-version: '1.14'
+        go-version: 1.19
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-        path: src/github.com/awalterschulze/gographviz
+    - name: Fetch dependencies
+      run: go mod download -x
 
-    - name: Install dependencies
-      run: make dependencies
-      working-directory: ${{env.working-directory}}
+    - name: Install tools
+      run: go install -x github.com/kisielk/errcheck golang.org/x/lint/golint github.com/goccmack/gocc
 
-    - name: Run regenerate
-      run: make regenerate
-      working-directory: ${{env.working-directory}}
+    - name: gocc
+      run: gocc -zip -o ./internal/ dot.bnf
 
-    - name: Run build
-      run: make build
-      working-directory: ${{env.working-directory}}
+    - name: build
+      run: go build .
 
-    - name: Run checkers
-      run: make checkers
-      working-directory: ${{env.working-directory}}
+    - name: err check
+      run: errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
 
-    - name: Run testing
-      run: make test
-      working-directory: ${{env.working-directory}}
+    - name: fmt
+      run: gofmt -l -s -w .
+
+    - name: lint
+      run: golint -set_exit_status
+
+    - name: diff
+      run: git diff --exit-code
+
+    - name: test
+      run: go test ./...

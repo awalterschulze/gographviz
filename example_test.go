@@ -113,8 +113,8 @@ func (myown *MyOwnGraphStructure) AddSubGraph(parentGraph string, name string, a
 }
 func (myown *MyOwnGraphStructure) String() string { return "" }
 
-//An Example of how to parse into your own simpler graph structure and output it back to graphviz.
-//This example reads in only numbers and outputs a matrix graph.
+// An Example of how to parse into your own simpler graph structure and output it back to graphviz.
+// This example reads in only numbers and outputs a matrix graph.
 func ExampleMyOwnGraphStructure() {
 	name := "matrix"
 	parsed, err := Parse([]byte(`

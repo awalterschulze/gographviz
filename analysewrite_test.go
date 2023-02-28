@@ -197,7 +197,7 @@ func TestEasyFsm1(t *testing.T) {
 }`)
 }
 
-//node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8; should be applied to the nodes
+// node [shape = doublecircle]; LR_0 LR_3 LR_4 LR_8; should be applied to the nodes
 func TestEasyFsm2(t *testing.T) {
 	anal(t, `digraph finite_state_machine {
 	rankdir=LR;
