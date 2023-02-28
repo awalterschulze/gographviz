@@ -18,7 +18,7 @@ jobs:
       run: go mod download -x
 
     - name: Install tools
-      run: go install -x github.com/kisielk/errcheck golang.org/x/lint/golint
+      run: go install -x github.com/kisielk/errcheck golang.org/x/lint/golint github.com/goccmack/gocc
 
     - name: gocc
       run: gocc -zip -o ./internal/ dot.bnf
