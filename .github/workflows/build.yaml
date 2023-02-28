@@ -5,31 +5,38 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
     - name: Setup Go
       uses: actions/setup-go@v3
       with:
         go-version: 1.17
 
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 1
-        path: src/github.com/awalterschulze/gographviz
+    - name: Fetch dependencies
+      run: go mod download -x
 
-    - name: Install dependencies
-      run: make dependencies
+    - name: Install tools
+      run: go install -x github.com/kisielk/errcheck golang.org/x/lint/golint
 
-    - name: Run regenerate
-      run: make regenerate
+    - name: gocc
+      run: gocc -zip -o ./internal/ dot.bnf
 
-    - name: Run build
-      run: make build
+    - name: build
+      run: go build .
 
-    - name: Run checkers
-      run: make checkers
+    - name: err check
+      run: errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
 
-    - name: Run testing
-      run: make test
+    - name: fmt
+      run: gofmt -l -s -w .
+
+    - name: lint
+      run: golint -set_exit_status
+
+    - name: diff
+      run: git diff --exit-code
+
+    - name: test
+      run: go test ./...
