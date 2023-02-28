@@ -1,6 +1,6 @@
 module github.com/awalterschulze/gographviz
 
-go 1.18
+go 1.17
 
 require (
 	github.com/goccmack/gocc v0.0.0-20230228170953-2730a372e83e
