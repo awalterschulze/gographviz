@@ -1,33 +1,55 @@
+**This repo has moved to https://git.awalterschulze.org/gographviz**
+
+**The go module has been renamed to `go.awalterschulze.org/gographviz`**
+
+**This new module name and new repo location allowed us to fix the tags to have go compatible versioning. The previous newest version v2.0.3 was renamed to v0.2.3 at the new repo location. Now at the new location and with the new module path, a new version was tagged v0.3.0.**
+
+**You can upgrade to the new version at the new location with following require statement in your module**
+
+```
+require go.awalterschulze.org/gographviz v0.3.0
+```
+
+**You will also need to update your imports to this new module path**
+
 Parses the Graphviz DOT language and creates an interface, in golang, with which to easily create new and manipulate existing graphs which can be written back to the DOT format.
 
-This parser has been created using [gocc](http://code.google.com/p/gocc).
+This parser has been created using [gocc](https://github.com/goccmack/gocc).
 
 ### Example (Parse and Edit) ###
 
 ```
-graphAst, _ := gographviz.ParseString(`digraph G {}`)
-graph := gographviz.NewGraph()
-if err := gographviz.Analyse(graphAst, graph); err != nil {
-    panic(err)
+package main
+
+import "go.awalterschulze.org/gographviz"
+
+func main() {
+	graphAst, err := gographviz.ParseString(`digraph G {}`)
+	if err != nil {
+		panic(err)
+	}
+	graph := gographviz.NewGraph()
+	if err := gographviz.Analyse(graphAst, graph); err != nil {
+		panic(err)
+	}
+	graph.AddNode("G", "a", nil)
+	graph.AddNode("G", "b", nil)
+	graph.AddEdge("a", "b", true, nil)
+	output := graph.String()
+	println(output)
 }
-graph.AddNode("G", "a", nil)
-graph.AddNode("G", "b", nil)
-graph.AddEdge("a", "b", true, nil)
-output := graph.String()
 ```
 
 ### Documentation ###
 
-  - The [godoc](https://godoc.org/github.com/awalterschulze/gographviz) includes some more examples.
+  - The [godoc](https://godoc.org/go.awalterschulze.org/gographviz) includes some more examples.
   - [How to implement an anonymous subgraph](https://github.com/awalterschulze/gographviz/issues/59)
 
 ### Installation ###
-go get github.com/awalterschulze/gographviz
 
-### Build and Tests ###
-
-[![Build Status](https://github.com/awalterschulze/gographviz/workflows/build/badge.svg)](https://github.com/awalterschulze/gographviz/actions)
-
+```
+go get go.awalterschulze.org/gographviz
+```
 
 ### Users ###
 
