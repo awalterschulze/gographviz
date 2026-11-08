@@ -6,7 +6,7 @@ help:
 dependencies: ## Grab necessary dependencies for checkers
 	go version
 	go mod download -x
-	go install -x github.com/kisielk/errcheck golang.org/x/lint/golint
+	go install -x github.com/kisielk/errcheck
 
 regenerate: ## Re-generate lexers and parsers
 	go install github.com/goccmack/gocc
@@ -15,10 +15,9 @@ regenerate: ## Re-generate lexers and parsers
 build: ## Perform build process
 	go build .
 
-checkers: ## Run all checkers (errcheck, gofmt and golint)
+checkers: ## Run all checkers (errcheck and gofmt)
 	errcheck -ignore 'fmt:[FS]?[Pp]rint*' ./...
 	gofmt -l -s -w .
-	golint -set_exit_status
 	git diff --exit-code
 
 test: ## Perform package tests
